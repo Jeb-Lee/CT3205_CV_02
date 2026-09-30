@@ -29,6 +29,7 @@ python scripts/run_dense.py --start 40 --count 16 --stride 1 --out results/dense
 # 4. interactive viewer (screenshots for the report) and the auto-generated demo clip
 python scripts/view_open3d.py results/baseline --gt
 python scripts/view_open3d.py results/dense --ply dense.ply   # dense cloud
+python scripts/export_html.py            # self-contained interactive HTML viewer -> results/viewer/south_building.html
 python scripts/make_demo_video.py --out results/demo
 ```
 Trained model weights: none - the classical pipeline has no learned parameters. (Advanced work using learned features will
