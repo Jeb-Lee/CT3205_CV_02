@@ -7,6 +7,14 @@ import numpy as np
 DETECTORS = ("sift", "rootsift", "orb", "akaze", "brisk")
 
 
+def _factory(cls_name: str):
+    """OpenCV 5 moved AKAZE/BRISK/KAZE from `cv2` into the contrib namespace `cv2.xfeatures2d`; OpenCV 4 has them in `cv2`."""
+    for ns in (cv2, getattr(cv2, "xfeatures2d", None)):
+        if ns is not None and hasattr(ns, f"{cls_name}_create"):
+            return getattr(ns, f"{cls_name}_create")
+    raise RuntimeError(f"{cls_name} not available in this OpenCV build (need opencv-contrib-python)")
+
+
 def make_detector(name: str, nfeatures: int):
     name = name.lower()
     if name in ("sift", "rootsift"):
@@ -14,9 +22,9 @@ def make_detector(name: str, nfeatures: int):
     if name == "orb":
         return cv2.ORB_create(nfeatures=nfeatures, scaleFactor=1.2, nlevels=8, fastThreshold=10)
     if name == "akaze":
-        return cv2.AKAZE_create(threshold=5e-4)
+        return _factory("AKAZE")(threshold=5e-4)
     if name == "brisk":
-        return cv2.BRISK_create(thresh=20)
+        return _factory("BRISK")(thresh=20)
     raise ValueError(name)
 
 

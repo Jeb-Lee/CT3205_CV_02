@@ -1,0 +1,52 @@
+
+===== Experiment A =====
+                      N=3: reg 3/3  pts 1448  reproj 0.112px  camRMSE 0.0015  (4s)
+                      N=4: reg 3/4  pts 2232  reproj 0.105px  camRMSE 0.0062  (5s)
+                      N=6: reg 6/6  pts 6589  reproj 0.113px  camRMSE 0.0013  (18s)
+                      N=8: reg 8/8  pts 8889  reproj 0.129px  camRMSE 0.0008  (33s)
+                     N=12: reg 12/12  pts 10934  reproj 0.138px  camRMSE 0.0011  (64s)
+                     N=16: reg 16/16  pts 18849  reproj 0.172px  camRMSE 0.0041  (131s)
+                     N=20: reg 20/20  pts 23294  reproj 0.181px  camRMSE 0.0029  (208s)
+
+===== Experiment B =====
+                     sift: reg 11/12  pts 9414  reproj 0.129px  camRMSE 0.0012  (56s)
+                 rootsift: reg 12/12  pts 10934  reproj 0.138px  camRMSE 0.0011  (60s)
+                      orb: reg 8/12  pts 3706  reproj 0.351px  camRMSE 0.0123  (30s)
+                    akaze: reg 8/12  pts 5112  reproj 0.222px  camRMSE 0.0020  (37s)
+                    brisk: reg 9/12  pts 6642  reproj 0.209px  camRMSE 0.0013  (50s)
+
+===== Experiment C =====
+                 stride=1: reg 8/8  pts 10833  reproj 0.135px  camRMSE 0.0019  (37s)
+                 stride=2: reg 8/8  pts 8889  reproj 0.129px  camRMSE 0.0008  (31s)
+                 stride=3: reg 6/8  pts 4985  reproj 0.114px  camRMSE 0.0029  (23s)
+                 stride=4: reg 2/8  pts 2189  reproj 0.101px  camRMSE nan  (14s)
+                 stride=5: reg 3/8  pts 2982  reproj 0.092px  camRMSE 0.0014  (15s)
+                 stride=6: reg 3/8  pts 2420  reproj 0.093px  camRMSE 0.0028  (16s)
+
+===== Experiment D =====
+                 baseline: reg 12/12  pts 10934  reproj 0.138px  camRMSE 0.0011  (62s)
+                 blur s=1: reg 12/12  pts 11144  reproj 0.160px  camRMSE 0.0020  (59s)
+                 blur s=2: reg 12/12  pts 6872  reproj 0.247px  camRMSE 0.0025  (36s)
+                 blur s=4: reg 8/12  pts 740  reproj 0.440px  camRMSE 0.0038  (8s)
+                 blur s=8: reg 2/12  pts 41  reproj 0.207px  camRMSE nan  (2s)
+               noise s=10: reg 11/12  pts 7070  reproj 0.163px  camRMSE 0.0027  (54s)
+               noise s=25: reg 8/12  pts 1505  reproj 0.250px  camRMSE 0.0024  (34s)
+               noise s=50: reg 2/12  pts 61  reproj 0.358px  camRMSE nan  (35s)
+               res=1200px: reg 12/12  pts 8986  reproj 0.142px  camRMSE 0.0012  (59s)
+                res=800px: reg 12/12  pts 5161  reproj 0.166px  camRMSE 0.0018  (30s)
+                res=400px: reg 8/12  pts 851  reproj 0.221px  camRMSE 0.0061  (6s)
+                res=200px: reg 6/12  pts 166  reproj 0.256px  camRMSE 0.0152  (1s)
+            contrast x0.5: reg 12/12  pts 10800  reproj 0.138px  camRMSE 0.0018  (60s)
+           contrast x0.25: reg 11/12  pts 5846  reproj 0.133px  camRMSE 0.0018  (30s)
+Traceback (most recent call last):
+  File "C:\Users\jeble\PycharmProjects\CT3205_CV_02\experiments\run_experiments.py", line 54, in run_one
+    rec = Reconstruction(ds, names, cfg, degrade=degrade, cache_dir=CACHE, verbose=False).run()
+  File "C:\Users\jeble\PycharmProjects\CT3205_CV_02\sfm\reconstruction.py", line 316, in run
+    self.initialize()
+    ~~~~~~~~~~~~~~~^^
+RuntimeError: no valid initial pair (too few matches / too little parallax)
+   !! contrast x0.1 failed: no valid initial pair (too few matches / too little parallax)
+            contrast x0.1: reg 0/12  pts 0  reproj nanpx  camRMSE nan  (0s)
+                gamma 2.0: reg 12/12  pts 12366  reproj 0.135px  camRMSE 0.0011  (64s)
+                gamma 3.5: reg 12/12  pts 12440  reproj 0.142px  camRMSE 0.0015  (65s)
+done

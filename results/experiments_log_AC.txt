@@ -1,0 +1,18 @@
+
+===== Experiment A =====
+                      N=3: reg 3/3  pts 1448  reproj 0.112px  camRMSE 0.0017  (2s)
+                      N=4: reg 3/4  pts 2232  reproj 0.105px  camRMSE 0.0062  (5s)
+                      N=6: reg 6/6  pts 6589  reproj 0.113px  camRMSE 0.0013  (16s)
+                      N=8: reg 8/8  pts 8889  reproj 0.129px  camRMSE 0.0008  (31s)
+                     N=12: reg 12/12  pts 10934  reproj 0.138px  camRMSE 0.0011  (65s)
+                     N=16: reg 16/16  pts 18849  reproj 0.172px  camRMSE 0.0041  (144s)
+                     N=20: reg 20/20  pts 23294  reproj 0.181px  camRMSE 0.0029  (218s)
+
+===== Experiment C =====
+                 stride=1: reg 8/8  pts 10833  reproj 0.135px  camRMSE 0.0024  (31s)
+                 stride=2: reg 8/8  pts 8889  reproj 0.129px  camRMSE 0.0008  (28s)
+                 stride=3: reg 6/8  pts 4985  reproj 0.114px  camRMSE 0.0029  (19s)
+                 stride=4: reg 2/8  pts 2189  reproj 0.101px  camRMSE nan  (13s)
+                 stride=5: reg 3/8  pts 2982  reproj 0.092px  camRMSE 0.0020  (14s)
+                 stride=6: reg 3/8  pts 2420  reproj 0.093px  camRMSE 0.0030  (14s)
+done

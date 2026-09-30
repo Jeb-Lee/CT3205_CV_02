@@ -10,3 +10,5 @@ __pycache__/
 # course handouts are not ours to redistribute
 labs/
 docs/Assignment2.pdf
+results/_first_pass/
+results/experiments_err.txt

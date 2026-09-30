@@ -54,7 +54,7 @@ Command: `python scripts/run_baseline.py --start 40 --count 12 --stride 2 --out 
 
 Figures: `scene_views.png`, `matches/*.jpg` (raw / ratio+mutual / RANSAC, red = wrong under GT geometry), `reproj_*.jpg`, `reproj_hist.png`, `two_view_demo.json` (four candidate poses, only one has points in front of both cameras), `turntable.mp4`.
 
-## 5. Experiments A-D (in progress)
+## 5. Experiments A-D (design)
 Runner: `experiments/run_experiments.py A B C D` -> `results/exp{A,B,C,D}/`. Control = baseline configuration; one variable changed per experiment.
 - **A** number of images: 3,4,6,8,12,16,20 (nested subsets, stride 2).
 - **B** detector: SIFT, RootSIFT, ORB, AKAZE, BRISK on the same 12 images.
@@ -67,4 +67,62 @@ Hypotheses (to be confirmed or refuted by the data - write the outcome next to e
 - C: stride 1 has tiny parallax -> noisy depth; very large stride breaks matching; an optimum exists in between.
 - D: blur and low resolution kill features earliest; noise hurts ORB more than SIFT; a global contrast change should hurt little (descriptors are contrast-normalised).
 
-(Results filled in below once the runs finish.)
+(Outcomes: section 6.)
+
+## 6. Experiment results (clean sequential run; commands: `python experiments/run_experiments.py A B C D`)
+Control: 12 images P1180181..203 (stride 2), RootSIFT 8000 features, 1600 px, ratio 0.8 + mutual + RANSAC-E 1 px, PnP+BA. Data: `results/exp{A,B,C,D}/results.csv|md` and `*_metrics.png`.
+"pts>=3" = points seen in >= 3 views. "acc" = share of our points within 2 % of the trajectory extent of a COLMAP point after Sim(3) alignment.
+
+### Experiment A - number of images (nested subsets, stride 2)
+| N | registered | 3D pts | pts>=3 views | cam pos err (rel.) | rot err (deg) | mean reproj (px) | completeness vs COLMAP | time (s) |
+|---|---|---|---|---|---|---|---|---|
+| 3 | 3/3 | 1,448 | **21** | 0.0017 | 0.15 | 0.112 | 4 % | 1.5 |
+| 4 | **3/4** | 2,232 | 70 | 0.0062 | 0.87 | 0.105 | (unreliable, see below) | 3.7 |
+| 6 | 6/6 | 6,589 | 2,237 | 0.0013 | 0.23 | 0.113 | 19 % | 14 |
+| 8 | 8/8 | 8,889 | 4,097 | **0.0008** | 0.14 | 0.129 | 23 % | 28 |
+| 12 | 12/12 | 10,934 | 4,986 | 0.0011 | 0.18 | 0.138 | 36 % | 62 |
+| 16 | 16/16 | 18,849 | 9,193 | 0.0041 | 0.37 | 0.172 | 54 % | 139 |
+| 20 | 20/20 | 23,294 | 12,375 | 0.0029 | 0.30 | 0.181 | 63 % | 212 |
+
+Findings
+- Points and completeness grow steadily with N (1.4k -> 23k points; completeness 4 % -> 63 %); runtime grows roughly quadratically (all-pairs matching): 212 s at N=20.
+- **More images does NOT always improve accuracy**: camera error is best at N=8 (0.0008) and *worse* at N=16/20 (0.004 / 0.003). Untested hypotheses: the later images sit in weaker-overlap / foliage-heavy parts of the sequence, and more chained registrations accumulate drift.
+- **Mean reprojection error rises with N (0.11 -> 0.18 px)** although the model gets better: with N=3 nearly all points are 2-view and 2-view points fit almost perfectly by construction (only 21 points have >= 3 views). Reprojection error must be read together with track length.
+- **N=4 did not use all its images**: image 181 links to the initial pair (185,187) with only 9-10 "inliers" (RANSAC noise) so it is correctly rejected; 183 joins with only 71 2D-3D correspondences. Its accuracy score (0.9 % of points within 2 %) is *misleading*: `scripts/diag_alignment.py` shows that with a camera-independent scaled-ICP alignment 78-80 % of the points are within 2 %, i.e. the 3-camera Sim(3) alignment, not the points, is the problem. Camera error after ICP is still 6-8 % of the extent, so it is a fragile reconstruction. Lesson: with 3-4 nearly collinear cameras both the reconstruction and its evaluation are ill-conditioned. (An optical-axis alignment fix for near-collinear cameras was added to `evaluate.py`.)
+
+### Experiment B - detector / descriptor (same 12 images)
+| detector | registered | 3D pts | verified inliers / pair | inlier ratio | mean reproj (px) | cam err (rel.) | time (s) |
+|---|---|---|---|---|---|---|---|
+| SIFT | 11/12 | 9,414 | 452 | 0.80 | 0.129 | 0.0012 | 56 |
+| **RootSIFT** | **12/12** | **10,934** | **483** | **0.86** | 0.138 | 0.0011 | 57 |
+| ORB | 8/12 | 3,706 | 115 | 0.61 | 0.351 | 0.0123 | 29 |
+| AKAZE | 8/12 | 5,112 | 201 | 0.66 | 0.222 | 0.0020 | 37 |
+| BRISK | 9/12 | 6,642 | 271 | 0.79 | 0.209 | 0.0013 | 48 |
+
+Findings: the SIFT family clearly wins on this wide-baseline outdoor sequence; RootSIFT (a free L1 + sqrt normalisation) beats plain SIFT in inliers, inlier ratio, points and registration. ORB is ~2x faster but has 4x fewer inliers, ~3x higher reprojection error and ~10x worse camera error. The binary detectors were not tuned (near-default thresholds, shared ratio 0.8), so their ranking is "out of the box"; a fair-tuning study is a possible extension. (A first attempt crashed: OpenCV 5 moved AKAZE/BRISK to `cv2.xfeatures2d`; fixed in `sfm/features.py`.)
+
+### Experiment C - viewpoint change (8 images, stride 1..6)
+| stride | registered | verified inliers / pair | 3D pts | acc (within 2 %) | cam err (rel.) |
+|---|---|---|---|---|---|
+| 1 | 8/8 | 988 | 10,833 | 0.917 | 0.0024 |
+| 2 | 8/8 | 866 | 8,889 | 0.992 | 0.0008 |
+| 3 | 6/8 | 358 | 4,985 | 0.995 | 0.0029 |
+| 4 | **2/8** | 265 | 2,189 | n/a | n/a |
+| 5 | 3/8 | 224 | 2,982 | 0.989 | 0.0020 |
+| 6 | 3/8 | 140 | 2,420 | 0.992 | 0.0030 |
+
+Two-view study (`results/expC/two_view_baseline_study.csv`, frame i vs i+k): k=1: 2,520 inliers, median parallax 12.6 deg; k=2: 1,270 / 24 deg; k=3: 377 / 34 deg; **k>=4: 9-10 inliers, i.e. matching collapses** (roughly 35+ deg viewpoint change on this facade).
+Findings: matches and points fall monotonically with viewpoint change, registration collapses beyond stride 3, and stride 1-2 is the sweet spot. Point accuracy is worst at stride 1 (0.917 vs 0.992): smallest baseline -> weakest depth, consistent with theory. **Caveat:** even consecutive south-building frames already have ~12 deg parallax, so this dataset never reaches the true "insufficient camera movement" regime; that case needs own photos with tiny hand-held steps (see GUIDE_YOUR_TODO.md).
+
+### Experiment D - image quality (baseline 12/12 registered, 10,934 pts)
+| factor | level | registered | 3D pts | cam err (rel.) |
+|---|---|---|---|---|
+| blur sigma (px) | 1 / 2 / 4 / 8 | 12 / 12 / 8 / 2 | 11,144 / 6,872 / 740 / 41 | .0020 / .0025 / .0038 / n/a |
+| noise sigma (grey levels) | 10 / 25 / 50 | 11 / 8 / 2 | 7,070 / 1,505 / 61 | .0027 / .0024 / n/a |
+| resolution (longest side) | 1200 / 800 / 400 / 200 | 12 / 12 / 8 / 6 | 8,986 / 5,161 / 851 / 166 | .0012 / .0018 / .0061 / .0152 |
+| contrast | x0.5 / x0.25 / x0.1 | 12 / 11 / **0 (fail)** | 10,800 / 5,846 / 0 | .0018 / .0018 / n/a |
+| gamma (darker) | 2.0 / 3.5 | 12 / 12 | 12,366 / 12,440 | .0011 / .0015 |
+
+Findings: blur, noise and resolution degrade *gracefully, then collapse*: points fall first (blur s=2 halves them, s=4 leaves 7 %), then registration, then the initial pair itself. Blur is the most destructive per unit; blur sigma >= 4 or noise sigma 50 leaves too few features to build a model. Global contrast reduction is tolerated down to x0.25 and fails at x0.1 (8-bit quantisation destroys the weak gradients before descriptors can use them). Darkening via gamma does not hurt (even slightly more points): descriptors are gradient-normalised. Camera error stays around 0.1-0.3 % of the extent for everything that still registers, so degradation shows up mainly as **lost points and images**, not as pose drift. Reprojection error of failing runs is low only because few points survive (survivorship); do not read it as "better".
+
+Caveat for all experiments: one sequence, and RANSAC randomness is not averaged (the runs reproduced identically on re-execution in this environment).

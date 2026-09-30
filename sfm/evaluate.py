@@ -61,6 +61,15 @@ def evaluate_against_gt(rec, pc=None):
     C_est = np.array([G.camera_center(*rec.cams[i]) for i in ids])
     C_gt = np.array([G.camera_center(*ds.gt_poses[rec.names[i]]) for i in ids])
     s, R, t = robust_umeyama(C_est, C_gt)
+    # Near-collinear camera centres leave the rotation about the trajectory line unconstrained (few images on a
+    # straight path). Add each camera's optical-axis point as extra correspondences to pin that rotation down.
+    sv = np.linalg.svd(C_gt - C_gt.mean(0), compute_uv=False)
+    collinear = sv[1] / (sv[0] + 1e-12) < 0.1
+    if collinear:
+        d = np.linalg.norm(C_est - C_est.mean(0), axis=1).max() + 1e-9
+        ax_est = np.array([rec.cams[i][0].T @ np.array([0, 0, 1.0]) for i in ids])
+        ax_gt = np.array([ds.gt_poses[rec.names[i]][0].T @ np.array([0, 0, 1.0]) for i in ids])
+        s, R, t = umeyama(np.vstack([C_est, C_est + d * ax_est]), np.vstack([C_gt, C_gt + s * d * ax_gt]))
     C_al = s * C_est @ R.T + t
     pos_err = np.linalg.norm(C_al - C_gt, axis=1)
     rot_err = []
@@ -70,7 +79,7 @@ def evaluate_against_gt(rec, pc=None):
         # world_est = R^T-aligned: X_gt = s R X_est + t  =>  R_est_in_gt = Re R^T
         rot_err.append(G.rotation_angle_deg(Re @ R.T @ Rg.T))
     extent = np.linalg.norm(C_gt - C_gt.mean(0), axis=1).max() + 1e-9
-    out = dict(gt_n_cams=len(ids), align_scale=float(s),
+    out = dict(gt_n_cams=len(ids), align_scale=float(s), align_collinear_fix=bool(collinear),
                cam_pos_rmse=float(np.sqrt((pos_err ** 2).mean())),
                cam_pos_rmse_rel=float(np.sqrt((pos_err ** 2).mean()) / extent),   # relative to trajectory extent
                cam_pos_median=float(np.median(pos_err)),
