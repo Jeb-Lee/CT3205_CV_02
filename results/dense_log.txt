@@ -1,0 +1,109 @@
+[features] rootsift: mean 8000 kp/img (0.4s)
+[matching] 120 pairs, 77 verified (>= 40 inliers) (50.0s)
+  init candidate (8,9): inl=3606 good=3606 median parallax=9.07 deg cheirality counts=[3606, 0, 0, 0]
+  init candidate (12,13): inl=3497 good=3497 median parallax=5.79 deg cheirality counts=[3497, 0, 0, 0]
+  init candidate (9,10): inl=3408 good=3408 median parallax=9.89 deg cheirality counts=[3408, 0, 0, 0]
+  init candidate (4,5): inl=3191 good=3191 median parallax=8.03 deg cheirality counts=[0, 0, 0, 3191]
+  init candidate (5,6): inl=3174 good=3174 median parallax=7.77 deg cheirality counts=[0, 3174, 0, 0]
+  init candidate (13,14): inl=3113 good=3112 median parallax=7.76 deg cheirality counts=[0, 0, 1, 3112]
+  init candidate (8,10): inl=3077 good=3077 median parallax=18.45 deg cheirality counts=[0, 3077, 0, 0]
+  init candidate (6,7): inl=2940 good=2940 median parallax=7.60 deg cheirality counts=[0, 0, 0, 2940]
+  init candidate (7,8): inl=2856 good=2856 median parallax=9.21 deg cheirality counts=[0, 0, 0, 2856]
+  init candidate (12,14): inl=2777 good=2777 median parallax=12.61 deg cheirality counts=[0, 0, 0, 2777]
+  init candidate (10,11): inl=2774 good=2774 median parallax=8.49 deg cheirality counts=[0, 0, 2774, 0]
+  init candidate (2,3): inl=2638 good=2638 median parallax=7.64 deg cheirality counts=[2638, 0, 0, 0]
+[init] pair (P1180189.JPG, P1180190.JPG): 3606 points, median parallax 9.07 deg, cheirality counts (per candidate) [3606, 0, 0, 0]
+[BA] 2 cams, 3606 pts: RMSE 0.134 -> 0.075 px (0.6s)
+[register] P1180191.JPG: 2406 2D-3D corr, 2404 PnP inliers, +1780 points (total 5386, cams 3)
+[BA] 3 cams, 5386 pts: RMSE 0.169 -> 0.096 px (1.5s)
+[register] P1180188.JPG: 2722 2D-3D corr, 2707 PnP inliers, +897 points (total 6283, cams 4)
+[BA] 4 cams, 6283 pts: RMSE 0.157 -> 0.116 px (1.9s)
+[register] P1180187.JPG: 2897 2D-3D corr, 2891 PnP inliers, +946 points (total 7228, cams 5)
+[BA] 5 cams, 7228 pts: RMSE 0.163 -> 0.130 px (2.4s)
+[register] P1180186.JPG: 3044 2D-3D corr, 3022 PnP inliers, +1056 points (total 8284, cams 6)
+[BA] 6 cams, 8284 pts: RMSE 0.186 -> 0.156 px (3.1s)
+[register] P1180185.JPG: 2923 2D-3D corr, 2913 PnP inliers, +928 points (total 9212, cams 7)
+[BA] 7 cams, 9212 pts: RMSE 0.202 -> 0.174 px (3.3s)
+[register] P1180193.JPG: 2913 2D-3D corr, 2843 PnP inliers, +761 points (total 9973, cams 8)
+[BA] 8 cams, 9973 pts: RMSE 0.213 -> 0.182 px (3.8s)
+[register] P1180194.JPG: 3165 2D-3D corr, 3148 PnP inliers, +1194 points (total 11166, cams 9)
+[BA] 9 cams, 11166 pts: RMSE 0.201 -> 0.184 px (4.3s)
+[register] P1180192.JPG: 3310 2D-3D corr, 3278 PnP inliers, +659 points (total 11825, cams 10)
+[BA] 10 cams, 11825 pts: RMSE 0.197 -> 0.188 px (6.2s)
+[register] P1180195.JPG: 3437 2D-3D corr, 3398 PnP inliers, +813 points (total 12638, cams 11)
+[BA] 11 cams, 12638 pts: RMSE 0.218 -> 0.201 px (7.1s)
+[register] P1180196.JPG: 2774 2D-3D corr, 2739 PnP inliers, +664 points (total 13302, cams 12)
+[BA] 12 cams, 13302 pts: RMSE 0.222 -> 0.208 px (8.5s)
+[register] P1180184.JPG: 1249 2D-3D corr, 1242 PnP inliers, +498 points (total 13799, cams 13)
+[BA] 13 cams, 13799 pts: RMSE 0.223 -> 0.213 px (7.5s)
+[register] P1180183.JPG: 792 2D-3D corr, 788 PnP inliers, +1801 points (total 15599, cams 14)
+[BA] 14 cams, 15599 pts: RMSE 0.214 -> 0.211 px (8.7s)
+[register] P1180182.JPG: 965 2D-3D corr, 960 PnP inliers, +1315 points (total 16914, cams 15)
+[BA] 15 cams, 16914 pts: RMSE 0.218 -> 0.211 px (10.9s)
+[register] P1180181.JPG: 1529 2D-3D corr, 1515 PnP inliers, +1302 points (total 18216, cams 16)
+[BA] 16 cams, 18216 pts: RMSE 0.223 -> 0.212 px (11.0s)
+[BA] 16 cams, 18216 pts: RMSE 0.212 -> 0.211 px (10.6s)
+[done] 16/16 images registered, 18216 points (final filter removed 0) in 152.1s
+sparse vs GT: {'align_scale': 0.3951, 'cam_pos_rmse': 0.0012, 'cam_pos_rmse_rel': 0.0005, 'cam_pos_median': 0.001, 'cam_rot_mean_deg': 0.0676, 'cam_rot_median_deg': 0.0757, 'cam_rot_max_deg': 0.1589, 'pt_acc_median': 0.0035, 'pt_acc_mean': 0.0076, 'pt_within_2pct': 0.9635, 'gt_completeness_2pct': 0.277}
+  pair (P1180181.JPG,P1180182.JPG): 220606 pts, valid 0.11, disp 205+320  (1.0s)
+  pair (P1180182.JPG,P1180183.JPG): 206211 pts, valid 0.11, disp 44+320  (0.6s)
+  pair (P1180183.JPG,P1180184.JPG): 308382 pts, valid 0.16, disp 28+320  (0.6s)
+  pair (P1180184.JPG,P1180185.JPG): 182123 pts, valid 0.09, disp 247+320  (0.5s)
+  pair (P1180185.JPG,P1180186.JPG): 122382 pts, valid 0.06, disp 738+320  (0.3s)
+  pair (P1180186.JPG,P1180187.JPG): 126115 pts, valid 0.07, disp 371+320  (0.4s)
+  pair (P1180187.JPG,P1180188.JPG): 310559 pts, valid 0.16, disp 53+320  (0.6s)
+  pair (P1180188.JPG,P1180189.JPG): 27781 pts, valid 0.01, disp 128+320  (0.5s)
+  pair (P1180189.JPG,P1180190.JPG): 278869 pts, valid 0.15, disp 242+320  (0.5s)
+  pair (P1180190.JPG,P1180191.JPG): 248497 pts, valid 0.13, disp 364+320  (0.4s)
+  pair (P1180191.JPG,P1180192.JPG): 260400 pts, valid 0.14, disp 312+320  (0.5s)
+  pair (P1180192.JPG,P1180193.JPG): 324339 pts, valid 0.17, disp 77+320  (0.5s)
+  pair (P1180193.JPG,P1180194.JPG): 364663 pts, valid 0.19, disp 38+224  (0.4s)
+  pair (P1180194.JPG,P1180195.JPG): 298019 pts, valid 0.16, disp 139+240  (0.5s)
+  pair (P1180195.JPG,P1180196.JPG): 279547 pts, valid 0.15, disp 149+320  (0.5s)
+[dense] 3400756 raw -> 428018 fused points (min_support=2) in 19s
+{
+ "sparse_points": 18216,
+ "dense_points": 428018,
+ "density_gain": 23.49681598594642,
+ "n_colmap_visible": 61154,
+ "n_colmap_in_volume": 22141,
+ "scene_radius_gt": 1.0760921357775877,
+ "colmap_coverage_sparse": {
+  "median": 0.16365597087374287,
+  "within": 0.278624456290676
+ },
+ "colmap_coverage_dense": {
+  "median": 0.3485003250414702,
+  "within": 0.26894397749942767
+ },
+ "colmap_coverage_sparse_scene": {
+  "median": 0.013773237858675425,
+  "within": 0.5852942504855246
+ },
+ "colmap_coverage_dense_scene": {
+  "median": 0.004575624299728156,
+  "within": 0.6641976423829096
+ },
+ "dense_to_colmap_median_scene": 0.010062151896222034,
+ "sparse_to_colmap_median_scene": 0.007489815304269163,
+ "dense_to_colmap_median": 0.004711683720947425,
+ "sparse_to_colmap_median": 0.003507126443915988,
+ "plane_sparse": {
+  "inliers": 12444,
+  "inlier_frac": 0.7040850967522915,
+  "rms_rel_extent": 0.002409977280634041
+ },
+ "plane_dense": {
+  "inliers": 80534,
+  "inlier_frac": 0.6711166666666667,
+  "rms_rel_extent": 0.003232073623835948
+ }
+}
+{'config': 'block=3', 'pairs': 15, 'raw_points': 3317381, 'fused_points': 484249, 'seconds': 16.22036123275757, 'dense_to_colmap_median': 0.004589476494669173, 'coverage_within2pct_scene': 0.6646731190650109, 'dense_to_colmap_median_scene': 0.009869642661068528, 'plane_rms': 0.003201284435713949, 'plane_inlier_frac': 0.6973916666666666}
+{'config': 'block=5 (default)', 'pairs': 15, 'raw_points': 3400756, 'fused_points': 428018, 'seconds': 17.694838762283325, 'dense_to_colmap_median': 0.004711683720947425, 'coverage_within2pct_scene': 0.6641976423829096, 'dense_to_colmap_median_scene': 0.010062151896222034, 'plane_rms': 0.003232073623835948, 'plane_inlier_frac': 0.6711166666666667}
+{'config': 'block=9', 'pairs': 15, 'raw_points': 3514143, 'fused_points': 378165, 'seconds': 25.904677629470825, 'dense_to_colmap_median': 0.004798952566843963, 'coverage_within2pct_scene': 0.6605257245562794, 'dense_to_colmap_median_scene': 0.010211203964910168, 'plane_rms': 0.003519065404964019, 'plane_inlier_frac': 0.6516}
+{'config': 'gap=2', 'pairs': 13, 'raw_points': 1418911, 'fused_points': 169492, 'seconds': 20.564831256866455, 'dense_to_colmap_median': 0.004708055635255785, 'coverage_within2pct_scene': 0.6947446887812151, 'dense_to_colmap_median_scene': 0.014164405802984831, 'plane_rms': 0.0031882545967266214, 'plane_inlier_frac': 0.91795}
+{'config': 'gap=3', 'pairs': 10, 'raw_points': 197729, 'fused_points': 76, 'seconds': 11.487525701522827, 'dense_to_colmap_median': 0.04052550862655755, 'coverage_within2pct_scene': 0.0008001506165866517, 'dense_to_colmap_median_scene': 0.017274558760222748, 'plane_rms': 0.0037082251391073536, 'plane_inlier_frac': 0.7580645161290323}
+{'config': 'support=1', 'pairs': 15, 'raw_points': 3400756, 'fused_points': 1105316, 'seconds': 34.196911096572876, 'dense_to_colmap_median': 0.006720461254799577, 'coverage_within2pct_scene': 0.7487843762455162, 'dense_to_colmap_median_scene': 0.013274448895190263, 'plane_rms': 0.0037600594662977127, 'plane_inlier_frac': 0.45884166666666665}
+{'config': 'support=3', 'pairs': 15, 'raw_points': 3400756, 'fused_points': 224373, 'seconds': 34.635581493377686, 'dense_to_colmap_median': 0.004370979922564614, 'coverage_within2pct_scene': 0.665083135391924, 'dense_to_colmap_median_scene': 0.010905719499843161, 'plane_rms': 0.0029689893977402756, 'plane_inlier_frac': 0.8023666666666667}
+saved to results/dense

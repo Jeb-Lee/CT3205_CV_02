@@ -1,0 +1,243 @@
+{
+  "sparse_points": 18216,
+  "dense_points": 428018,
+  "density_gain": 23.49681598594642,
+  "n_colmap_visible": 61154,
+  "n_colmap_in_volume": 22141,
+  "scene_radius_gt": 1.0760921357775877,
+  "colmap_coverage_sparse": {
+    "median": 0.16365597087374287,
+    "within": 0.278624456290676
+  },
+  "colmap_coverage_dense": {
+    "median": 0.3485003250414702,
+    "within": 0.26894397749942767
+  },
+  "colmap_coverage_sparse_scene": {
+    "median": 0.013773237858675425,
+    "within": 0.5852942504855246
+  },
+  "colmap_coverage_dense_scene": {
+    "median": 0.004575624299728156,
+    "within": 0.6641976423829096
+  },
+  "dense_to_colmap_median_scene": 0.010062151896222034,
+  "sparse_to_colmap_median_scene": 0.007489815304269163,
+  "dense_to_colmap_median": 0.004711683720947425,
+  "sparse_to_colmap_median": 0.003507126443915988,
+  "plane_sparse": {
+    "inliers": 12444,
+    "inlier_frac": 0.7040850967522915,
+    "rms_rel_extent": 0.002409977280634041
+  },
+  "plane_dense": {
+    "inliers": 80534,
+    "inlier_frac": 0.6711166666666667,
+    "rms_rel_extent": 0.003232073623835948
+  },
+  "sparse_vs_gt": {
+    "align_scale": 0.3950919093942667,
+    "cam_pos_rmse": 0.0012046939745287161,
+    "cam_pos_rmse_rel": 0.00052421276975271,
+    "cam_pos_median": 0.0010339836484951534,
+    "cam_rot_mean_deg": 0.06763965848828894,
+    "cam_rot_median_deg": 0.07569652945547109,
+    "cam_rot_max_deg": 0.15894680385066914,
+    "pt_acc_median": 0.0035071264423898905,
+    "pt_acc_mean": 0.007580104985880266,
+    "pt_within_2pct": 0.9635485287659201,
+    "gt_completeness_2pct": 0.27699385505738533
+  },
+  "dense_info": {
+    "n_pairs": 15,
+    "raw_points": 3400756,
+    "fused_points": 428018,
+    "voxel": 0.009365625180111832,
+    "min_support": 2,
+    "seconds": 16.586606740951538,
+    "per_pair": [
+      {
+        "pair": [
+          "P1180181.JPG",
+          "P1180182.JPG"
+        ],
+        "points": 220606,
+        "valid_frac": 0.114921875,
+        "num_disp": 320,
+        "seconds": 0.5105266571044922
+      },
+      {
+        "pair": [
+          "P1180182.JPG",
+          "P1180183.JPG"
+        ],
+        "points": 206211,
+        "valid_frac": 0.107409375,
+        "num_disp": 320,
+        "seconds": 0.5595352649688721
+      },
+      {
+        "pair": [
+          "P1180183.JPG",
+          "P1180184.JPG"
+        ],
+        "points": 308382,
+        "valid_frac": 0.16064375,
+        "num_disp": 320,
+        "seconds": 0.5295085906982422
+      },
+      {
+        "pair": [
+          "P1180184.JPG",
+          "P1180185.JPG"
+        ],
+        "points": 182123,
+        "valid_frac": 0.09485572916666667,
+        "num_disp": 320,
+        "seconds": 0.45114731788635254
+      },
+      {
+        "pair": [
+          "P1180185.JPG",
+          "P1180186.JPG"
+        ],
+        "points": 122382,
+        "valid_frac": 0.06374479166666666,
+        "num_disp": 320,
+        "seconds": 0.2981147766113281
+      },
+      {
+        "pair": [
+          "P1180186.JPG",
+          "P1180187.JPG"
+        ],
+        "points": 126115,
+        "valid_frac": 0.06568489583333334,
+        "num_disp": 320,
+        "seconds": 0.40146374702453613
+      },
+      {
+        "pair": [
+          "P1180187.JPG",
+          "P1180188.JPG"
+        ],
+        "points": 310559,
+        "valid_frac": 0.161765625,
+        "num_disp": 320,
+        "seconds": 0.5426075458526611
+      },
+      {
+        "pair": [
+          "P1180188.JPG",
+          "P1180189.JPG"
+        ],
+        "points": 27781,
+        "valid_frac": 0.014469270833333334,
+        "num_disp": 320,
+        "seconds": 0.4589545726776123
+      },
+      {
+        "pair": [
+          "P1180189.JPG",
+          "P1180190.JPG"
+        ],
+        "points": 278869,
+        "valid_frac": 0.145246875,
+        "num_disp": 320,
+        "seconds": 0.4722859859466553
+      },
+      {
+        "pair": [
+          "P1180190.JPG",
+          "P1180191.JPG"
+        ],
+        "points": 248497,
+        "valid_frac": 0.12942552083333334,
+        "num_disp": 320,
+        "seconds": 0.45187926292419434
+      },
+      {
+        "pair": [
+          "P1180191.JPG",
+          "P1180192.JPG"
+        ],
+        "points": 260400,
+        "valid_frac": 0.135625,
+        "num_disp": 320,
+        "seconds": 0.46697115898132324
+      },
+      {
+        "pair": [
+          "P1180192.JPG",
+          "P1180193.JPG"
+        ],
+        "points": 324339,
+        "valid_frac": 0.1689265625,
+        "num_disp": 320,
+        "seconds": 0.5489790439605713
+      },
+      {
+        "pair": [
+          "P1180193.JPG",
+          "P1180194.JPG"
+        ],
+        "points": 364663,
+        "valid_frac": 0.18992864583333333,
+        "num_disp": 224,
+        "seconds": 0.4593207836151123
+      },
+      {
+        "pair": [
+          "P1180194.JPG",
+          "P1180195.JPG"
+        ],
+        "points": 298019,
+        "valid_frac": 0.15549895833333333,
+        "num_disp": 240,
+        "seconds": 0.4433884620666504
+      },
+      {
+        "pair": [
+          "P1180195.JPG",
+          "P1180196.JPG"
+        ],
+        "points": 279547,
+        "valid_frac": 0.14559739583333334,
+        "num_disp": 320,
+        "seconds": 0.47963380813598633
+      }
+    ],
+    "mean_support": 3.1150979631697733
+  },
+  "config": {
+    "block": 5,
+    "uniqueness": 10,
+    "speckle_window": 120,
+    "speckle_range": 2,
+    "disp12": 1,
+    "pair_gap": 1,
+    "pixel_step": 2,
+    "voxel_frac": 0.0025,
+    "min_support": 2,
+    "max_disp": 320,
+    "depth_margin": 0.25
+  },
+  "images": [
+    "P1180181.JPG",
+    "P1180182.JPG",
+    "P1180183.JPG",
+    "P1180184.JPG",
+    "P1180185.JPG",
+    "P1180186.JPG",
+    "P1180187.JPG",
+    "P1180188.JPG",
+    "P1180189.JPG",
+    "P1180190.JPG",
+    "P1180191.JPG",
+    "P1180192.JPG",
+    "P1180193.JPG",
+    "P1180194.JPG",
+    "P1180195.JPG",
+    "P1180196.JPG"
+  ]
+}

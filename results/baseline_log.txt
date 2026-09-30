@@ -1,6 +1,6 @@
 images: ['P1180181.JPG', 'P1180183.JPG', 'P1180185.JPG', 'P1180187.JPG', 'P1180189.JPG', 'P1180191.JPG', 'P1180193.JPG', 'P1180195.JPG', 'P1180197.JPG', 'P1180199.JPG', 'P1180201.JPG', 'P1180203.JPG']
-[features] rootsift: mean 8000 kp/img (3.1s)
-[matching] 66 pairs, 28 verified (>= 40 inliers) (29.5s)
+[features] rootsift: mean 8000 kp/img (0.3s)
+[matching] 66 pairs, 28 verified (>= 40 inliers) (26.6s)
   init candidate (4,5): inl=3077 good=3077 median parallax=18.45 deg cheirality counts=[0, 3077, 0, 0]
   init candidate (6,7): inl=2777 good=2777 median parallax=12.61 deg cheirality counts=[0, 0, 0, 2777]
   init candidate (5,6): inl=2613 good=2613 median parallax=16.60 deg cheirality counts=[0, 2613, 0, 0]
@@ -16,27 +16,27 @@ images: ['P1180181.JPG', 'P1180183.JPG', 'P1180185.JPG', 'P1180187.JPG', 'P11801
 [init] pair (P1180189.JPG, P1180191.JPG): 3077 points, median parallax 18.45 deg, cheirality counts (per candidate) [0, 3077, 0, 0]
 [BA] 2 cams, 3077 pts: RMSE 0.070 -> 0.066 px (0.2s)
 [register] P1180193.JPG: 1638 2D-3D corr, 1636 PnP inliers, +1454 points (total 4531, cams 3)
-[BA] 3 cams, 4531 pts: RMSE 0.151 -> 0.101 px (0.5s)
+[BA] 3 cams, 4531 pts: RMSE 0.151 -> 0.101 px (0.7s)
 [register] P1180195.JPG: 2127 2D-3D corr, 2123 PnP inliers, +1221 points (total 5752, cams 4)
-[BA] 4 cams, 5752 pts: RMSE 0.182 -> 0.137 px (1.6s)
+[BA] 4 cams, 5752 pts: RMSE 0.182 -> 0.137 px (2.1s)
 [register] P1180187.JPG: 2010 2D-3D corr, 2000 PnP inliers, +993 points (total 6745, cams 5)
-[BA] 5 cams, 6745 pts: RMSE 0.197 -> 0.150 px (2.2s)
+[BA] 5 cams, 6745 pts: RMSE 0.197 -> 0.150 px (2.6s)
 [register] P1180197.JPG: 1739 2D-3D corr, 1732 PnP inliers, +661 points (total 7406, cams 6)
-[BA] 6 cams, 7406 pts: RMSE 0.193 -> 0.164 px (2.3s)
+[BA] 6 cams, 7406 pts: RMSE 0.193 -> 0.164 px (2.8s)
 [register] P1180185.JPG: 1655 2D-3D corr, 1647 PnP inliers, +805 points (total 8211, cams 7)
-[BA] 7 cams, 8211 pts: RMSE 0.219 -> 0.183 px (2.4s)
+[BA] 7 cams, 8211 pts: RMSE 0.219 -> 0.183 px (2.9s)
 [register] P1180199.JPG: 809 2D-3D corr, 801 PnP inliers, +535 points (total 8746, cams 8)
-[BA] 8 cams, 8746 pts: RMSE 0.199 -> 0.189 px (2.9s)
+[BA] 8 cams, 8746 pts: RMSE 0.199 -> 0.189 px (3.0s)
 [register] P1180183.JPG: 80 2D-3D corr, 80 PnP inliers, +120 points (total 8866, cams 9)
 [BA] 9 cams, 8866 pts: RMSE 0.192 -> 0.190 px (3.2s)
 [register] P1180201.JPG: 79 2D-3D corr, 78 PnP inliers, +432 points (total 9298, cams 10)
-[BA] 10 cams, 9298 pts: RMSE 0.193 -> 0.189 px (3.0s)
+[BA] 10 cams, 9298 pts: RMSE 0.193 -> 0.189 px (3.5s)
 [register] P1180203.JPG: 146 2D-3D corr, 145 PnP inliers, +419 points (total 9717, cams 11)
-[BA] 11 cams, 9717 pts: RMSE 0.192 -> 0.188 px (3.5s)
+[BA] 11 cams, 9717 pts: RMSE 0.192 -> 0.188 px (3.9s)
 [register] P1180181.JPG: 22 2D-3D corr, 21 PnP inliers, +1217 points (total 10934, cams 12)
-[BA] 12 cams, 10934 pts: RMSE 0.192 -> 0.189 px (4.0s)
-[BA] 12 cams, 10934 pts: RMSE 0.189 -> 0.189 px (4.1s)
-[done] 12/12 images registered, 10934 points (final filter removed 0) in 66.3s
+[BA] 12 cams, 10934 pts: RMSE 0.192 -> 0.189 px (4.4s)
+[BA] 12 cams, 10934 pts: RMSE 0.189 -> 0.189 px (4.0s)
+[done] 12/12 images registered, 10934 points (final filter removed 0) in 64.0s
 {
  "n_images": 12,
  "n_registered": 12,
@@ -54,13 +54,14 @@ images: ['P1180181.JPG', 'P1180183.JPG', 'P1180185.JPG', 'P1180187.JPG', 'P11801
  "n_pairs_verified": 28,
  "mean_inliers_per_pair": 482.92424242424244,
  "mean_inlier_ratio": 0.8647025678790052,
- "seconds": 66.31279969215393,
+ "seconds": 63.95841312408447,
  "init_pair": [
   "P1180189.JPG",
   "P1180191.JPG"
  ],
  "gt_n_cams": 12,
  "align_scale": 0.7423656644337177,
+ "align_collinear_fix": false,
  "cam_pos_rmse": 0.0035853817510058806,
  "cam_pos_rmse_rel": 0.0011322808041941623,
  "cam_pos_median": 0.002327879440279417,
@@ -70,7 +71,32 @@ images: ['P1180181.JPG', 'P1180183.JPG', 'P1180185.JPG', 'P1180187.JPG', 'P11801
  "pt_acc_median": 0.0024943667530951327,
  "pt_acc_mean": 0.0037786573662672426,
  "pt_within_2pct": 0.9941466983720505,
- "gt_completeness_2pct": 0.3639821829177098
+ "gt_completeness_2pct": 0.3639821829177098,
+ "sim3": {
+  "s": 0.7423656644337177,
+  "R": [
+   [
+    -0.3237029807209902,
+    0.27584994956057457,
+    0.9050542445620452
+   ],
+   [
+    -0.2654671330915779,
+    0.8916549346887152,
+    -0.3667133467620203
+   ],
+   [
+    -0.9081539415322076,
+    -0.358968359013286,
+    -0.21540226486001485
+   ]
+  ],
+  "t": [
+   -4.7545239360432,
+   0.4909910311796777,
+   1.2955338744296956
+  ]
+ }
 }
 match stages {'a_raw': {'n': 8000, 'n_wrong': 4467}, 'b_ratio_mutual': {'n': 3164, 'n_wrong': 81}, 'c_ransac': {'n': 3077, 'n_wrong': 0}}
 two-view demo {

@@ -126,3 +126,42 @@ Findings: matches and points fall monotonically with viewpoint change, registrat
 Findings: blur, noise and resolution degrade *gracefully, then collapse*: points fall first (blur s=2 halves them, s=4 leaves 7 %), then registration, then the initial pair itself. Blur is the most destructive per unit; blur sigma >= 4 or noise sigma 50 leaves too few features to build a model. Global contrast reduction is tolerated down to x0.25 and fails at x0.1 (8-bit quantisation destroys the weak gradients before descriptors can use them). Darkening via gamma does not hurt (even slightly more points): descriptors are gradient-normalised. Camera error stays around 0.1-0.3 % of the extent for everything that still registers, so degradation shows up mainly as **lost points and images**, not as pose drift. Reprojection error of failing runs is low only because few points survive (survivorship); do not read it as "better".
 
 Caveat for all experiments: one sequence, and RANSAC randomness is not averaged (the runs reproduced identically on re-execution in this environment).
+
+## 7. Advanced work: dense stereo reconstruction (2026-10-01)
+Code: `sfm/dense.py`, runner `scripts/run_dense.py`. Command: `python scripts/run_dense.py --start 40 --count 16 --stride 1 --out results/dense --ablate --video`.
+
+**Method.** (1) SfM on 16 *consecutive* images (P1180181-196); consecutive frames are used because dense matching needs modest convergence (about 10-12 deg), unlike sparse SfM which tolerates ~35 deg. (2) For every neighbouring pair of *estimated* cameras: `cv2.stereoRectify` (Bouguet) so epipolar lines become image rows, then SGBM (3-way, block 5, uniqueness 10, left-right check 1) with the disparity search range derived from the sparse points seen in that image (2nd-98th percentile depth +/- 25 %). (3) `reprojectImageTo3D` with Q -> rectified frame -> camera frame -> world. (4) **Multi-view fusion by voxel voting**: a voxel (radius/400) is kept only if >= 2 different stereo pairs put a point in it; kept points are averaged. Fusion is what removes SGBM mismatches: single-pair results are noisy, agreement between independent pairs is not.
+
+**Sparse stage on this sequence:** 16/16 registered, 18,216 points, camera position error 0.05 % of trajectory extent, rotation error 0.068 deg (mean). Denser, consecutive views give a *better* sparse model than the stride-2 baseline (0.11 %).
+
+**Result:** 15 stereo pairs, 3.40 M raw points -> **428,018 fused points = 23.5x the sparse cloud**, fused in 18 s (all stereo pairs together < 10 s on CPU). Figures: `results/dense/sparse_vs_dense.png` (side by side), `stereo_pair.jpg` (rectified pair with epipolar rows - window rows line up - and the disparity map), `dense_turntable.mp4`, `dense.ply`.
+
+| metric (vs COLMAP ground truth after Sim(3) alignment) | sparse | dense |
+|---|---|---|
+| points | 18,216 | 428,018 |
+| COLMAP points (inside our reconstructed volume, n = 22,141) with one of our points within 2 % of scene radius | 58.5 % | **66.4 %** |
+| median gap COLMAP point -> nearest of our points (fraction of scene radius) | 0.0138 | **0.0046** |
+| median distance of our points to nearest COLMAP point (fraction of scene radius) | 0.0075 | 0.0101 |
+| dominant-plane (facade) fit: inlier share / RMS (fraction of camera-arc extent) | 70 % / 0.0024 | 67 % / 0.0032 |
+
+Reading: the dense cloud fills in ~3x more of the surface (gap 0.014 -> 0.005) with 23x more points, while individual points are slightly *less* precise than sparse SfM points (RMS +35 %, distance to COLMAP +35 %): sparse points are sub-pixel-refined feature points, dense points are per-pixel SGBM estimates (SGBM disparity resolution 1/16 px, no per-point refinement). The COLMAP reference is itself sparse (61 k points) so "distance to COLMAP" is a loose accuracy check; the plane residual is the tighter one.
+
+### Ablation (one SfM run, dense settings varied; `results/dense/ablation.csv`)
+| config | pairs | fused pts | COLMAP within 2 % (scene) | dist to COLMAP | facade-plane RMS | plane inlier share |
+|---|---|---|---|---|---|---|
+| block 3 | 15 | 484,249 | 66.5 % | 0.0099 | 0.0032 | 70 % |
+| block 5 (default) | 15 | 428,018 | 66.4 % | 0.0101 | 0.0032 | 67 % |
+| block 9 | 15 | 378,165 | 66.1 % | 0.0102 | 0.0035 | 65 % |
+| pair gap 2 (wider baseline) | 13 | 169,492 | 69.5 % | 0.0142 | 0.0032 | **92 %** |
+| pair gap 3 | 10 | **76** | 0.1 % | 0.0173 | - | - |
+| min support 1 (no fusion check) | 15 | 1,105,316 | **74.9 %** | 0.0133 | 0.0038 | **46 %** |
+| min support 3 | 15 | 224,373 | 66.5 % | 0.0109 | **0.0030** | 80 % |
+
+Findings
+- **Fusion support is the main quality knob**: support 1 gives 2.6x more points and highest coverage but the noisiest (only 46 % of points on the facade plane); support 3 halves the points but is cleanest (80 %, lowest RMS). A completeness/noise trade-off.
+- **Block size** matters little: 3 gives ~13 % more points and marginally cleaner planes; 9 smooths more and loses fine detail.
+- **Wider baseline (gap 2)** gives much flatter facades (92 % plane inliers vs 67 %): triangulation with a larger angle is better conditioned - the same geometry as Experiment C - but fewer points survive because overlap shrinks.
+- **Gap 3 collapses (76 points)**: too much convergence for rectified SGBM, matching the sparse-stage limit found in Experiment C (~35 deg).
+- Single-pair quality varies enormously (valid pixels 1 %-19 % of the image, maximum 25 % because of the 2-pixel step): pairs where the disparity range is huge or half of the image has no overlap are poor, and only multi-pair fusion makes a clean cloud.
+
+Limitations to state in the report: dense matching is 2-view SGBM (no photometric multi-view consistency, no depth-map refinement), so foliage, thin structures, windows/glass and the sky are unreliable or absent; points near the edges of pairs lack support and are dropped; the accuracy reference (COLMAP sparse) is loose. Not implemented: surface reconstruction (Poisson), a GPU plane-sweep (planned comparison for the RTX 3050).

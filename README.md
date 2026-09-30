@@ -23,8 +23,12 @@ python scripts/run_baseline.py --start 40 --count 12 --stride 2 --out results/ba
 # 2. experiments A (number of images), B (detector), C (viewpoint), D (image quality)
 python experiments/run_experiments.py A B C D
 
-# 3. interactive viewer (screenshots for the report) and the auto-generated demo clip
+# 3. dense stereo reconstruction (advanced work): rectified SGBM + multi-pair fusion, with ablation and video
+python scripts/run_dense.py --start 40 --count 16 --stride 1 --out results/dense --ablate --video
+
+# 4. interactive viewer (screenshots for the report) and the auto-generated demo clip
 python scripts/view_open3d.py results/baseline --gt
+python scripts/view_open3d.py results/dense --ply dense.ply   # dense cloud
 python scripts/make_demo_video.py --out results/demo
 ```
 Trained model weights: none - the classical pipeline has no learned parameters. (Advanced work using learned features will
@@ -36,6 +40,7 @@ document the pretrained weights used.)
 | `sfm/features.py`, `matching.py` | SIFT/RootSIFT/ORB/AKAZE/BRISK, ratio + mutual + RANSAC-E filtering |
 | `sfm/geometry.py` | E decomposition (4 solutions), cheirality, DLT triangulation, reprojection, parallax |
 | `sfm/reconstruction.py` | incremental SfM: init pair, PnP registration, triangulation, tracks, filtering |
+| `sfm/dense.py` | dense stereo: rectification, SGBM, voxel-vote fusion |
 | `sfm/bundle.py` | sparse bundle adjustment (SciPy, Huber loss) |
 | `sfm/evaluate.py` | Umeyama alignment to COLMAP, pose / point / completeness metrics |
 | `sfm/viz.py` | match figures, cloud + camera frusta, reprojection overlays, PLY, turntable |

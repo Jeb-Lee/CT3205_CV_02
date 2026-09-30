@@ -23,6 +23,7 @@ def load_ply(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("folder", nargs="?", default="results/baseline")
+    ap.add_argument("--ply", default="cloud.ply", help="point cloud file inside the folder (e.g. dense.ply)")
     ap.add_argument("--gt", action="store_true", help="overlay COLMAP ground-truth points, aligned to ours")
     ap.add_argument("--dataset", default="south-building")
     ap.add_argument("--point_size", type=float, default=2.5)
@@ -30,7 +31,7 @@ def main():
     a = ap.parse_args()
 
     geoms = []
-    cloud = load_ply(os.path.join(a.folder, "cloud.ply"))
+    cloud = load_ply(os.path.join(a.folder, a.ply))
     xyz = np.asarray(cloud.points)
     # drop far outliers for a usable initial view
     d = np.linalg.norm(xyz - np.median(xyz, 0), axis=1)
