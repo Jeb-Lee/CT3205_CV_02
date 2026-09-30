@@ -1,0 +1,12 @@
+# datasets are large and downloadable (see README)
+Datasets/
+# feature cache and scratch
+results/cache/
+results/dev/
+__pycache__/
+*.pyc
+.idea/
+.venv/
+# course handouts are not ours to redistribute
+labs/
+docs/Assignment2.pdf

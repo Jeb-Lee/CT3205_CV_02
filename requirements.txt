@@ -1,0 +1,16 @@
+# Versions the results in this repo were produced with (Python 3.13, Windows 11).
+# Any Python 3.10 - 3.13 works; you do NOT need to change your interpreter.
+opencv-contrib-python==5.0.0.93   # SIFT, findEssentialMat, solvePnPRansac (contrib not strictly required)
+numpy==2.4.4
+scipy==1.18.1                     # sparse bundle adjustment, KD-tree evaluation
+matplotlib==3.10.8                # figures + turntable video
+open3d==0.20.0                    # interactive 3D viewer (optional; PLY export works without it)
+pandas==3.0.2                     # experiment result tables
+tqdm==4.70.1
+pillow==12.2.0                    # EXIF focal length for your own photos
+tabulate                          # pandas .to_markdown() for result tables (optional)
+
+# --- Advanced work (GPU learned features), install only when we reach that step ---
+# Current torch is the CPU-only build; the RTX 3050 needs the CUDA build:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+# then: pip install kornia    (LoFTR / DISK / LightGlue-style matching)

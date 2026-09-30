@@ -1,0 +1,252 @@
+{
+  "n_images": 12,
+  "n_registered": 12,
+  "n_points": 10934,
+  "mean_track_len": 2.9522590085970366,
+  "n_observations": 32280,
+  "reproj_mean": 0.13820736761017144,
+  "reproj_median": 0.10335067510925568,
+  "reproj_rms": 0.188966233453145,
+  "n_points_track3": 4986,
+  "reproj_mean_track3": 0.1584110995440816,
+  "reproj_median_track3": 0.12392703745414985,
+  "mean_features": 8000.0,
+  "n_pairs": 66,
+  "n_pairs_verified": 28,
+  "mean_inliers_per_pair": 482.92424242424244,
+  "mean_inlier_ratio": 0.8647025678790052,
+  "seconds": 66.31279969215393,
+  "init_pair": [
+    "P1180189.JPG",
+    "P1180191.JPG"
+  ],
+  "gt_n_cams": 12,
+  "align_scale": 0.7423656644337177,
+  "cam_pos_rmse": 0.0035853817510058806,
+  "cam_pos_rmse_rel": 0.0011322808041941623,
+  "cam_pos_median": 0.002327879440279417,
+  "cam_rot_mean_deg": 0.18184400554172184,
+  "cam_rot_median_deg": 0.15966333424634793,
+  "cam_rot_max_deg": 0.3653499294916986,
+  "pt_acc_median": 0.0024943667530951327,
+  "pt_acc_mean": 0.0037786573662672426,
+  "pt_within_2pct": 0.9941466983720505,
+  "gt_completeness_2pct": 0.3639821829177098,
+  "config": {
+    "detector": "rootsift",
+    "nfeatures": 8000,
+    "max_dim": 1600,
+    "ratio": 0.8,
+    "cross_check": true,
+    "ransac_thr": 1.0,
+    "window": null,
+    "min_pair_inliers": 40,
+    "min_pair_use": 25,
+    "init_min_angle": 3.0,
+    "init_candidates": 12,
+    "tri_min_angle": 1.5,
+    "max_reproj": 2.0,
+    "pnp_thr": 3.0,
+    "min_pnp": 20,
+    "use_ba": true,
+    "ba_every": 1,
+    "seed": 0
+  },
+  "images": [
+    "P1180181.JPG",
+    "P1180183.JPG",
+    "P1180185.JPG",
+    "P1180187.JPG",
+    "P1180189.JPG",
+    "P1180191.JPG",
+    "P1180193.JPG",
+    "P1180195.JPG",
+    "P1180197.JPG",
+    "P1180199.JPG",
+    "P1180201.JPG",
+    "P1180203.JPG"
+  ],
+  "log_events": [
+    {
+      "type": "init",
+      "pair": [
+        4,
+        5
+      ],
+      "median_parallax": 18.45193569624856,
+      "cheirality": [
+        0,
+        3077,
+        0,
+        0
+      ],
+      "points": 3077
+    },
+    {
+      "type": "ba",
+      "cams": 2,
+      "points": 3077,
+      "rmse_before": 0.07034869231270025,
+      "rmse_after": 0.06577342250990031,
+      "seconds": 0.1694960594177246
+    },
+    {
+      "type": "register",
+      "image": "P1180193.JPG",
+      "correspondences": 1638,
+      "pnp_inliers": 1636,
+      "new_points": 1454
+    },
+    {
+      "type": "ba",
+      "cams": 3,
+      "points": 4531,
+      "rmse_before": 0.15050381039824684,
+      "rmse_after": 0.10093302066022032,
+      "seconds": 0.5260262489318848
+    },
+    {
+      "type": "register",
+      "image": "P1180195.JPG",
+      "correspondences": 2127,
+      "pnp_inliers": 2123,
+      "new_points": 1221
+    },
+    {
+      "type": "ba",
+      "cams": 4,
+      "points": 5752,
+      "rmse_before": 0.18157164370392492,
+      "rmse_after": 0.1373133550741617,
+      "seconds": 1.5967018604278564
+    },
+    {
+      "type": "register",
+      "image": "P1180187.JPG",
+      "correspondences": 2010,
+      "pnp_inliers": 2000,
+      "new_points": 993
+    },
+    {
+      "type": "ba",
+      "cams": 5,
+      "points": 6745,
+      "rmse_before": 0.19653547651845718,
+      "rmse_after": 0.15029031394079145,
+      "seconds": 2.2315731048583984
+    },
+    {
+      "type": "register",
+      "image": "P1180197.JPG",
+      "correspondences": 1739,
+      "pnp_inliers": 1732,
+      "new_points": 661
+    },
+    {
+      "type": "ba",
+      "cams": 6,
+      "points": 7406,
+      "rmse_before": 0.1929252325613295,
+      "rmse_after": 0.16417584269682145,
+      "seconds": 2.3127691745758057
+    },
+    {
+      "type": "register",
+      "image": "P1180185.JPG",
+      "correspondences": 1655,
+      "pnp_inliers": 1647,
+      "new_points": 805
+    },
+    {
+      "type": "ba",
+      "cams": 7,
+      "points": 8211,
+      "rmse_before": 0.2186634510047033,
+      "rmse_after": 0.18307297437608555,
+      "seconds": 2.4148552417755127
+    },
+    {
+      "type": "register",
+      "image": "P1180199.JPG",
+      "correspondences": 809,
+      "pnp_inliers": 801,
+      "new_points": 535
+    },
+    {
+      "type": "ba",
+      "cams": 8,
+      "points": 8746,
+      "rmse_before": 0.19935971952756232,
+      "rmse_after": 0.18862816109398978,
+      "seconds": 2.851043939590454
+    },
+    {
+      "type": "register",
+      "image": "P1180183.JPG",
+      "correspondences": 80,
+      "pnp_inliers": 80,
+      "new_points": 120
+    },
+    {
+      "type": "ba",
+      "cams": 9,
+      "points": 8866,
+      "rmse_before": 0.19208698852390044,
+      "rmse_after": 0.18999309195476988,
+      "seconds": 3.1551928520202637
+    },
+    {
+      "type": "register",
+      "image": "P1180201.JPG",
+      "correspondences": 79,
+      "pnp_inliers": 78,
+      "new_points": 432
+    },
+    {
+      "type": "ba",
+      "cams": 10,
+      "points": 9298,
+      "rmse_before": 0.19303829700117417,
+      "rmse_after": 0.18904065304153114,
+      "seconds": 2.97029709815979
+    },
+    {
+      "type": "register",
+      "image": "P1180203.JPG",
+      "correspondences": 146,
+      "pnp_inliers": 145,
+      "new_points": 419
+    },
+    {
+      "type": "ba",
+      "cams": 11,
+      "points": 9717,
+      "rmse_before": 0.19162517455555905,
+      "rmse_after": 0.18799559898699375,
+      "seconds": 3.499603509902954
+    },
+    {
+      "type": "register",
+      "image": "P1180181.JPG",
+      "correspondences": 22,
+      "pnp_inliers": 21,
+      "new_points": 1217
+    },
+    {
+      "type": "ba",
+      "cams": 12,
+      "points": 10934,
+      "rmse_before": 0.19156324137562136,
+      "rmse_after": 0.18930524093073328,
+      "seconds": 4.014387369155884
+    },
+    {
+      "type": "ba",
+      "cams": 12,
+      "points": 10934,
+      "rmse_before": 0.1893052409307328,
+      "rmse_after": 0.18896623345314476,
+      "seconds": 4.088165998458862
+    }
+  ]
+}

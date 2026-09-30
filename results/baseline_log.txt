@@ -1,0 +1,147 @@
+images: ['P1180181.JPG', 'P1180183.JPG', 'P1180185.JPG', 'P1180187.JPG', 'P1180189.JPG', 'P1180191.JPG', 'P1180193.JPG', 'P1180195.JPG', 'P1180197.JPG', 'P1180199.JPG', 'P1180201.JPG', 'P1180203.JPG']
+[features] rootsift: mean 8000 kp/img (3.1s)
+[matching] 66 pairs, 28 verified (>= 40 inliers) (29.5s)
+  init candidate (4,5): inl=3077 good=3077 median parallax=18.45 deg cheirality counts=[0, 3077, 0, 0]
+  init candidate (6,7): inl=2777 good=2777 median parallax=12.61 deg cheirality counts=[0, 0, 0, 2777]
+  init candidate (5,6): inl=2613 good=2613 median parallax=16.60 deg cheirality counts=[0, 2613, 0, 0]
+  init candidate (3,4): inl=2463 good=2463 median parallax=17.13 deg cheirality counts=[0, 0, 0, 2463]
+  init candidate (2,3): inl=2103 good=2103 median parallax=16.74 deg cheirality counts=[0, 2103, 0, 0]
+  init candidate (7,8): inl=1994 good=1994 median parallax=16.15 deg cheirality counts=[1994, 0, 0, 0]
+  init candidate (4,6): inl=1868 good=1868 median parallax=36.08 deg cheirality counts=[0, 0, 1868, 0]
+  init candidate (5,7): inl=1805 good=1805 median parallax=29.78 deg cheirality counts=[1805, 0, 0, 0]
+  init candidate (3,5): inl=1543 good=1543 median parallax=36.05 deg cheirality counts=[1543, 0, 0, 0]
+  init candidate (8,9): inl=1274 good=1274 median parallax=15.00 deg cheirality counts=[1274, 0, 0, 0]
+  init candidate (4,7): inl=1272 good=1272 median parallax=48.01 deg cheirality counts=[0, 0, 1272, 0]
+  init candidate (0,1): inl=1270 good=1270 median parallax=24.37 deg cheirality counts=[0, 1270, 0, 0]
+[init] pair (P1180189.JPG, P1180191.JPG): 3077 points, median parallax 18.45 deg, cheirality counts (per candidate) [0, 3077, 0, 0]
+[BA] 2 cams, 3077 pts: RMSE 0.070 -> 0.066 px (0.2s)
+[register] P1180193.JPG: 1638 2D-3D corr, 1636 PnP inliers, +1454 points (total 4531, cams 3)
+[BA] 3 cams, 4531 pts: RMSE 0.151 -> 0.101 px (0.5s)
+[register] P1180195.JPG: 2127 2D-3D corr, 2123 PnP inliers, +1221 points (total 5752, cams 4)
+[BA] 4 cams, 5752 pts: RMSE 0.182 -> 0.137 px (1.6s)
+[register] P1180187.JPG: 2010 2D-3D corr, 2000 PnP inliers, +993 points (total 6745, cams 5)
+[BA] 5 cams, 6745 pts: RMSE 0.197 -> 0.150 px (2.2s)
+[register] P1180197.JPG: 1739 2D-3D corr, 1732 PnP inliers, +661 points (total 7406, cams 6)
+[BA] 6 cams, 7406 pts: RMSE 0.193 -> 0.164 px (2.3s)
+[register] P1180185.JPG: 1655 2D-3D corr, 1647 PnP inliers, +805 points (total 8211, cams 7)
+[BA] 7 cams, 8211 pts: RMSE 0.219 -> 0.183 px (2.4s)
+[register] P1180199.JPG: 809 2D-3D corr, 801 PnP inliers, +535 points (total 8746, cams 8)
+[BA] 8 cams, 8746 pts: RMSE 0.199 -> 0.189 px (2.9s)
+[register] P1180183.JPG: 80 2D-3D corr, 80 PnP inliers, +120 points (total 8866, cams 9)
+[BA] 9 cams, 8866 pts: RMSE 0.192 -> 0.190 px (3.2s)
+[register] P1180201.JPG: 79 2D-3D corr, 78 PnP inliers, +432 points (total 9298, cams 10)
+[BA] 10 cams, 9298 pts: RMSE 0.193 -> 0.189 px (3.0s)
+[register] P1180203.JPG: 146 2D-3D corr, 145 PnP inliers, +419 points (total 9717, cams 11)
+[BA] 11 cams, 9717 pts: RMSE 0.192 -> 0.188 px (3.5s)
+[register] P1180181.JPG: 22 2D-3D corr, 21 PnP inliers, +1217 points (total 10934, cams 12)
+[BA] 12 cams, 10934 pts: RMSE 0.192 -> 0.189 px (4.0s)
+[BA] 12 cams, 10934 pts: RMSE 0.189 -> 0.189 px (4.1s)
+[done] 12/12 images registered, 10934 points (final filter removed 0) in 66.3s
+{
+ "n_images": 12,
+ "n_registered": 12,
+ "n_points": 10934,
+ "mean_track_len": 2.9522590085970366,
+ "n_observations": 32280,
+ "reproj_mean": 0.13820736761017144,
+ "reproj_median": 0.10335067510925568,
+ "reproj_rms": 0.188966233453145,
+ "n_points_track3": 4986,
+ "reproj_mean_track3": 0.1584110995440816,
+ "reproj_median_track3": 0.12392703745414985,
+ "mean_features": 8000.0,
+ "n_pairs": 66,
+ "n_pairs_verified": 28,
+ "mean_inliers_per_pair": 482.92424242424244,
+ "mean_inlier_ratio": 0.8647025678790052,
+ "seconds": 66.31279969215393,
+ "init_pair": [
+  "P1180189.JPG",
+  "P1180191.JPG"
+ ],
+ "gt_n_cams": 12,
+ "align_scale": 0.7423656644337177,
+ "cam_pos_rmse": 0.0035853817510058806,
+ "cam_pos_rmse_rel": 0.0011322808041941623,
+ "cam_pos_median": 0.002327879440279417,
+ "cam_rot_mean_deg": 0.18184400554172184,
+ "cam_rot_median_deg": 0.15966333424634793,
+ "cam_rot_max_deg": 0.3653499294916986,
+ "pt_acc_median": 0.0024943667530951327,
+ "pt_acc_mean": 0.0037786573662672426,
+ "pt_within_2pct": 0.9941466983720505,
+ "gt_completeness_2pct": 0.3639821829177098
+}
+match stages {'a_raw': {'n': 8000, 'n_wrong': 4467}, 'b_ratio_mutual': {'n': 3164, 'n_wrong': 81}, 'c_ransac': {'n': 3077, 'n_wrong': 0}}
+two-view demo {
+ "pair": [
+  "P1180189.JPG",
+  "P1180191.JPG"
+ ],
+ "singular_values_of_E": [
+  0.7071067811865477,
+  0.7071067811865474,
+  4.4845573436236805e-17
+ ],
+ "candidates": [
+  {
+   "candidate": 1,
+   "rot_angle_deg": 14.01449454482379,
+   "t": [
+    0.9991557688636153,
+    -0.0028852844653201037,
+    -0.040980784278870065
+   ],
+   "points_in_front_of_both": 0,
+   "n": 3077
+  },
+  {
+   "candidate": 2,
+   "rot_angle_deg": 14.01449454482379,
+   "t": [
+    -0.9991557688636153,
+    0.0028852844653201037,
+    0.040980784278870065
+   ],
+   "points_in_front_of_both": 3077,
+   "n": 3077
+  },
+  {
+   "candidate": 3,
+   "rot_angle_deg": 178.25647596160562,
+   "t": [
+    0.9991557688636153,
+    -0.0028852844653201037,
+    -0.040980784278870065
+   ],
+   "points_in_front_of_both": 0,
+   "n": 3077
+  },
+  {
+   "candidate": 4,
+   "rot_angle_deg": 178.25647596160562,
+   "t": [
+    -0.9991557688636153,
+    0.0028852844653201037,
+    0.040980784278870065
+   ],
+   "points_in_front_of_both": 0,
+   "n": 3077
+  }
+ ],
+ "chosen_rot_deg": 14.01449454482379,
+ "chosen_t": [
+  -0.9991557688636153,
+  0.0028852844653201037,
+  0.040980784278870065
+ ],
+ "agrees_with_opencv_recoverPose": true,
+ "cv_rot_err_deg": 1.2074182697257333e-06,
+ "cv_t_cos": 0.9999999999999997,
+ "dlt_vs_opencv_max_abs_diff": 7.771561172376096e-14,
+ "epipolar_check_max_xt_E_x": 0.0006859419749728757
+}
+reproj P1180181.JPG {'n': 1238, 'mean': 0.16559864523235696, 'median': 0.15024300794526874}
+reproj P1180193.JPG {'n': 4248, 'mean': 0.1291914032508365, 'median': 0.09476451564792324}
+reproj P1180203.JPG {'n': 564, 'mean': 0.12771683579703477, 'median': 0.10818416487677839}
+saved to results/baseline
