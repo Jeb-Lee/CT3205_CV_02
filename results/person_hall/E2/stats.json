@@ -1,0 +1,172 @@
+{
+  "stats": {
+    "n_images": 8,
+    "n_registered": 8,
+    "n_points": 10351,
+    "mean_track_len": 3.4249830934209253,
+    "n_observations": 35452,
+    "reproj_mean": 0.10716549679253619,
+    "reproj_median": 0.08171958428449355,
+    "reproj_rms": 0.14912610015504824,
+    "n_points_track3": 5909,
+    "reproj_mean_track3": 0.11689798867622524,
+    "reproj_median_track3": 0.09373773198287341,
+    "mean_features": 8000.0,
+    "n_pairs": 28,
+    "n_pairs_verified": 28,
+    "mean_inliers_per_pair": 1773.5714285714287,
+    "mean_inlier_ratio": 0.9257520710583128,
+    "seconds": 37.4616858959198,
+    "init_pair": [
+      "IMG_1126.JPG",
+      "IMG_1128.JPG"
+    ],
+    "gt_n_cams": 8,
+    "align_scale": 0.16922764809198917,
+    "align_collinear_fix": true,
+    "cam_pos_rmse": 0.0002668602222032956,
+    "cam_pos_rmse_rel": 0.0003630203797040517,
+    "cam_pos_median": 0.00026801735902888817,
+    "cam_rot_mean_deg": 0.02274171888082624,
+    "cam_rot_median_deg": 0.0258470921875106,
+    "cam_rot_max_deg": 0.039662614350753175,
+    "pt_acc_median": 0.008073407804013643,
+    "pt_acc_mean": 0.014466894233251898,
+    "pt_within_2pct": 0.9003960969954594,
+    "gt_completeness_2pct": 0.10529871902927634,
+    "failed": false
+  },
+  "images": [
+    "IMG_1120.JPG",
+    "IMG_1122.JPG",
+    "IMG_1124.JPG",
+    "IMG_1126.JPG",
+    "IMG_1128.JPG",
+    "IMG_1130.JPG",
+    "IMG_1132.JPG",
+    "IMG_1134.JPG"
+  ],
+  "events": [
+    {
+      "type": "init",
+      "pair": [
+        3,
+        4
+      ],
+      "median_parallax": 5.800236619103992,
+      "cheirality": [
+        0,
+        0,
+        3499,
+        0
+      ],
+      "points": 3486
+    },
+    {
+      "type": "ba",
+      "cams": 2,
+      "points": 3486,
+      "rmse_before": 0.27649437771876567,
+      "rmse_after": 0.07674098021895773,
+      "seconds": 1.875636100769043
+    },
+    {
+      "type": "register",
+      "image": "IMG_1130.JPG",
+      "correspondences": 2193,
+      "pnp_inliers": 2188,
+      "new_points": 1511
+    },
+    {
+      "type": "ba",
+      "cams": 3,
+      "points": 4997,
+      "rmse_before": 0.1607761202177653,
+      "rmse_after": 0.10777514499505635,
+      "seconds": 0.8692679405212402
+    },
+    {
+      "type": "register",
+      "image": "IMG_1124.JPG",
+      "correspondences": 2874,
+      "pnp_inliers": 2870,
+      "new_points": 1169
+    },
+    {
+      "type": "ba",
+      "cams": 4,
+      "points": 6166,
+      "rmse_before": 0.1683373501303247,
+      "rmse_after": 0.13162614922516397,
+      "seconds": 1.6683423519134521
+    },
+    {
+      "type": "register",
+      "image": "IMG_1122.JPG",
+      "correspondences": 3027,
+      "pnp_inliers": 3012,
+      "new_points": 1130
+    },
+    {
+      "type": "ba",
+      "cams": 5,
+      "points": 7296,
+      "rmse_before": 0.17835043393867447,
+      "rmse_after": 0.14437150841703045,
+      "seconds": 2.296030282974243
+    },
+    {
+      "type": "register",
+      "image": "IMG_1120.JPG",
+      "correspondences": 3272,
+      "pnp_inliers": 3256,
+      "new_points": 962
+    },
+    {
+      "type": "ba",
+      "cams": 6,
+      "points": 8258,
+      "rmse_before": 0.17752370192508635,
+      "rmse_after": 0.147392678214822,
+      "seconds": 2.5662550926208496
+    },
+    {
+      "type": "register",
+      "image": "IMG_1132.JPG",
+      "correspondences": 1747,
+      "pnp_inliers": 1727,
+      "new_points": 372
+    },
+    {
+      "type": "ba",
+      "cams": 7,
+      "points": 8630,
+      "rmse_before": 0.16911460624481534,
+      "rmse_after": 0.15025696978291314,
+      "seconds": 4.588282823562622
+    },
+    {
+      "type": "register",
+      "image": "IMG_1134.JPG",
+      "correspondences": 1459,
+      "pnp_inliers": 1437,
+      "new_points": 1721
+    },
+    {
+      "type": "ba",
+      "cams": 8,
+      "points": 10351,
+      "rmse_before": 0.1716463633259419,
+      "rmse_after": 0.15182868776856467,
+      "seconds": 3.2965304851531982
+    },
+    {
+      "type": "ba",
+      "cams": 8,
+      "points": 10351,
+      "rmse_before": 0.15182868776856437,
+      "rmse_after": 0.14912610015504876,
+      "seconds": 3.30586314201355
+    }
+  ]
+}

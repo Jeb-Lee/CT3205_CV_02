@@ -165,3 +165,65 @@ Findings
 - Single-pair quality varies enormously (valid pixels 1 %-19 % of the image, maximum 25 % because of the 2-pixel step): pairs where the disparity range is huge or half of the image has no overlap are poor, and only multi-pair fusion makes a clean cloud.
 
 Limitations to state in the report: dense matching is 2-view SGBM (no photometric multi-view consistency, no depth-map refinement), so foliage, thin structures, windows/glass and the sky are unreliable or absent; points near the edges of pairs lack support and are dropped; the accuracy reference (COLMAP sparse) is loose. Not implemented: surface reconstruction (Poisson), a GPU plane-sweep (planned comparison for the RTX 3050).
+
+## 8. Challenging scenarios: Person Hall (2026-10-01)
+Code: `scripts/run_person_hall.py` (cases), `scripts/diag_case.py` (per-camera / per-pair diagnosis against COLMAP GT), `scripts/montage.py`.
+Commands: `python scripts/run_person_hall.py --cases A B C D E2 E4 E6 E8 F3 F --video`; results in `results/person_hall/<case>/` and `results/person_hall/cases.csv`.
+Dataset: 330 photos of a brick building walked fully around (closed loop), 5616x3744, OPENCV camera model with strong distortion (k1 = -0.11) -> contact sheet `results/person_hall/contact_sheet.jpg`. Working resolution 1600 px, default pipeline (RootSIFT 8000, PnP + BA), nothing tuned per case.
+Outcome rule fixed **before** looking at results (`classify()`): SUCCESS = >= 90 % of images registered and camera position error < 2 % of the trajectory extent; PARTIAL = >= 50 % registered; FAILURE otherwise.
+
+### 8.1 Results of all cases (final, fixed loader)
+| case | what it tests | images | registered | points | camera pos err | rot err (deg) | outcome |
+|---|---|---|---|---|---|---|---|
+| A | clean brick facade + obelisk, stride 3 | 12 | 12 | 12,584 | 0.03 % | 0.03 | **SUCCESS** |
+| B | foliage occlusion (frames 1045-1078) | 12 | **2** | 63 | n/a | n/a | **FAILURE** |
+| C | repetitive arched windows + sun flare | 12 | 12 | 6,509 | 0.11 % | 0.15 | **SUCCESS** (after bug fix, 8.2) |
+| D | corner turn, big viewpoint + scale change | 12 | 11 | 5,226 | 0.07 % | 0.10 | **SUCCESS** (IMG_1313 not registered) |
+| E2 / E4 / E6 / E8 | viewpoint sweep on the clean facade, stride 2 / 4 / 6 / 8 | 8 each | 8 / 8 / 8 / 8 | 10,351 / 8,764 / 7,067 / 6,487 | 0.04 / 0.04 / 0.05 / **0.75** % | 0.02 / 0.09 / 0.05 / **0.99** | SUCCESS x4 (accuracy degrades at stride 8) |
+| F | whole loop, every 6th image, window 8 | 55 | **15** | 10,216 | 0.66 % | 0.56 | **FAILURE** |
+| F3 | whole loop, every 3rd image, window 6 | 110 | **44** | 24,143 | 0.16 % | 0.18 | **FAILURE** (partial: one full side of the building) |
+| F3r | as F3 with relaxed thresholds (ratio 0.85, pair >= 15 inliers, PnP >= 12) | 110 | **45** | 25,125 | 0.19 % | 0.26 | **FAILURE** |
+
+Inliers per verified pair in the sweep: E2 1,774 -> E4 734 -> E6 441 -> E8 466 (verified pairs 28 -> 22 -> 17 -> 17): matches fall quickly with viewpoint change, yet registration still succeeds on this facade, unlike the much harder south-building stride 4 (Exp. C). Stride is **not comparable across datasets**; parallax between views is the real variable.
+
+### 8.2 The big one: a "successful" wrong reconstruction, caused by a bug of mine
+First run of case C: **12/12 images registered, reprojection error only 0.6 px, 6.5k points - but camera position error 51 % of the trajectory and rotation error 139 deg.** Everything an automatic check looks at said "fine"; only ground truth showed it was wrong. Figure `results/person_hall/exif_bug_before_after.png`.
+Diagnosis (`scripts/diag_case.py C`, figures in `results/person_hall/_exif_bug_before/C/`):
+1. 50 of 60 verified pairs had ~100 % of their matches "violating" the GT epipolar geometry, even for adjacent frames, yet the matches looked visually right (windows linked to the same windows).
+2. GT relative rotation IMG_1228 -> IMG_1230 is **91 deg** between near-identical views: the two images are stored differently.
+3. `PIL` showed **48 of 330 photos (indices 215-242, 254-273) carry EXIF orientation 8 (portrait)**. `cv2.imread` silently rotates them upright; COLMAP ignores the tag (treats every image as a landscape sensor image with one K). My pipeline therefore fed rotated images with an un-rotated K, and compared against a GT in another convention.
+4. Fix: `cv2.IMREAD_IGNORE_ORIENTATION` in `sfm/datasets.py`; feature cache key bumped. Result: C camera error 51 % -> **0.11 %**, D 0.97 % (rot 9.8 deg) -> **0.07 %** (rot 0.10 deg). South-building has no tagged images (0 of 128), and A, B, E involve none, so their earlier results are unchanged (re-run: identical numbers).
+Lessons for the report: (a) a reconstruction can be internally consistent (low reprojection error, all images registered) and globally wrong - validate with independent evidence (GT, or at least pairwise geometric consistency); (b) loader conventions must match the camera model; (c) it was caught because every failure was investigated instead of reported as "repetitive structure made it fail". **For your own photos keep the phone in landscape** and check `PIL.Image.getexif()` orientation tags.
+
+### 8.3 Case B - foliage occlusion (real failure)
+2 of 12 registered, 63 points, only 6 verified pairs (mean 16 inliers per pair, close to the RANSAC noise floor of ~8-10). Figure `results/person_hall/B/matches/*_c_ransac.jpg`: a conifer stands in front of the wall in the second image; the **74 matches that survive are all correct (0 wrong against GT)** but far too few and confined to the visible part of the wall. Failure mode = **occlusion / view-dependent foliage texture, not false matches**: matching finds only a small consistent subset, the pair graph falls apart (`B/inlier_matrix.png`), and there is nothing for PnP to attach new images to. Fixing it would need much denser sampling, or features on the building only (semantic masking of vegetation).
+
+### 8.4 Case D - which image is lost and why
+IMG_1313 is the only image not registered (`D/unregistered_context.jpg`): the photographer stepped back, so this frame shows the building corner from about **twice the distance** between two close-ups of the same wall (IMG_1309, IMG_1317). Likely cause (not measured): the large scale + viewpoint change leaves too few matches with already-tracked points for PnP; SIFT is scale-invariant only within a limited range.
+
+### 8.5 Whole-building loop (F, F3, F3r): failure with a measured cause
+The full loop has 330 photos; all-pairs matching is 54,285 pairs (about 6.5 h at the measured 0.43 s / pair), so windowed matching was used. Measured on the pair graph (edge = verified pair with >= 25 inliers):
+
+| run | images | pairs matched | graph components | largest component | singleton images | registered | total time |
+|---|---|---|---|---|---|---|---|
+| F (every 6th) | 55 | 404 | **15** | 22 | 10 | 15 | 200-320 s |
+| F3 (every 3rd) | 110 | 639 | **7** | 64 | 3 | 44 | 431 s (matching 275 s) |
+| F3r (relaxed) | 110 | 639 | **3** | 95 | 0 | 45 | 351 s |
+
+Findings
+- **The loop is cut into disconnected pieces** wherever neighbouring samples share fewer than ~25 matches (corners, foliage, strong sun, scale changes) - heat maps `F/inlier_matrix.png`, `F3/inlier_matrix.png` show strong diagonal blocks separated by gaps. Incremental SfM cannot cross a gap, so the model stays inside one component.
+- **Denser sampling helps** (15 -> 44 registered, components 15 -> 7) but costs time: matching grows with images x window (0.43 s per pair), BA grows with model size.
+- **Relaxing thresholds did not fix it** (3 components, largest 95 images, but only 45 registered) and caused **no wrong links** (camera error 0.19 %). So connectivity of the pair graph is *necessary but not sufficient*: a new image also needs >= 12-20 matches against points that already exist as 3D tracks. Incremental registration stalls even inside a connected component of 95 images.
+- What the registered part is worth: the 44-camera F3 model covers one full side of the building with 0.16 % camera error (`F3/scene.png`, `F3/turntable.mp4`) - accurate where it exists, but incomplete. Not attempted (future work): loop-closure detection by image retrieval, reconstructing components separately and merging them with Sim(3) alignment, re-triangulation passes to grow tracks, GPU matching to afford all pairs.
+- No loop closure, so even a full success would drift; with 110 images and BA every 10 registrations this could not be tested.
+
+### 8.6 What went right / wrong - quick ledger
+| # | event | result |
+|---|---|---|
+| 1 | Case A, clean facade | works, 0.03 % |
+| 2 | Case C first run | silently wrong (bug), caught by GT diagnosis, fixed |
+| 3 | Case B | real failure: occlusion |
+| 4 | Case D | works; one image lost to scale change |
+| 5 | Stride sweep | robust on this facade up to stride 6; accuracy slips at 8 |
+| 6 | Loop F | fail: 15 comps; F3: partial (44/110); F3r: no gain |
+| 7 | Runtime | matching dominates: 275 s of 431 s for 639 pairs (-> GPU matching worthwhile) |

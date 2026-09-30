@@ -33,6 +33,7 @@ The COLMAP dataset (south-building) is the main dataset. Your own captures add (
 - **Move around the object**, don't rotate on the spot. Rotating in place (pure rotation) gives **no depth** - triangulation needs baseline.
 - **Step ~10-15 degrees around the object per photo** (about 25-36 photos for a full circle, or a 90-120 degree arc for a building). Neighbouring photos should overlap **70-80%**.
 - Keep the **subject distance roughly constant**, shoot from about chest height, and add a **second ring slightly higher** if you can.
+- **Keep the phone in LANDSCAPE for every photo.** Portrait shots carry an EXIF rotation tag; our first Person Hall run was silently wrong because of it (see PROGRESS.md section 8.2). Mixing orientations breaks the single-camera-matrix model.
 - Keep photos **sharp**: good light, both hands, tap-to-focus. Blur is exactly what Experiment D shows destroys reconstruction.
 - **Do not crop, rotate or edit** the photos. Keep EXIF (my code reads the focal length from it).
 - Write down: phone model, resolution, number of photos, whether you moved around or rotated the object (required in the report's Dataset section).

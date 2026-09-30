@@ -26,7 +26,11 @@ python experiments/run_experiments.py A B C D
 # 3. dense stereo reconstruction (advanced work): rectified SGBM + multi-pair fusion, with ablation and video
 python scripts/run_dense.py --start 40 --count 16 --stride 1 --out results/dense --ablate --video
 
-# 4. interactive viewer (screenshots for the report) and the auto-generated demo clip
+# 4. challenging scenarios on Person Hall (cases A-F3r), per-case figures + cases.csv
+python scripts/run_person_hall.py --cases A B C D E2 E4 E6 E8 F3 --video
+python scripts/diag_case.py C                 # per-camera / per-pair diagnosis against COLMAP GT
+
+# 5. interactive viewer (screenshots for the report) and the auto-generated demo clip
 python scripts/view_open3d.py results/baseline --gt
 python scripts/view_open3d.py results/dense --ply dense.ply   # dense cloud
 python scripts/export_html.py            # self-contained interactive HTML viewer -> results/viewer/south_building.html

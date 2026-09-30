@@ -102,7 +102,7 @@ class Reconstruction:
         if not self.cache_dir:
             return None
         c = self.cfg
-        key = f"{self.ds.name}_{name}_{c.max_dim}_{c.detector}_{c.nfeatures}_{self.degrade.key()}"
+        key = f"v2io_{self.ds.name}_{name}_{c.max_dim}_{c.detector}_{c.nfeatures}_{self.degrade.key()}"
         return os.path.join(self.cache_dir, key.replace(".", "p") + ".npz")
 
     # ------------------------------------------------------------------ matching

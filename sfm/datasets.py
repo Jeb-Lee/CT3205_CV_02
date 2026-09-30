@@ -54,7 +54,7 @@ def load_dataset(name: str) -> Dataset:
 
 
 def _load_custom(name, image_dir, names, root):
-    im = cv2.imread(os.path.join(image_dir, names[0]))
+    im = cv2.imread(os.path.join(image_dir, names[0]), cv2.IMREAD_COLOR | cv2.IMREAD_IGNORE_ORIENTATION)
     h, w = im.shape[:2]
     jpath = os.path.join(root, "intrinsics.json")
     if os.path.isfile(jpath):
@@ -107,7 +107,10 @@ def load_image(ds: Dataset, name: str, max_dim: int, degrade: Degrade | None = N
     Returns (bgr uint8, K_scaled). After undistortion the image follows an ideal pinhole model
     with intrinsics K_scaled, so all downstream geometry can ignore lens distortion.
     """
-    img = cv2.imread(ds.path(name), cv2.IMREAD_COLOR)
+    # IGNORE_ORIENTATION: keep the pixels exactly as stored (like COLMAP). Without this OpenCV silently rotates photos
+    # that carry an EXIF orientation tag (portrait shots), which breaks the single-K, landscape camera model and
+    # disagrees with the ground truth (found on Person Hall: 48 of 330 photos).
+    img = cv2.imread(ds.path(name), cv2.IMREAD_COLOR | cv2.IMREAD_IGNORE_ORIENTATION)
     h, w = img.shape[:2]
     s = min(1.0, max_dim / max(h, w))
     K = ds.K.copy()

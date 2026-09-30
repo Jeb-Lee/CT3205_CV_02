@@ -1,0 +1,74 @@
+{
+  "stats": {
+    "n_images": 12,
+    "n_registered": 2,
+    "n_points": 63,
+    "mean_track_len": 2.0,
+    "n_observations": 126,
+    "reproj_mean": 0.15800503636791755,
+    "reproj_median": 0.10992518710034035,
+    "reproj_rms": 0.21769962758822817,
+    "n_points_track3": 0,
+    "reproj_mean_track3": NaN,
+    "reproj_median_track3": NaN,
+    "mean_features": 8000.0,
+    "n_pairs": 66,
+    "n_pairs_verified": 6,
+    "mean_inliers_per_pair": 16.227272727272727,
+    "mean_inlier_ratio": 0.5283248678809533,
+    "seconds": 41.8516104221344,
+    "init_pair": [
+      "IMG_1060.JPG",
+      "IMG_1063.JPG"
+    ],
+    "gt_n_cams": 2,
+    "failed": false
+  },
+  "images": [
+    "IMG_1045.JPG",
+    "IMG_1048.JPG",
+    "IMG_1051.JPG",
+    "IMG_1054.JPG",
+    "IMG_1057.JPG",
+    "IMG_1060.JPG",
+    "IMG_1063.JPG",
+    "IMG_1066.JPG",
+    "IMG_1069.JPG",
+    "IMG_1072.JPG",
+    "IMG_1075.JPG",
+    "IMG_1078.JPG"
+  ],
+  "events": [
+    {
+      "type": "init",
+      "pair": [
+        5,
+        6
+      ],
+      "median_parallax": 4.766215912829777,
+      "cheirality": [
+        0,
+        84,
+        0,
+        0
+      ],
+      "points": 63
+    },
+    {
+      "type": "ba",
+      "cams": 2,
+      "points": 63,
+      "rmse_before": 0.3252544680563925,
+      "rmse_after": 0.21769962782710275,
+      "seconds": 0.030782461166381836
+    },
+    {
+      "type": "ba",
+      "cams": 2,
+      "points": 63,
+      "rmse_before": 0.2176996278270978,
+      "rmse_after": 0.21769962758823092,
+      "seconds": 0.008192062377929688
+    }
+  ]
+}
