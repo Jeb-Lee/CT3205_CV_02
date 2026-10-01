@@ -1,0 +1,11 @@
+running baseline reconstruction ...
+wrote fig1
+wrote fig2
+wrote fig3_reconstruction.png
+wrote fig4_reprojection.png
+wrote fig5_expA_expC.png
+wrote fig6_expD.png
+wrote fig7_dense.png
+wrote fig8_failures.png
+wrote fig9_learned_colmap.png
+all figures done

@@ -1,0 +1,17 @@
+{
+ "a": {
+  "stage": "raw nearest neighbour",
+  "matches": 8000,
+  "wrong": 4467
+ },
+ "b": {
+  "stage": "ratio test + mutual check",
+  "matches": 3164,
+  "wrong": 81
+ },
+ "c": {
+  "stage": "after RANSAC on E",
+  "matches": 3077,
+  "wrong": 0
+ }
+}
