@@ -60,7 +60,9 @@ def grow_frames(rec, pc, vw, per_cam=int(1.0 * FPS)):
     """Show the cloud as cameras are registered one by one (points restricted to those visible so far)."""
     order = [e for e in rec.log["events"] if e["type"] in ("init", "register")]
     reg_order = list(rec.init_pair) + [rec.names.index(e["image"]) for e in order if e["type"] == "register"]
-    Cs = np.array([G.camera_center(*rec.cams[i]) for i in rec.cams])
+    M = viz.level_matrix(rec)
+    Cs = np.array([G.camera_center(*rec.cams[i]) for i in rec.cams]) @ M.T
+    pc = dict(pc, xyz=pc["xyz"] @ M.T)
     (c, r), keep = viz._scene_bounds(pc["xyz"], Cs)
     w, h = rec.K[0, 2] * 2, rec.K[1, 2] * 2
     fig = plt.figure(figsize=(W / 100, H / 100), dpi=100)
@@ -72,11 +74,11 @@ def grow_frames(rec, pc, vw, per_cam=int(1.0 * FPS)):
         ax.clear()
         ax.scatter(*pc["xyz"][sel].T, c=pc["rgb"][sel] / 255.0, s=1.6, depthshade=False, linewidths=0)
         for i in reg_order[:n]:
-            segs, C, d = viz._frustum_lines(*rec.cams[i], rec.K, r * 0.07, w, h)
+            segs, C, d = viz._frustum_leveled(rec, i, r * 0.07, w, h, M)
             for s in segs:
                 ax.plot(*zip(*s), color="tab:red", lw=0.9)
         ax.set_xlim(c[0] - r, c[0] + r); ax.set_ylim(c[1] - r, c[1] + r); ax.set_zlim(c[2] - r, c[2] + r)
-        ax.set_box_aspect((1, 1, 1)); ax.view_init(elev=25, azim=-60); ax.set_axis_off()
+        ax.set_box_aspect((1, 1, 1)); ax.view_init(elev=15, azim=-75); ax.set_axis_off()
         ax.set_title(f"{n} cameras registered - {int(sel.sum())} points", fontsize=16)
         fig.canvas.draw()
         fr = np.ascontiguousarray(np.asarray(fig.canvas.buffer_rgba())[:, :, :3][:, :, ::-1])

@@ -77,6 +77,27 @@ def _frustum_lines(R, t, K, size, w, h):
     return segs, C, R.T @ np.array([0, 0, 1.0])
 
 
+def level_matrix(rec):
+    """3x3 matrix M (use as  P @ M.T ) taking SfM world coordinates to a matplotlib-friendly frame with Z up.
+
+    The reconstruction lives in the first camera's frame (y down, z forward), so it is tilted relative to gravity.
+    'Up' is taken as the mean of the cameras' up axes (-y in camera coordinates: photographers hold cameras roughly
+    upright); the mean viewing direction (made horizontal) becomes +y, so an azimuth of -90 looks from behind the cameras
+    toward the scene.
+    """
+    ups = np.array([-(R.T @ np.array([0, 1.0, 0])) for R, t in rec.cams.values()])
+    fwd = np.array([R.T @ np.array([0, 0, 1.0]) for R, t in rec.cams.values()])
+    up = ups.mean(0); up /= np.linalg.norm(up)
+    f = fwd.mean(0); f -= (f @ up) * up; f /= np.linalg.norm(f)
+    right = np.cross(f, up)                      # right-handed (right, forward, up)
+    return np.vstack([right, f, up])
+
+
+def _frustum_leveled(rec, i, size, w, h, M):
+    segs, C, d = _frustum_lines(*rec.cams[i], rec.K, size, w, h)
+    return [[a @ M.T, b @ M.T] for a, b in segs], C @ M.T, d @ M.T
+
+
 def clean_mask(xyz, k=4.0):
     """Boolean mask dropping far-away low-parallax outliers: keep points within k x median distance of the median."""
     if len(xyz) < 10:
@@ -99,8 +120,9 @@ def _scene_bounds(xyz, Cs):
 
 def plot_scene(rec, pc, path, views=((25, -60), (90, -90), (0, -90)), gt_overlay=False, point_size=1.2, title=None):
     """Point cloud + camera frusta + viewing directions from several viewpoints (report figure)."""
-    xyz, rgb = pc["xyz"], pc["rgb"] / 255.0
-    Cs = np.array([G.camera_center(*rec.cams[i]) for i in rec.cams])
+    M = level_matrix(rec)
+    xyz, rgb = pc["xyz"] @ M.T, pc["rgb"] / 255.0
+    Cs = np.array([G.camera_center(*rec.cams[i]) for i in rec.cams]) @ M.T
     (c, r), keep = _scene_bounds(xyz, Cs)
     w, h = rec.K[0, 2] * 2, rec.K[1, 2] * 2
     fs = r * 0.07
@@ -109,7 +131,7 @@ def plot_scene(rec, pc, path, views=((25, -60), (90, -90), (0, -90)), gt_overlay
         ax = fig.add_subplot(1, len(views), v + 1, projection="3d")
         ax.scatter(*xyz[keep].T, c=rgb[keep], s=point_size, depthshade=False, linewidths=0)
         for i in rec.cams:
-            segs, C, d = _frustum_lines(*rec.cams[i], rec.K, fs, w, h)
+            segs, C, d = _frustum_leveled(rec, i, fs, w, h, M)
             for s in segs:
                 ax.plot(*zip(*s), color="tab:red", lw=0.8)
             ax.quiver(*C, *(d * fs * 1.6), color="tab:blue", lw=1.0, arrow_length_ratio=0.25)
@@ -202,24 +224,26 @@ def error_histogram(rec, path):
 # ------------------------------------------------------------------------------- turntable video
 def turntable_video(rec, pc, path, frames=180, size=(960, 720), elev=18, fps=30, point_size=1.5):
     """Render a rotating view of cloud + cameras to an mp4 (for the demonstration video)."""
-    xyz, rgb = pc["xyz"], pc["rgb"] / 255.0
-    Cs = np.array([G.camera_center(*rec.cams[i]) for i in rec.cams])
+    M = level_matrix(rec)
+    xyz, rgb = pc["xyz"] @ M.T, pc["rgb"] / 255.0
+    Cs = np.array([G.camera_center(*rec.cams[i]) for i in rec.cams]) @ M.T
     (c, r), keep = _scene_bounds(xyz, Cs)
     w, h = rec.K[0, 2] * 2, rec.K[1, 2] * 2
     fs = r * 0.06
     vw = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*"mp4v"), fps, size)
     fig = plt.figure(figsize=(size[0] / 100, size[1] / 100), dpi=100)
     ax = fig.add_subplot(111, projection="3d")
+    ax.set_position([-0.28, -0.42, 1.56, 1.84])      # axes larger than the figure: zoom in on the scene
     for f in range(frames):
         ax.clear()
         ax.scatter(*xyz[keep].T, c=rgb[keep], s=point_size, depthshade=False, linewidths=0)
         for i in rec.cams:
-            segs, C, d = _frustum_lines(*rec.cams[i], rec.K, fs, w, h)
+            segs, C, d = _frustum_leveled(rec, i, fs, w, h, M)
             for s in segs:
                 ax.plot(*zip(*s), color="tab:red", lw=0.7)
         ax.set_xlim(c[0] - r, c[0] + r); ax.set_ylim(c[1] - r, c[1] + r); ax.set_zlim(c[2] - r, c[2] + r)
         ax.set_box_aspect((1, 1, 1)); ax.set_axis_off()
-        ax.view_init(elev=elev, azim=-60 + 360 * f / frames)
+        ax.view_init(elev=elev, azim=-75 + 360 * f / frames)
         fig.canvas.draw()
         frame = np.asarray(fig.canvas.buffer_rgba())[:, :, :3][:, :, ::-1]
         vw.write(cv2.resize(np.ascontiguousarray(frame), size))
