@@ -112,10 +112,19 @@ def robust_bounds(xyz, lo=1, hi=99, pad=0.15):
     return c, r
 
 
-def _scene_bounds(xyz, Cs):
-    """Axis bounds from the cleaned cloud plus cameras (so outliers never squash the picture)."""
-    m = clean_mask(xyz)
-    return robust_bounds(np.vstack([xyz[m], Cs]), lo=0, hi=100, pad=0.08), m
+def _scene_bounds(xyz, Cs, k=2.5):
+    """Axis bounds from the cleaned cloud plus cameras (so outliers never squash the picture).
+
+    k = outlier cut in multiples of the median distance from the cloud centre (2.5 = tight: small far clusters such as
+    distant trees are hidden in the pictures; the PLY files keep every point).
+    """
+    m = clean_mask(xyz, k)
+    return robust_bounds(np.vstack([xyz[m], Cs]), lo=1, hi=99, pad=0.06), m
+
+
+def frustum_scale(n_cams, base=0.06):
+    """Frustum size as a fraction of the scene radius: shrinks with the number of cameras so 40+ frusta stay readable."""
+    return base * min(1.0, (12.0 / max(n_cams, 1)) ** 0.5)
 
 
 def plot_scene(rec, pc, path, views=((25, -60), (90, -90), (0, -90)), gt_overlay=False, point_size=1.2, title=None):
@@ -125,7 +134,7 @@ def plot_scene(rec, pc, path, views=((25, -60), (90, -90), (0, -90)), gt_overlay
     Cs = np.array([G.camera_center(*rec.cams[i]) for i in rec.cams]) @ M.T
     (c, r), keep = _scene_bounds(xyz, Cs)
     w, h = rec.K[0, 2] * 2, rec.K[1, 2] * 2
-    fs = r * 0.07
+    fs = r * frustum_scale(len(rec.cams), 0.07)
     fig = plt.figure(figsize=(6 * len(views), 6))
     for v, (elev, azim) in enumerate(views):
         ax = fig.add_subplot(1, len(views), v + 1, projection="3d")
@@ -229,7 +238,7 @@ def turntable_video(rec, pc, path, frames=180, size=(960, 720), elev=18, fps=30,
     Cs = np.array([G.camera_center(*rec.cams[i]) for i in rec.cams]) @ M.T
     (c, r), keep = _scene_bounds(xyz, Cs)
     w, h = rec.K[0, 2] * 2, rec.K[1, 2] * 2
-    fs = r * 0.06
+    fs = r * frustum_scale(len(rec.cams))
     vw = cv2.VideoWriter(path, cv2.VideoWriter_fourcc(*"mp4v"), fps, size)
     fig = plt.figure(figsize=(size[0] / 100, size[1] / 100), dpi=100)
     ax = fig.add_subplot(111, projection="3d")
@@ -240,7 +249,7 @@ def turntable_video(rec, pc, path, frames=180, size=(960, 720), elev=18, fps=30,
         for i in rec.cams:
             segs, C, d = _frustum_leveled(rec, i, fs, w, h, M)
             for s in segs:
-                ax.plot(*zip(*s), color="tab:red", lw=0.7)
+                ax.plot(*zip(*s), color="tab:red", lw=0.6)
         ax.set_xlim(c[0] - r, c[0] + r); ax.set_ylim(c[1] - r, c[1] + r); ax.set_zlim(c[2] - r, c[2] + r)
         ax.set_box_aspect((1, 1, 1)); ax.set_axis_off()
         ax.view_init(elev=elev, azim=-75 + 360 * f / frames)
