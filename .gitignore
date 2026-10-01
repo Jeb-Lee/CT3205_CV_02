@@ -17,3 +17,6 @@ results/person_hall/log_*.txt
 results/torch_install.log
 results/expL_log.txt
 results/colmap_compare_log.txt
+results/demo/*.mp4
+results/demo/log.txt
+results/demo/contact*.jpg

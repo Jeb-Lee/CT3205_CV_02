@@ -67,19 +67,20 @@ def grow_frames(rec, pc, vw, per_cam=int(1.0 * FPS)):
     w, h = rec.K[0, 2] * 2, rec.K[1, 2] * 2
     fig = plt.figure(figsize=(W / 100, H / 100), dpi=100)
     ax = fig.add_subplot(111, projection="3d")
+    ax.set_position([-0.04, -0.02, 1.08, 1.10])         # moderate zoom: the camera arc must stay in frame
     pids = list(pc["pids"])
     for n in range(2, len(reg_order) + 1):
         active = set(reg_order[:n])
         sel = np.array([keep[k] and any(im in active for im in rec.tracks[p]) for k, p in enumerate(pids)])
         ax.clear()
-        ax.scatter(*pc["xyz"][sel].T, c=pc["rgb"][sel] / 255.0, s=1.6, depthshade=False, linewidths=0)
+        ax.scatter(*pc["xyz"][sel].T, c=pc["rgb"][sel] / 255.0, s=4.0, depthshade=False, linewidths=0)
         for i in reg_order[:n]:
-            segs, C, d = viz._frustum_leveled(rec, i, r * 0.07, w, h, M)
+            segs, C, d = viz._frustum_leveled(rec, i, r * 0.09, w, h, M)
             for s in segs:
-                ax.plot(*zip(*s), color="tab:red", lw=0.9)
+                ax.plot(*zip(*s), color="tab:red", lw=1.2)
         ax.set_xlim(c[0] - r, c[0] + r); ax.set_ylim(c[1] - r, c[1] + r); ax.set_zlim(c[2] - r, c[2] + r)
-        ax.set_box_aspect((1, 1, 1)); ax.view_init(elev=15, azim=-75); ax.set_axis_off()
-        ax.set_title(f"{n} cameras registered - {int(sel.sum())} points", fontsize=16)
+        ax.set_box_aspect((1, 1, 1)); ax.view_init(elev=24, azim=-68); ax.set_axis_off()
+        fig.suptitle(f"{n} cameras registered - {int(sel.sum()):,} points", fontsize=22, y=0.95)
         fig.canvas.draw()
         fr = np.ascontiguousarray(np.asarray(fig.canvas.buffer_rgba())[:, :, :3][:, :, ::-1])
         hold(vw, cv2.resize(fr, (W, H)), per_cam / FPS)
@@ -123,7 +124,7 @@ def main():
     grow_frames(rec, pc, vw)
     # 4. turntable
     tmp = os.path.join(a.out, "_turn.mp4")
-    viz.turntable_video(rec, pc, tmp, frames=150, size=(W, H), fps=FPS)
+    viz.turntable_video(rec, pc, tmp, frames=150, size=(W, H), fps=FPS, elev=12, point_size=2.5)
     cap = cv2.VideoCapture(tmp)
     while True:
         ok, fr = cap.read()
