@@ -1,0 +1,26 @@
+{
+  "gpu": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "bf_cpu_matches": 1366,
+  "bf_gpu_matches": 1366,
+  "identical_matches": 1366,
+  "only_cpu": 0,
+  "only_gpu": 0,
+  "match_seconds_cpu": 0.31915855407714844,
+  "match_seconds_gpu": 0.029215335845947266,
+  "speedup": 10.92434999755178,
+  "model_load_seconds": 3.7739310264587402,
+  "disk_keypoints": [
+    8000,
+    8000
+  ],
+  "disk_extract_seconds": [
+    1.885977029800415,
+    0.5564534664154053
+  ],
+  "lightglue_seconds": 0.15169262886047363,
+  "lightglue_matches": 4409,
+  "lightglue_ransac_inliers": 4203,
+  "rootsift_matches": 1366,
+  "rootsift_ransac_inliers": 1270
+}

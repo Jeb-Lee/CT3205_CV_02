@@ -14,3 +14,6 @@ results/_first_pass/
 results/experiments_err.txt
 results/dense_video_log.txt
 results/person_hall/log_*.txt
+results/torch_install.log
+results/expL_log.txt
+results/colmap_compare_log.txt

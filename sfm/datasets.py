@@ -32,6 +32,9 @@ class Dataset:
     gt_poses: dict = field(default_factory=dict)   # name -> (R, t) world->cam
     gt_points: np.ndarray | None = None
     gt_colors: np.ndarray | None = None
+    gt_ids: dict = field(default_factory=dict)      # name -> COLMAP image id
+    gt_err: np.ndarray | None = None                # COLMAP mean reprojection error per 3D point (px, full resolution)
+    gt_tracks: list | None = None                   # per 3D point: array of COLMAP image ids that observe it
 
     def path(self, name):
         return os.path.join(self.image_dir, name)
@@ -47,9 +50,10 @@ def load_dataset(name: str) -> Dataset:
         imgs = ioc.read_images(os.path.join(sparse, "images.txt"))
         cam = cams[next(iter(imgs.values()))["cam_id"]]
         K, dist = ioc.camera_to_K_dist(cam)
-        xyz, rgb, _ = ioc.read_points3D(os.path.join(sparse, "points3D.txt"))
+        xyz, rgb, err, tracks = ioc.read_points3D_full(os.path.join(sparse, "points3D.txt"))
         gt = {n: (v["R"], v["t"]) for n, v in imgs.items()}
-        return Dataset(name, image_dir, names, K, dist, (cam["width"], cam["height"]), gt, xyz, rgb)
+        ids = {n: v["id"] for n, v in imgs.items()}
+        return Dataset(name, image_dir, names, K, dist, (cam["width"], cam["height"]), gt, xyz, rgb, ids, err, tracks)
     return _load_custom(name, image_dir, names, root)
 
 

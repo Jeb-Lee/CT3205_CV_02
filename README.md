@@ -30,14 +30,24 @@ python scripts/run_dense.py --start 40 --count 16 --stride 1 --out results/dense
 python scripts/run_person_hall.py --cases A B C D E2 E4 E6 E8 F3 --video
 python scripts/diag_case.py C                 # per-camera / per-pair diagnosis against COLMAP GT
 
-# 5. interactive viewer (screenshots for the report) and the auto-generated demo clip
+# 5. GPU / learned features (needs the CUDA build of PyTorch, see requirements.txt) and COLMAP comparison
+python scripts/gpu_bench.py                   # GPU matcher == CPU matcher? speed; DISK + LightGlue sanity
+python scripts/matcher_bakeoff.py             # SIFT vs DISK vs DISK+LightGlue on hard pairs, scored with COLMAP geometry
+python experiments/exp_learned.py             # south-building: classical vs GPU vs learned
+python scripts/run_person_hall.py --cases B_dl D_dl F_dl F3_dl B_dls D_dls F_dls F3_dls --video
+python scripts/diag_run.py --dataset person-hall --start 0 --count 110 --stride 3 --detector disk --matcher lightglue --window 6 --ba_every 10 --min_pair 150 --tag F3_dls
+python scripts/run_colmap_compare.py          # ours vs COLMAP on identical images
+
+# 6. interactive viewer (screenshots for the report) and the auto-generated demo clip
 python scripts/view_open3d.py results/baseline --gt
 python scripts/view_open3d.py results/dense --ply dense.ply   # dense cloud
 python scripts/export_html.py            # self-contained interactive HTML viewer -> results/viewer/south_building.html
 python scripts/make_demo_video.py --out results/demo
 ```
-Trained model weights: none - the classical pipeline has no learned parameters. (Advanced work using learned features will
-document the pretrained weights used.)
+Model weights: the classical pipeline has no learned parameters. The advanced learned-feature work uses two **pretrained**
+models (no training by us), copies in `weights/`: DISK (`disk_depth-save.pth`, from github.com/cvlab-epfl/disk) and LightGlue for
+DISK (`lightglue_disk_v0-1_arxiv.pth`, from github.com/cvg/LightGlue releases). kornia downloads them automatically on first use
+(to `~/.cache/torch/hub/checkpoints`). Check the upstream licences before redistributing.
 
 ## Layout
 | Path | Content |
@@ -45,6 +55,8 @@ document the pretrained weights used.)
 | `sfm/features.py`, `matching.py` | SIFT/RootSIFT/ORB/AKAZE/BRISK, ratio + mutual + RANSAC-E filtering |
 | `sfm/geometry.py` | E decomposition (4 solutions), cheirality, DLT triangulation, reprojection, parallax |
 | `sfm/reconstruction.py` | incremental SfM: init pair, PnP registration, triangulation, tracks, filtering |
+| `sfm/gpu_matching.py` | GPU brute-force matcher, DISK + LightGlue (learned) |
+| `sfm/colmap_compare.py` | ours vs COLMAP on identical images |
 | `sfm/dense.py` | dense stereo: rectification, SGBM, voxel-vote fusion |
 | `sfm/bundle.py` | sparse bundle adjustment (SciPy, Huber loss) |
 | `sfm/evaluate.py` | Umeyama alignment to COLMAP, pose / point / completeness metrics |

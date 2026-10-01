@@ -65,7 +65,7 @@ def read_images(path):
             continue
         q = np.array([float(v) for v in tok[1:5]])
         t = np.array([float(v) for v in tok[5:8]])
-        out[tok[9]] = dict(R=qvec2rotmat(q), t=t, cam_id=int(tok[8]))
+        out[tok[9]] = dict(R=qvec2rotmat(q), t=t, cam_id=int(tok[8]), id=int(tok[0]))
         i += 2
     return out
 
@@ -78,3 +78,15 @@ def read_points3D(path):
         rgb.append([int(v) for v in tok[4:7]])
         err.append(float(tok[7]))
     return np.array(xyz), np.array(rgb, dtype=np.uint8), np.array(err)
+
+
+def read_points3D_full(path):
+    """Like read_points3D but also returns, per point, the COLMAP image ids observing it (the 'track')."""
+    xyz, rgb, err, tracks = [], [], [], []
+    for ln in _data_lines(path):
+        tok = ln.split()
+        xyz.append([float(v) for v in tok[1:4]])
+        rgb.append([int(v) for v in tok[4:7]])
+        err.append(float(tok[7]))
+        tracks.append(np.array(tok[8::2], dtype=np.int64))      # TRACK[] = (IMAGE_ID, POINT2D_IDX) pairs
+    return np.array(xyz), np.array(rgb, dtype=np.uint8), np.array(err), tracks

@@ -1,0 +1,16 @@
+group,method,pairs,median_inliers,median_correct,median_precision_raw,median_seconds
+F3 weak link,disk_lg,13,54.0,54.0,0.643,0.201
+F3 weak link,disk_nn,13,16.0,16.0,0.996,0.031
+F3 weak link,sift_bf,13,11.0,1.0,0.077,0.377
+foliage (case B),disk_lg,3,229.0,229.0,0.636,0.174
+foliage (case B),disk_nn,3,28.0,28.0,1.0,0.031
+foliage (case B),sift_bf,3,11.0,4.0,0.146,0.37
+scale change (case D),disk_lg,2,1131.0,1124.0,0.495,0.172
+scale change (case D),disk_nn,2,809.0,809.0,0.5,0.031
+scale change (case D),sift_bf,2,178.5,173.5,0.451,0.35
+south ladder,disk_lg,6,30.0,0.5,0.018,0.242
+south ladder,disk_nn,6,0.0,0.0,0.0,0.032
+south ladder,sift_bf,6,10.5,0.5,0.033,0.373
+sun flare (case C),disk_lg,1,3402.0,3400.0,0.985,0.187
+sun flare (case C),disk_nn,1,3056.0,3056.0,1.0,0.031
+sun flare (case C),sift_bf,1,379.0,379.0,0.85,0.35

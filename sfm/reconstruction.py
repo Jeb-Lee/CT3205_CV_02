@@ -29,7 +29,8 @@ from .bundle import bundle_adjust
 
 @dataclass
 class SfMConfig:
-    detector: str = "rootsift"
+    detector: str = "rootsift"        # sift|rootsift|orb|akaze|brisk | disk (learned, GPU)
+    matcher: str = "bf"               # bf (CPU brute force) | gpu (same algorithm on GPU) | lightglue (learned, needs detector=disk)
     nfeatures: int = 8000
     max_dim: int = 1600
     ratio: float = 0.8
@@ -85,8 +86,11 @@ class Reconstruction:
                 desc = None if desc.shape == () else desc
             else:
                 img, K = D.load_image(self.ds, name, self.cfg.max_dim, self.degrade, seed=i)
-                gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                kp, desc = F.extract(gray, self.cfg.detector, self.cfg.nfeatures)
+                if self.cfg.detector == "disk":
+                    kp, desc = self._learned().extract(img)
+                else:
+                    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    kp, desc = F.extract(gray, self.cfg.detector, self.cfg.nfeatures)
                 if cache:
                     os.makedirs(os.path.dirname(cache), exist_ok=True)
                     np.savez_compressed(cache, kp=kp, desc=desc if desc is not None else np.array(0), K=K)
@@ -98,6 +102,14 @@ class Reconstruction:
         self.say(f"[features] {self.cfg.detector}: mean {np.mean(self.log['n_features']):.0f} kp/img "
                  f"({self.log['timing']['features']:.1f}s)")
 
+    _LEARNED = None
+
+    def _learned(self):
+        if Reconstruction._LEARNED is None:           # models are loaded once per process
+            from .gpu_matching import DiskLightGlue
+            Reconstruction._LEARNED = DiskLightGlue(self.cfg.nfeatures)
+        return Reconstruction._LEARNED
+
     def _cache_path(self, name):
         if not self.cache_dir:
             return None
@@ -108,7 +120,7 @@ class Reconstruction:
     # ------------------------------------------------------------------ matching
     def match_all(self):
         t0 = time.time()
-        norm = F.norm_for(self.cfg.detector)
+        norm = F.norm_for(self.cfg.detector) if self.cfg.detector != "disk" else cv2.NORM_L2
         w = self.cfg.window or self.n
         for i in range(self.n):
             for j in range(i + 1, min(self.n, i + w + 1)):
@@ -122,7 +134,14 @@ class Reconstruction:
         rec = dict(n_raw=0, n_ratio=0, n_mutual=0, n_inl=0, E=None,
                    i1=np.zeros(0, int), i2=np.zeros(0, int))
         if self.descs[i] is not None and self.descs[j] is not None and len(self.kps[i]) > 8 and len(self.kps[j]) > 8:
-            i1, i2, st = M.match_pair(self.descs[i], self.descs[j], norm, self.cfg.ratio, self.cfg.cross_check)
+            if self.cfg.matcher == "lightglue":
+                size = lambda k: (2 * self.K[0, 2], 2 * self.K[1, 2])
+                i1, i2, st = self._learned().match(self.kps[i], self.descs[i], self.kps[j], self.descs[j], size(i), size(j))
+            elif self.cfg.matcher == "gpu":
+                from .gpu_matching import match_pair_gpu
+                i1, i2, st = match_pair_gpu(self.descs[i], self.descs[j], self.cfg.ratio, self.cfg.cross_check)
+            else:
+                i1, i2, st = M.match_pair(self.descs[i], self.descs[j], norm, self.cfg.ratio, self.cfg.cross_check)
             rec.update(st)
             E, mask = M.verify_essential(self.kps[i][i1], self.kps[j][i2], self.K, self.cfg.ransac_thr)
             rec.update(E=E, n_inl=int(mask.sum()), i1=i1[mask], i2=i2[mask])

@@ -1,0 +1,101 @@
+{
+  "stats": {
+    "n_images": 12,
+    "n_registered": 3,
+    "n_points": 2357,
+    "mean_track_len": 2.025456088247773,
+    "n_observations": 4774,
+    "reproj_mean": 0.1913533080667176,
+    "reproj_median": 0.16299131423550245,
+    "reproj_rms": 0.24013724136858317,
+    "n_points_track3": 60,
+    "reproj_mean_track3": 0.2914945360813641,
+    "reproj_median_track3": 0.2712659442234515,
+    "mean_features": 8000.0,
+    "n_pairs": 66,
+    "n_pairs_verified": 15,
+    "mean_inliers_per_pair": 198.83333333333334,
+    "mean_inlier_ratio": 0.6249866950386737,
+    "seconds": 23.099242210388184,
+    "init_pair": [
+      "IMG_1045.JPG",
+      "IMG_1048.JPG"
+    ],
+    "gt_n_cams": 3,
+    "align_scale": 0.43836364982225007,
+    "align_collinear_fix": true,
+    "cam_pos_rmse": 0.0008804628462525878,
+    "cam_pos_rmse_rel": 0.0020646759333851675,
+    "cam_pos_median": 0.0007983834231316087,
+    "cam_rot_mean_deg": 0.0817176937085673,
+    "cam_rot_median_deg": 0.10493862769811532,
+    "cam_rot_max_deg": 0.1152955710135058,
+    "pt_acc_median": 0.01962985403395945,
+    "pt_acc_mean": 0.038383384771142635,
+    "pt_within_2pct": 0.5197284683920238,
+    "gt_completeness_2pct": 0.014955106817216134,
+    "failed": false
+  },
+  "images": [
+    "IMG_1045.JPG",
+    "IMG_1048.JPG",
+    "IMG_1051.JPG",
+    "IMG_1054.JPG",
+    "IMG_1057.JPG",
+    "IMG_1060.JPG",
+    "IMG_1063.JPG",
+    "IMG_1066.JPG",
+    "IMG_1069.JPG",
+    "IMG_1072.JPG",
+    "IMG_1075.JPG",
+    "IMG_1078.JPG"
+  ],
+  "events": [
+    {
+      "type": "init",
+      "pair": [
+        0,
+        1
+      ],
+      "median_parallax": 14.2831477703136,
+      "cheirality": [
+        2037,
+        0,
+        0,
+        0
+      ],
+      "points": 2037
+    },
+    {
+      "type": "ba",
+      "cams": 2,
+      "points": 2037,
+      "rmse_before": 0.3231506597991582,
+      "rmse_after": 0.23100920154925964,
+      "seconds": 0.14670681953430176
+    },
+    {
+      "type": "register",
+      "image": "IMG_1051.JPG",
+      "correspondences": 65,
+      "pnp_inliers": 60,
+      "new_points": 320
+    },
+    {
+      "type": "ba",
+      "cams": 3,
+      "points": 2357,
+      "rmse_before": 0.2674164365747834,
+      "rmse_after": 0.24013724655110955,
+      "seconds": 0.4866645336151123
+    },
+    {
+      "type": "ba",
+      "cams": 3,
+      "points": 2357,
+      "rmse_before": 0.24013724655110963,
+      "rmse_after": 0.2401372413685818,
+      "seconds": 0.1665635108947754
+    }
+  ]
+}

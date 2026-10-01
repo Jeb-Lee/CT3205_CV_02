@@ -1,0 +1,14 @@
+{
+  "tag": "ladder6_dl",
+  "registered": 8,
+  "images": 8,
+  "cameras_correct": 0,
+  "cameras_wrong": 8,
+  "verified_pairs": 19,
+  "pairs_correct": 11,
+  "pairs_wrong": 8,
+  "median_wrong_match_frac_of_wrong_pairs": 1.0,
+  "median_inliers_wrong_pairs": 68.5,
+  "median_inliers_correct_pairs": 2357.0,
+  "align_collinear_fix": false
+}

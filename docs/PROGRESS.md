@@ -227,3 +227,88 @@ Findings
 | 5 | Stride sweep | robust on this facade up to stride 6; accuracy slips at 8 |
 | 6 | Loop F | fail: 15 comps; F3: partial (44/110); F3r: no gain |
 | 7 | Runtime | matching dominates: 275 s of 431 s for 639 pairs (-> GPU matching worthwhile) |
+
+## 9. Advanced work: GPU learned-feature matching and COLMAP comparison (2026-10-01)
+Hardware / software: RTX 3050 6 GB Laptop GPU, driver 581.86 (CUDA 13.0), PyTorch 2.11.0+cu128, kornia 0.8.3 (replaced the earlier CPU-only torch 2.14). Code: `sfm/gpu_matching.py`, `sfm/colmap_compare.py`, `scripts/{gpu_bench,matcher_bakeoff,diag_run,run_colmap_compare}.py`, `experiments/exp_learned.py`; new cases in `scripts/run_person_hall.py`. Outputs: `results/gpu/`, `results/expL/`, `results/colmap_compare/`, `results/person_hall/*_dl*`.
+**Learned models (pretrained, no training done by us):** DISK keypoints+descriptors (Tyszkiewicz et al., NeurIPS 2020; checkpoint `depth-save.pth`, 4.2 MB) and LightGlue matcher (Lindenberger et al., ICCV 2023; `disk_lightglue` checkpoint, 45 MB), loaded through kornia; copies are in `weights/` (see README for sources and licences to verify before redistribution).
+
+### 9.1 GPU port of the classical matcher (a like-for-like speed test)
+`match_pair_gpu` = the same ratio-0.8 + mutual-check brute force, with the distance matrix from `torch.cdist` on the GPU.
+- **Identical output**: 1,366 matches, all 1,366 identical to the CPU matcher (0 only-CPU, 0 only-GPU) on a south-building pair.
+- **10.9x faster per pair**: 0.319 s (CPU, OpenCV BFMatcher) -> 0.029 s (GPU).
+- End-to-end the saving is smaller because matching is only part of the pipeline: 12-image control 78 s (CPU) vs 68 s (GPU matcher); the 12-image control reproduces the same reconstruction (10,934 vs 10,938 points; camera error 0.11 % vs 0.12 %, tie-breaking noise).
+- Whole loop F3 (639 pairs): CPU matching took 275 s; the learned matcher took 128 s including a transformer (LightGlue 0.15-0.24 s per pair); a GPU brute-force run would need only about 19 s (639 x 0.03 s, extrapolated, not run end to end).
+
+### 9.2 Matcher bake-off on hard pairs, scored with ground-truth geometry (`results/gpu/bakeoff.csv`, `bakeoff_inliers.png`)
+Methods: (a) RootSIFT 8000 + ratio/mutual (CPU), (b) DISK 8000 + the *same* ratio/mutual matcher (isolates the benefit of learned **features**), (c) DISK + LightGlue (adds the learned **matcher**). Metric: RANSAC-E inliers (1 px) that are correct under COLMAP's poses (Sampson < 1.5 px).
+| pair type | pairs | RootSIFT | DISK + ratio | DISK + LightGlue |
+|---|---|---|---|---|
+| sun flare (case C) | 1 | 379 | 3,056 | **3,400** |
+| foliage (case B), median | 3 | 4 | 28 | **229** |
+| scale change (case D), median | 2 | 174 | 809 | **1,124** |
+| whole-loop weak links of F3 (< 25 SIFT inliers), median | 13 | 1 | 16 | **54** |
+| **weak links bridged (>= 25 correct matches)** | 13 | **0 / 13** | 5 / 13 | **8 / 13** |
+| south-building gap 2 (easy) | 1 | 1,270 | 3,912 | 4,203 |
+| south-building gap 4 | 1 | 1 | 0 | **1,633** |
+| south-building gaps 6, 8, 10, 14 | 4 | ~0 | 0 | ~0 |
+Findings: learned **features** give most of the gain on flare / foliage / scale; the learned **matcher** adds a further large step (weak links 16 -> 54; gap-4 pair rescued only by LightGlue). **Limits remain**: viewpoint change beyond roughly gap 4-6 defeats every method (south ladder), 5 of 13 weak links stay at zero for all methods (probably no real overlap), and D 1313-1317 (large scale change) is unmatched by all three. Raw LightGlue precision before RANSAC is only 0.5-0.65 (many wrong matches survive its filter) but RANSAC removes them: surviving inliers were ~100 % correct. Cost: DISK extraction 0.56 s / image vs RootSIFT 0.16 s (CPU).
+
+### 9.3 End-to-end SfM with learned features (same pipeline, only features/matcher changed)
+South-building, control sequence (12 images, stride 2) - `results/expL/results.csv`:
+| | RootSIFT + BF (CPU) | RootSIFT + GPU matcher | DISK + LightGlue |
+|---|---|---|---|
+| registered | 12/12 | 12/12 | 12/12 |
+| 3D points | 10,934 | 10,938 | **20,084** |
+| points seen in >= 3 views | 4,986 | 4,989 | **12,501** |
+| verified inliers per pair (mean) | 483 | 483 | **2,245** |
+| mean track length | 2.95 | 2.95 | **3.83** |
+| mean reprojection error (working px) | **0.138** | 0.138 | 0.379 |
+| camera position error | **0.11 %** | 0.12 % | 0.20 % |
+| run time | 78 s | 68 s | 116 s |
+=> learned matching gives **1.8x the points and 4.6x the inliers, but noisier geometry**: reprojection error 2.7x higher and camera error ~2x higher. DISK keypoints are located on the integer pixel grid (no sub-pixel refinement), SIFT's are sub-pixel.
+Viewpoint ladder and few images (south-building, 8 images / N images):
+| case | RootSIFT registered, cam err | DISK+LG registered, cam err | DISK+LG with strict pair threshold (>= 150 inliers), registered / correct |
+|---|---|---|---|
+| stride 3 | 6/8, 0.29 % | **8/8, 0.07 %** | (not needed) |
+| stride 4 | 2/8, n/a | 6/8, **85 % (wrong)** | 4 / **4 correct** |
+| stride 5 | 3/8, 0.20 % | 4/8, **59 % (wrong)** | 4 / 3 correct |
+| stride 6 | 3/8, 0.30 % | 8/8, **74 % (wrong)** | 3 / **3 correct** |
+| N=3 images | 3/3, 0.17 % | 3/3, 0.24 % | - |
+| N=4 images | 3/4, 0.62 % | **4/4**, 0.35 % | - |
+**A second silent failure (same lesson as the orientation bug, 8.2):** with learned matching at stride 4-6 *more* images registered, but the models are wrong (camera error 59-85 %, rotation 20-64 deg). `scripts/diag_run.py` (stride 6): 19 verified pairs, 11 correct (median **2,357** inliers) and 8 wrong (median **68** inliers, 100 % of their matches violate GT geometry); 0 of 8 cameras correct. My SIFT-era thresholds (use pair if >= 25, verified if >= 40 inliers) cannot separate these, because a learned matcher gives true pairs thousands of inliers. Raising both to **150** removes the wrong models (3-4 images registered, essentially all correct). Hypothesis -> test -> confirmed. Even with the fix, learned matching only rescues **moderate** viewpoint change (stride 3-4); it does not beat the fundamental limit (stride 6).
+
+Person Hall (`results/person_hall/cases.csv`):
+| case | SIFT | DISK+LG | DISK+LG strict (150) |
+|---|---|---|---|
+| B foliage | 2/12, 63 pts | 3/12, 2,363 pts, err 0.21 % | 3/12, 2,357 pts - **still FAILURE** |
+| D corner turn | 11/12, 5,226 pts, 0.07 % | 10/12, 14,652 pts, 0.29 % | 10/12, 14,649 pts, 0.30 % |
+| F loop (every 6th) | 15/55, 0.66 % | 22/55, **44 % (wrong)** | 15/55, **58 % (wrong)** |
+| F3 loop (every 3rd) | 44/110, **0.16 %** | 59/110, **53 % (wrong)** | 59/110, **53 % (wrong)** |
+Learned matching gives 2-37x more points in B and 2.8x in D, but **did not fix the loop and made the geometry worse**: 15 more cameras registered, but the model is wrong. Diagnosis for F3 strict (`diag_F3_dls*`): 59 registered cameras, only **10 correct**, 49 wrong; **372 of 403 verified pairs have the correct relative pose** (median rotation error 0.62 deg) and the 31 wrong ones still have almost no wrong matches (0.03 %), median 613 inliers, median rotation error 6.1 deg (not gross). Wrong pairs are spread over all index gaps (6-11 %). Camera error grows **smoothly along the chain**: rotation error 2 deg at camera 13, 10 deg at 25, 54 deg at 45, 170 deg at 66; position error from 0.8 % to 100 % of the extent. So: no gross false links; **accumulated drift** from less precise two-view geometry (consistent with the 2.7x higher reprojection error), with no loop closure to correct it. Not isolated by a controlled test (e.g. sub-pixel keypoint refinement, local BA, hybrid SIFT-geometry) - listed as future work; do not claim causation in the report.
+Success vs failure here: SIFT F3 registered only 44 cameras but they are accurate (0.16 %); learned F3 registered 59 but 49 are wrong. *Registration count is not a quality measure.*
+
+### 9.4 COLMAP comparison on identical images (`results/colmap_compare/`)
+COLMAP's model is the one shipped with the dataset (all images, SIFT, exhaustive/retrieval matching, incremental SfM, BA with intrinsics refinement). Fair comparison: restrict it to the 3D points seen by >= 2 of **our** images and count only those observations; reprojection errors in original-resolution pixels for both. Our intrinsics are COLMAP's (we do not self-calibrate).
+| images | ours pts | COLMAP pts (same images) | ours / COLMAP | track length ours / COLMAP | reproj px ours / COLMAP | camera pos err | rot err |
+|---|---|---|---|---|---|---|---|
+| south 12 (stride 2) | 10,934 | 8,830 | 1.24x | 2.95 / 2.69 | 0.27 / 0.48 | 0.11 % | 0.18 deg |
+| south 12, DISK+LG | 20,084 | 8,830 | 2.27x | 3.83 / 2.69 | 0.73 / 0.48 | 0.20 % | 0.28 deg |
+| south 16 consecutive | 18,216 | 11,577 | 1.57x | 3.89 / 3.82 | 0.29 / 0.46 | 0.05 % | 0.07 deg |
+| hall A | 12,584 | 17,780 | 0.71x | 3.03 / 3.07 | 0.39 / 0.60 | 0.03 % | 0.03 deg |
+| hall C | 6,509 | 10,777 | 0.60x | 3.33 / 4.61 | 0.52 / 0.78 | 0.11 % | 0.15 deg |
+Reading: (1) **poses agree with COLMAP to 0.03-0.11 % / <= 0.18 deg** - our estimation of E, PnP and BA reproduces a state-of-the-art result when matches are good; this does not prove both are right, only that they agree. (2) South: more points than COLMAP's subset with similar track length; Person Hall: fewer (0.6-0.7x) and shorter tracks in C. (3) Lower reprojection error than COLMAP is *not* evidence of being better: our intrinsics come from COLMAP's refined calibration, COLMAP's error is averaged over all its observations from a model constrained by all images, our filter drops observations above 2 px (working resolution), and point counts depend on thresholds (e.g. 1.5 deg triangulation angle). (4) DISK+LG: 2.3x COLMAP's points but a 51 % higher error. Overlay figures `overlay_south_12.png`, `overlay_hall_A.png`: our red points and COLMAP's blue ones lie on the same structures (C-shaped building footprint in plan view); COLMAP also has points on ground / foliage / far structure where we have none.
+
+What COLMAP does that this project does not (general knowledge of the COLMAP pipeline, not measured here): exhaustive or vocabulary-tree (retrieval) matching, which gives loop-closure candidates; two-view geometry classification (E, F and H models, planar/panoramic detection) before verification; initial-pair selection and **next-best-view** choice by visible-point count and spatial spread; RANSAC triangulation of multi-view tracks and **re-triangulation**; **local BA** after every registration and global BA at growth thresholds; **refinement of intrinsics**; track merging / **multiple sub-models** that can be merged; and a separate dense stage (PatchMatch MVS with photometric+geometric consistency, depth-map fusion, meshing). What we implemented ourselves: two-view E + cheirality, DLT triangulation, PnP registration, tracks, sparse BA with Huber loss, and a rectified-SGBM dense stage with voxel-vote fusion (section 7). Not implemented: loop closure, local BA, intrinsics refinement, sub-model merging - exactly the missing pieces the whole-loop failures (sections 8.5, 9.3) point at.
+
+### 9.5 Ledger of this stage (successes and failures)
+| # | event | result |
+|---|---|---|
+| 1 | CUDA PyTorch + kornia install | worked; torch 2.11.0+cu128 sees the RTX 3050 |
+| 2 | GPU brute-force matcher | identical matches, 10.9x faster per pair |
+| 3 | DISK + LightGlue weights (49 MB) | downloaded and run; no training needed |
+| 4 | Bake-off on hard pairs | big gains on flare / foliage / scale; 8/13 loop weak links bridged; wide baselines still unsolved |
+| 5 | Learned SfM, control | 1.8x points but ~2x worse camera error |
+| 6 | Learned SfM, stride 4-6 | **silent failure**: more images registered, wrong models (59-85 % error) |
+| 7 | Stricter pair threshold (150) | confirmed fix for #6 |
+| 8 | Learned SfM, whole loop | **fail**: 59 registered, 49 wrong; drift, not false links; cause not isolated |
+| 9 | COLMAP comparison | poses agree to 0.03-0.11 %; point counts 0.6-2.3x depending on case |

@@ -1,0 +1,48 @@
+Loaded LightGlue model
+F3 weak adjacent links (<25 SIFT inliers): 13 of 109
+south ladder             gap 2                  correct inliers: sift  1270 | disk+nn  3912 | disk+LG  4203
+south ladder             gap 4                  correct inliers: sift     1 | disk+nn     0 | disk+LG  1633
+south ladder             gap 6                  correct inliers: sift     0 | disk+nn     0 | disk+LG     1
+south ladder             gap 8                  correct inliers: sift     0 | disk+nn     0 | disk+LG     0
+south ladder             gap 10                 correct inliers: sift     0 | disk+nn     0 | disk+LG     0
+south ladder             gap 14                 correct inliers: sift     1 | disk+nn     0 | disk+LG     0
+foliage (case B)         B 1045-1048            correct inliers: sift    74 | disk+nn  1680 | disk+LG  2036
+foliage (case B)         B 1051-1057            correct inliers: sift     0 | disk+nn     0 | disk+LG     4
+foliage (case B)         B 1060-1066            correct inliers: sift     4 | disk+nn    28 | disk+LG   229
+scale change (case D)    D 1309-1313            correct inliers: sift   347 | disk+nn  1618 | disk+LG  2248
+scale change (case D)    D 1313-1317            correct inliers: sift     0 | disk+nn     0 | disk+LG     0
+sun flare (case C)       C 1222-1226            correct inliers: sift   379 | disk+nn  3056 | disk+LG  3400
+F3 weak link             F3 86-87 (SIFT 14)     correct inliers: sift    10 | disk+nn    16 | disk+LG   474
+F3 weak link             F3 12-13 (SIFT 7)      correct inliers: sift     1 | disk+nn    24 | disk+LG    54
+F3 weak link             F3 16-17 (SIFT 21)     correct inliers: sift    19 | disk+nn   143 | disk+LG   662
+F3 weak link             F3 105-106 (SIFT 11)   correct inliers: sift     0 | disk+nn     0 | disk+LG     0
+F3 weak link             F3 13-14 (SIFT 15)     correct inliers: sift    12 | disk+nn   164 | disk+LG   848
+F3 weak link             F3 81-82 (SIFT 8)      correct inliers: sift     0 | disk+nn    53 | disk+LG   149
+F3 weak link             F3 72-73 (SIFT 7)      correct inliers: sift     1 | disk+nn     0 | disk+LG    27
+F3 weak link             F3 76-77 (SIFT 8)      correct inliers: sift     0 | disk+nn     0 | disk+LG     0
+F3 weak link             F3 77-78 (SIFT 13)     correct inliers: sift    12 | disk+nn   213 | disk+LG   366
+F3 weak link             F3 101-102 (SIFT 10)   correct inliers: sift     0 | disk+nn     0 | disk+LG     1
+F3 weak link             F3 90-91 (SIFT 12)     correct inliers: sift     5 | disk+nn    87 | disk+LG   315
+F3 weak link             F3 80-81 (SIFT 12)     correct inliers: sift    10 | disk+nn     0 | disk+LG     0
+F3 weak link             F3 78-79 (SIFT 7)      correct inliers: sift     0 | disk+nn     0 | disk+LG     0
+
+                                pairs  median_inliers  median_correct  median_precision_raw  median_seconds
+group                 method                                                                              
+F3 weak link          disk_lg     13            54.0            54.0                 0.643           0.201
+                      disk_nn     13            16.0            16.0                 0.996           0.031
+                      sift_bf     13            11.0             1.0                 0.077           0.377
+foliage (case B)      disk_lg      3           229.0           229.0                 0.636           0.174
+                      disk_nn      3            28.0            28.0                 1.000           0.031
+                      sift_bf      3            11.0             4.0                 0.146           0.370
+scale change (case D) disk_lg      2          1131.0          1124.0                 0.495           0.172
+                      disk_nn      2           809.0           809.0                 0.500           0.031
+                      sift_bf      2           178.5           173.5                 0.451           0.350
+south ladder          disk_lg      6            30.0             0.5                 0.018           0.242
+                      disk_nn      6             0.0             0.0                 0.000           0.032
+                      sift_bf      6            10.5             0.5                 0.033           0.373
+sun flare (case C)    disk_lg      1          3402.0          3400.0                 0.985           0.187
+                      disk_nn      1          3056.0          3056.0                 1.000           0.031
+                      sift_bf      1           379.0           379.0                 0.850           0.350
+
+F3 weak links bridged (>= 25 correct verified matches): sift_bf: 0/13, disk_nn: 5/13, disk_lg: 8/13
+saved to results\gpu

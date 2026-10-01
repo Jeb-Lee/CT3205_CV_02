@@ -1,0 +1,14 @@
+{
+  "tag": "F3_dls",
+  "registered": 59,
+  "images": 110,
+  "cameras_correct": 10,
+  "cameras_wrong": 49,
+  "verified_pairs": 403,
+  "pairs_correct": 372,
+  "pairs_wrong": 31,
+  "median_wrong_match_frac_of_wrong_pairs": 0.00031007751937983663,
+  "median_inliers_wrong_pairs": 613.0,
+  "median_inliers_correct_pairs": 2188.5,
+  "align_collinear_fix": false
+}

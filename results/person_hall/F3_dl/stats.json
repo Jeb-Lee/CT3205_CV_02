@@ -1,0 +1,623 @@
+{
+  "stats": {
+    "n_images": 110,
+    "n_registered": 59,
+    "n_points": 51455,
+    "mean_track_len": 2.699154601107764,
+    "n_observations": 138885,
+    "reproj_mean": 0.7080456568838885,
+    "reproj_median": 0.6415422392698789,
+    "reproj_rms": 0.8342140289914058,
+    "n_points_track3": 18901,
+    "reproj_mean_track3": 0.7496459891481922,
+    "reproj_median_track3": 0.6897279988270053,
+    "mean_features": 8000.0,
+    "n_pairs": 639,
+    "n_pairs_verified": 426,
+    "mean_inliers_per_pair": 1418.528951486698,
+    "mean_inlier_ratio": 0.8688054902783977,
+    "seconds": 272.89053416252136,
+    "init_pair": [
+      "IMG_1141.JPG",
+      "IMG_1147.JPG"
+    ],
+    "gt_n_cams": 59,
+    "align_scale": 0.3214699861741891,
+    "align_collinear_fix": false,
+    "cam_pos_rmse": 2.9836823936676997,
+    "cam_pos_rmse_rel": 0.532731760141348,
+    "cam_pos_median": 1.6963904878753044,
+    "cam_rot_mean_deg": 53.31011451698219,
+    "cam_rot_median_deg": 44.196881627623995,
+    "cam_rot_max_deg": 171.41705578642174,
+    "pt_acc_median": 0.023378541353899735,
+    "pt_acc_mean": 0.06162415366060336,
+    "pt_within_2pct": 0.46030512097949666,
+    "gt_completeness_2pct": 0.19075249193733762,
+    "failed": false
+  },
+  "images": [
+    "IMG_1015.JPG",
+    "IMG_1018.JPG",
+    "IMG_1021.JPG",
+    "IMG_1024.JPG",
+    "IMG_1027.JPG",
+    "IMG_1030.JPG",
+    "IMG_1033.JPG",
+    "IMG_1036.JPG",
+    "IMG_1039.JPG",
+    "IMG_1042.JPG",
+    "IMG_1045.JPG",
+    "IMG_1048.JPG",
+    "IMG_1051.JPG",
+    "IMG_1054.JPG",
+    "IMG_1057.JPG",
+    "IMG_1060.JPG",
+    "IMG_1063.JPG",
+    "IMG_1066.JPG",
+    "IMG_1069.JPG",
+    "IMG_1072.JPG",
+    "IMG_1075.JPG",
+    "IMG_1078.JPG",
+    "IMG_1081.JPG",
+    "IMG_1084.JPG",
+    "IMG_1087.JPG",
+    "IMG_1090.JPG",
+    "IMG_1093.JPG",
+    "IMG_1096.JPG",
+    "IMG_1099.JPG",
+    "IMG_1102.JPG",
+    "IMG_1105.JPG",
+    "IMG_1108.JPG",
+    "IMG_1111.JPG",
+    "IMG_1114.JPG",
+    "IMG_1117.JPG",
+    "IMG_1120.JPG",
+    "IMG_1123.JPG",
+    "IMG_1126.JPG",
+    "IMG_1129.JPG",
+    "IMG_1132.JPG",
+    "IMG_1135.JPG",
+    "IMG_1138.JPG",
+    "IMG_1141.JPG",
+    "IMG_1144.JPG",
+    "IMG_1147.JPG",
+    "IMG_1150.JPG",
+    "IMG_1153.JPG",
+    "IMG_1156.JPG",
+    "IMG_1159.JPG",
+    "IMG_1162.JPG",
+    "IMG_1165.JPG",
+    "IMG_1168.JPG",
+    "IMG_1171.JPG",
+    "IMG_1174.JPG",
+    "IMG_1177.JPG",
+    "IMG_1180.JPG",
+    "IMG_1183.JPG",
+    "IMG_1186.JPG",
+    "IMG_1189.JPG",
+    "IMG_1192.JPG",
+    "IMG_1195.JPG",
+    "IMG_1198.JPG",
+    "IMG_1201.JPG",
+    "IMG_1204.JPG",
+    "IMG_1207.JPG",
+    "IMG_1210.JPG",
+    "IMG_1213.JPG",
+    "IMG_1216.JPG",
+    "IMG_1219.JPG",
+    "IMG_1222.JPG",
+    "IMG_1225.JPG",
+    "IMG_1228.JPG",
+    "IMG_1231.JPG",
+    "IMG_1234.JPG",
+    "IMG_1237.JPG",
+    "IMG_1240.JPG",
+    "IMG_1243.JPG",
+    "IMG_1246.JPG",
+    "IMG_1249.JPG",
+    "IMG_1252.JPG",
+    "IMG_1255.JPG",
+    "IMG_1258.JPG",
+    "IMG_1261.JPG",
+    "IMG_1264.JPG",
+    "IMG_1267.JPG",
+    "IMG_1270.JPG",
+    "IMG_1273.JPG",
+    "IMG_1276.JPG",
+    "IMG_1279.JPG",
+    "IMG_1282.JPG",
+    "IMG_1285.JPG",
+    "IMG_1288.JPG",
+    "IMG_1291.JPG",
+    "IMG_1294.JPG",
+    "IMG_1297.JPG",
+    "IMG_1300.JPG",
+    "IMG_1303.JPG",
+    "IMG_1306.JPG",
+    "IMG_1309.JPG",
+    "IMG_1312.JPG",
+    "IMG_1315.JPG",
+    "IMG_1318.JPG",
+    "IMG_1321.JPG",
+    "IMG_1324.JPG",
+    "IMG_1327.JPG",
+    "IMG_1330.JPG",
+    "IMG_1333.JPG",
+    "IMG_1336.JPG",
+    "IMG_1339.JPG",
+    "IMG_1342.JPG"
+  ],
+  "events": [
+    {
+      "type": "init",
+      "pair": [
+        42,
+        44
+      ],
+      "median_parallax": 3.0264350075226734,
+      "cheirality": [
+        0,
+        0,
+        0,
+        5898
+      ],
+      "points": 5597
+    },
+    {
+      "type": "ba",
+      "cams": 2,
+      "points": 5597,
+      "rmse_before": 0.3004970275811257,
+      "rmse_after": 0.2527878135387941,
+      "seconds": 1.0728402137756348
+    },
+    {
+      "type": "register",
+      "image": "IMG_1165.JPG",
+      "correspondences": 5157,
+      "pnp_inliers": 3383,
+      "new_points": 775
+    },
+    {
+      "type": "register",
+      "image": "IMG_1144.JPG",
+      "correspondences": 4660,
+      "pnp_inliers": 1227,
+      "new_points": 88
+    },
+    {
+      "type": "register",
+      "image": "IMG_1159.JPG",
+      "correspondences": 4276,
+      "pnp_inliers": 789,
+      "new_points": 751
+    },
+    {
+      "type": "register",
+      "image": "IMG_1138.JPG",
+      "correspondences": 4314,
+      "pnp_inliers": 1176,
+      "new_points": 367
+    },
+    {
+      "type": "register",
+      "image": "IMG_1135.JPG",
+      "correspondences": 3207,
+      "pnp_inliers": 607,
+      "new_points": 677
+    },
+    {
+      "type": "register",
+      "image": "IMG_1168.JPG",
+      "correspondences": 3111,
+      "pnp_inliers": 691,
+      "new_points": 734
+    },
+    {
+      "type": "register",
+      "image": "IMG_1150.JPG",
+      "correspondences": 3076,
+      "pnp_inliers": 2960,
+      "new_points": 1382
+    },
+    {
+      "type": "register",
+      "image": "IMG_1162.JPG",
+      "correspondences": 4231,
+      "pnp_inliers": 1054,
+      "new_points": 2388
+    },
+    {
+      "type": "register",
+      "image": "IMG_1153.JPG",
+      "correspondences": 4434,
+      "pnp_inliers": 3219,
+      "new_points": 1195
+    },
+    {
+      "type": "register",
+      "image": "IMG_1171.JPG",
+      "correspondences": 4613,
+      "pnp_inliers": 717,
+      "new_points": 750
+    },
+    {
+      "type": "ba",
+      "cams": 12,
+      "points": 14704,
+      "rmse_before": 1.1508290142469442,
+      "rmse_after": 1.0064167334534784,
+      "seconds": 5.571840763092041
+    },
+    {
+      "type": "register",
+      "image": "IMG_1156.JPG",
+      "correspondences": 4485,
+      "pnp_inliers": 2795,
+      "new_points": 978
+    },
+    {
+      "type": "register",
+      "image": "IMG_1174.JPG",
+      "correspondences": 3958,
+      "pnp_inliers": 478,
+      "new_points": 956
+    },
+    {
+      "type": "register",
+      "image": "IMG_1177.JPG",
+      "correspondences": 3875,
+      "pnp_inliers": 550,
+      "new_points": 1556
+    },
+    {
+      "type": "register",
+      "image": "IMG_1132.JPG",
+      "correspondences": 2653,
+      "pnp_inliers": 658,
+      "new_points": 1372
+    },
+    {
+      "type": "register",
+      "image": "IMG_1180.JPG",
+      "correspondences": 2488,
+      "pnp_inliers": 810,
+      "new_points": 817
+    },
+    {
+      "type": "register",
+      "image": "IMG_1183.JPG",
+      "correspondences": 1637,
+      "pnp_inliers": 717,
+      "new_points": 374
+    },
+    {
+      "type": "register",
+      "image": "IMG_1126.JPG",
+      "correspondences": 851,
+      "pnp_inliers": 186,
+      "new_points": 223
+    },
+    {
+      "type": "register",
+      "image": "IMG_1129.JPG",
+      "correspondences": 883,
+      "pnp_inliers": 350,
+      "new_points": 322
+    },
+    {
+      "type": "register",
+      "image": "IMG_1123.JPG",
+      "correspondences": 865,
+      "pnp_inliers": 202,
+      "new_points": 140
+    },
+    {
+      "type": "register",
+      "image": "IMG_1120.JPG",
+      "correspondences": 807,
+      "pnp_inliers": 188,
+      "new_points": 139
+    },
+    {
+      "type": "ba",
+      "cams": 22,
+      "points": 21340,
+      "rmse_before": 1.0222154691052352,
+      "rmse_after": 0.9524081603007207,
+      "seconds": 7.222610712051392
+    },
+    {
+      "type": "register",
+      "image": "IMG_1186.JPG",
+      "correspondences": 611,
+      "pnp_inliers": 315,
+      "new_points": 1295
+    },
+    {
+      "type": "register",
+      "image": "IMG_1192.JPG",
+      "correspondences": 1246,
+      "pnp_inliers": 492,
+      "new_points": 1143
+    },
+    {
+      "type": "register",
+      "image": "IMG_1189.JPG",
+      "correspondences": 1930,
+      "pnp_inliers": 993,
+      "new_points": 1493
+    },
+    {
+      "type": "register",
+      "image": "IMG_1195.JPG",
+      "correspondences": 2559,
+      "pnp_inliers": 665,
+      "new_points": 599
+    },
+    {
+      "type": "register",
+      "image": "IMG_1198.JPG",
+      "correspondences": 2813,
+      "pnp_inliers": 775,
+      "new_points": 1277
+    },
+    {
+      "type": "register",
+      "image": "IMG_1201.JPG",
+      "correspondences": 2260,
+      "pnp_inliers": 250,
+      "new_points": 380
+    },
+    {
+      "type": "register",
+      "image": "IMG_1204.JPG",
+      "correspondences": 2300,
+      "pnp_inliers": 230,
+      "new_points": 386
+    },
+    {
+      "type": "register",
+      "image": "IMG_1207.JPG",
+      "correspondences": 1692,
+      "pnp_inliers": 123,
+      "new_points": 673
+    },
+    {
+      "type": "register",
+      "image": "IMG_1210.JPG",
+      "correspondences": 1686,
+      "pnp_inliers": 210,
+      "new_points": 1166
+    },
+    {
+      "type": "register",
+      "image": "IMG_1213.JPG",
+      "correspondences": 1364,
+      "pnp_inliers": 136,
+      "new_points": 1039
+    },
+    {
+      "type": "ba",
+      "cams": 32,
+      "points": 30395,
+      "rmse_before": 0.9876912381571272,
+      "rmse_after": 0.9345468748694407,
+      "seconds": 12.297046184539795
+    },
+    {
+      "type": "register",
+      "image": "IMG_1114.JPG",
+      "correspondences": 474,
+      "pnp_inliers": 84,
+      "new_points": 308
+    },
+    {
+      "type": "register",
+      "image": "IMG_1117.JPG",
+      "correspondences": 622,
+      "pnp_inliers": 208,
+      "new_points": 619
+    },
+    {
+      "type": "register",
+      "image": "IMG_1111.JPG",
+      "correspondences": 915,
+      "pnp_inliers": 357,
+      "new_points": 787
+    },
+    {
+      "type": "register",
+      "image": "IMG_1108.JPG",
+      "correspondences": 1054,
+      "pnp_inliers": 400,
+      "new_points": 1602
+    },
+    {
+      "type": "register",
+      "image": "IMG_1105.JPG",
+      "correspondences": 1646,
+      "pnp_inliers": 758,
+      "new_points": 1194
+    },
+    {
+      "type": "register",
+      "image": "IMG_1102.JPG",
+      "correspondences": 1683,
+      "pnp_inliers": 510,
+      "new_points": 1833
+    },
+    {
+      "type": "register",
+      "image": "IMG_1099.JPG",
+      "correspondences": 1378,
+      "pnp_inliers": 609,
+      "new_points": 1553
+    },
+    {
+      "type": "register",
+      "image": "IMG_1096.JPG",
+      "correspondences": 2215,
+      "pnp_inliers": 1044,
+      "new_points": 703
+    },
+    {
+      "type": "register",
+      "image": "IMG_1093.JPG",
+      "correspondences": 1367,
+      "pnp_inliers": 499,
+      "new_points": 1733
+    },
+    {
+      "type": "register",
+      "image": "IMG_1090.JPG",
+      "correspondences": 1531,
+      "pnp_inliers": 532,
+      "new_points": 634
+    },
+    {
+      "type": "ba",
+      "cams": 42,
+      "points": 40912,
+      "rmse_before": 0.9720709161592581,
+      "rmse_after": 0.9065957669406274,
+      "seconds": 18.117448329925537
+    },
+    {
+      "type": "register",
+      "image": "IMG_1087.JPG",
+      "correspondences": 1558,
+      "pnp_inliers": 739,
+      "new_points": 458
+    },
+    {
+      "type": "register",
+      "image": "IMG_1084.JPG",
+      "correspondences": 1035,
+      "pnp_inliers": 643,
+      "new_points": 418
+    },
+    {
+      "type": "register",
+      "image": "IMG_1216.JPG",
+      "correspondences": 448,
+      "pnp_inliers": 204,
+      "new_points": 427
+    },
+    {
+      "type": "register",
+      "image": "IMG_1081.JPG",
+      "correspondences": 443,
+      "pnp_inliers": 330,
+      "new_points": 62
+    },
+    {
+      "type": "register",
+      "image": "IMG_1075.JPG",
+      "correspondences": 203,
+      "pnp_inliers": 163,
+      "new_points": 27
+    },
+    {
+      "type": "register",
+      "image": "IMG_1078.JPG",
+      "correspondences": 208,
+      "pnp_inliers": 186,
+      "new_points": 821
+    },
+    {
+      "type": "register",
+      "image": "IMG_1072.JPG",
+      "correspondences": 302,
+      "pnp_inliers": 208,
+      "new_points": 618
+    },
+    {
+      "type": "register",
+      "image": "IMG_1069.JPG",
+      "correspondences": 372,
+      "pnp_inliers": 250,
+      "new_points": 703
+    },
+    {
+      "type": "register",
+      "image": "IMG_1066.JPG",
+      "correspondences": 323,
+      "pnp_inliers": 206,
+      "new_points": 531
+    },
+    {
+      "type": "register",
+      "image": "IMG_1063.JPG",
+      "correspondences": 321,
+      "pnp_inliers": 193,
+      "new_points": 488
+    },
+    {
+      "type": "ba",
+      "cams": 52,
+      "points": 44995,
+      "rmse_before": 0.8960343572454094,
+      "rmse_after": 0.8639274062035092,
+      "seconds": 21.389070749282837
+    },
+    {
+      "type": "register",
+      "image": "IMG_1060.JPG",
+      "correspondences": 371,
+      "pnp_inliers": 221,
+      "new_points": 1350
+    },
+    {
+      "type": "register",
+      "image": "IMG_1057.JPG",
+      "correspondences": 702,
+      "pnp_inliers": 429,
+      "new_points": 729
+    },
+    {
+      "type": "register",
+      "image": "IMG_1054.JPG",
+      "correspondences": 298,
+      "pnp_inliers": 167,
+      "new_points": 566
+    },
+    {
+      "type": "register",
+      "image": "IMG_1219.JPG",
+      "correspondences": 133,
+      "pnp_inliers": 73,
+      "new_points": 769
+    },
+    {
+      "type": "register",
+      "image": "IMG_1222.JPG",
+      "correspondences": 856,
+      "pnp_inliers": 468,
+      "new_points": 325
+    },
+    {
+      "type": "register",
+      "image": "IMG_1228.JPG",
+      "correspondences": 1074,
+      "pnp_inliers": 267,
+      "new_points": 1521
+    },
+    {
+      "type": "register",
+      "image": "IMG_1225.JPG",
+      "correspondences": 2068,
+      "pnp_inliers": 719,
+      "new_points": 1512
+    },
+    {
+      "type": "ba",
+      "cams": 59,
+      "points": 51610,
+      "rmse_before": 0.866432012137859,
+      "rmse_after": 0.841562847415409,
+      "seconds": 24.952793836593628
+    }
+  ]
+}

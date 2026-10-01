@@ -10,7 +10,6 @@ tqdm==4.70.1
 pillow==12.2.0                    # EXIF focal length for your own photos
 tabulate                          # pandas .to_markdown() for result tables (optional)
 
-# --- Advanced work (GPU learned features), install only when we reach that step ---
-# Current torch is the CPU-only build; the RTX 3050 needs the CUDA build:
-#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
-# then: pip install kornia    (LoFTR / DISK / LightGlue-style matching)
+# --- GPU learned features (DISK + LightGlue). Used: torch 2.11.0+cu128 (RTX 3050, driver CUDA 13.0), kornia 0.8.3 ---
+#   pip install torch==2.11.0 torchvision --index-url https://download.pytorch.org/whl/cu128
+#   pip install kornia

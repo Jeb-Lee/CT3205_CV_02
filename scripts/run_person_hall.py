@@ -42,6 +42,22 @@ CASES = {
            dict(window=6, ba_every=10)),
     "F3r": ("whole loop, denser sampling + relaxed thresholds", "as F3 but ratio 0.85, pair-use >= 15 inliers, PnP >= 12", 0, 110, 3,
             dict(window=6, ba_every=10, ratio=0.85, min_pair_use=15, min_pnp=12)),
+    # ---- learned features: DISK keypoints + LightGlue matcher (GPU), everything else identical
+    "B_dl": ("foliage occlusion, DISK+LightGlue", "case B with learned features", 30, 12, 3, dict(detector="disk", matcher="lightglue")),
+    "D_dl": ("corner turn, DISK+LightGlue", "case D with learned features", 270, 12, 4, dict(detector="disk", matcher="lightglue")),
+    "F_dl": ("whole loop every 6th, DISK+LightGlue", "case F with learned features", 0, 55, 6,
+             dict(detector="disk", matcher="lightglue", window=8, ba_every=6)),
+    "F3_dl": ("whole loop every 3rd, DISK+LightGlue", "case F3 with learned features", 0, 110, 3,
+              dict(detector="disk", matcher="lightglue", window=6, ba_every=10)),
+    # ---- learned + strict pair thresholds (150 verified inliers): learned matches give true pairs thousands of inliers
+    "B_dls": ("foliage, DISK+LG strict", "B, learned, min pair 150", 30, 12, 3,
+              dict(detector="disk", matcher="lightglue", min_pair_inliers=150, min_pair_use=150)),
+    "D_dls": ("corner turn, DISK+LG strict", "D, learned, min pair 150", 270, 12, 4,
+              dict(detector="disk", matcher="lightglue", min_pair_inliers=150, min_pair_use=150)),
+    "F_dls": ("whole loop every 6th, DISK+LG strict", "F, learned, min pair 150", 0, 55, 6,
+              dict(detector="disk", matcher="lightglue", window=8, ba_every=6, min_pair_inliers=150, min_pair_use=150)),
+    "F3_dls": ("whole loop every 3rd, DISK+LG strict", "F3, learned, min pair 150", 0, 110, 3,
+               dict(detector="disk", matcher="lightglue", window=6, ba_every=10, min_pair_inliers=150, min_pair_use=150)),
     "F": ("whole building loop, sparse sampling", "every 6th image around the full loop (~55 images), windowed matching", 0, 55, 6,
           dict(window=8, ba_every=6)),
 }

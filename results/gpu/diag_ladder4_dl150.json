@@ -1,0 +1,14 @@
+{
+  "tag": "ladder4_dl150",
+  "registered": 4,
+  "images": 8,
+  "cameras_correct": 4,
+  "cameras_wrong": 0,
+  "verified_pairs": 11,
+  "pairs_correct": 9,
+  "pairs_wrong": 2,
+  "median_wrong_match_frac_of_wrong_pairs": 0.0015658877378944558,
+  "median_inliers_wrong_pairs": 4040.0,
+  "median_inliers_correct_pairs": 3053.0,
+  "align_collinear_fix": false
+}
