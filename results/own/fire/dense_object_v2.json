@@ -1,0 +1,13 @@
+{
+ "tag": "fire",
+ "gap": 2,
+ "crop": 0.3,
+ "axial": 1.0,
+ "support": 2,
+ "voxel_frac": 0.0033333333333333335,
+ "orbit_radius": 12.258218320727785,
+ "points": 576819,
+ "raw_points": 4176955,
+ "pairs": 78,
+ "seconds": 49.7772262096405
+}

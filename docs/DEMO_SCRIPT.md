@@ -94,3 +94,8 @@ Be ready to answer without notes: *Why four pose candidates and how is one chose
 
 ## If you have time for your own photos (strongest extra for "challenging scenarios")
 Add 20 seconds after block 8: your own object or building, input photos next to the reconstruction, plus the "tiny step" set showing why too little camera movement ruins depth. See `docs/GUIDE_YOUR_TODO.md`.
+
+## Optional block 10 - your own photographs (strongest "challenging scenarios" material, about 40 s)
+**On screen:** `results/own/yellow_all/turntable_object.mp4`, then `results/own/snacks/turntable_object.mp4`, then the negative case `results/own/bottle_classic/turntable_object.mp4` (each about 5 s; compressed H.264 files of 2-8 MB); `docs/report_figs/fig10_own_positive.png` and `fig11_own_negative.png` as stills; the interactive pages `results/viewer/own_yellow_all_object.html`, `own_fire_object_v2.html`, `own_snacks_object.html`, `own_bottle_classic_object.html`.
+**Say:** "I also photographed objects with my phone: a warning sign at two heights, a fire extinguisher, snacks, and a transparent bottle on purpose. The phone is uncalibrated, so I estimated its focal length from the photos and validated that method against COLMAP, where the true value is known (0.5 percent). All 330 photos register, the camera paths come out as near-perfect circles, and the sign's text is readable in the 3D cloud. The bottle shows a limit: only the opaque label and cap reconstruct, because the camera sees the background through the clear plastic - registration succeeded, the geometry did not."
+**Do not claim a metric accuracy for these sets: there is no ground truth for them.**

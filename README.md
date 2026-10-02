@@ -38,7 +38,14 @@ python scripts/run_person_hall.py --cases B_dl D_dl F_dl F3_dl B_dls D_dls F_dls
 python scripts/diag_run.py --dataset person-hall --start 0 --count 110 --stride 3 --detector disk --matcher lightglue --window 6 --ba_every 10 --min_pair 150 --tag F3_dls
 python scripts/run_colmap_compare.py          # ours vs COLMAP on identical images
 
-# 6. interactive viewer (screenshots for the report) and the auto-generated demo clip
+# 6. own captures (iPhone photos in Datasets/Bottle, Fire est, Snacks, yellow_sign): QA, self-calibration, reconstruction, dense
+python scripts/check_capture.py --matching        # pre-flight: EXIF, sharpness, neighbour overlap, contact sheets
+python scripts/estimate_focal.py --set Snacks     # focal length from fundamental matrices (validated on south-building)
+sh scripts/_run_own_chain.sh                      # reconstruct all five sets (about 1.5 h; all-pairs matching)
+python scripts/redo_dense.py --tag yellow_all --gap 3 --crop 0.3 --axial 1.0      # object-focused dense stage
+python scripts/orbit_check.py; python scripts/render_own_figures.py; python scripts/render_own_turntables.py
+
+# 7. interactive viewer (screenshots for the report) and the auto-generated demo clip
 python scripts/view_open3d.py results/baseline --gt
 python scripts/view_open3d.py results/dense --ply dense.ply   # dense cloud
 python scripts/export_html.py            # self-contained interactive HTML viewer -> results/viewer/south_building.html

@@ -224,12 +224,13 @@ P_ABS.add_run("—We implement an incremental multi-view 3D reconstruction pipel
               "trajectory extent and rotations within 0.18°. Four controlled experiments vary the number of images, the detector, "
               "the viewpoint change and the image quality: more images do not always improve accuracy, RootSIFT outperforms SIFT, ORB, "
               "AKAZE and BRISK, matching collapses beyond about 35° of viewpoint change, and blur is the most destructive "
-              "degradation. On Person Hall we log every success and failure, including a reconstruction that registered all images "
-              "with low reprojection error yet was 51% wrong because of an EXIF-orientation bug in our loader, and a building loop "
-              "that fragments into disconnected image clusters. Advanced work adds a rectified-SGBM dense stage (23× more points), "
-              "GPU learned matching with DISK and LightGlue, and a comparison with COLMAP. Learned features find far more correct "
-              "matches on hard pairs but gave noisier geometry and did not fix the loop. The main lesson is that reprojection "
-              "error and registration counts can hide a wrong reconstruction.")
+              "degradation. We log every success and failure, including a reconstruction that registered all images with low "
+              "reprojection error yet was 51% wrong because of an EXIF-orientation bug, and a building loop that fragments into "
+              "disconnected image clusters. Advanced work adds a rectified-SGBM dense stage (23× more points), GPU learned matching "
+              "with DISK and LightGlue, and a comparison with COLMAP. Five own iPhone captures (330 photos), self-calibrated from "
+              "fundamental matrices (validated to 0.5%), reconstruct completely; a transparent bottle, chosen as a negative case, "
+              "yields geometry only where it is opaque. The main lesson is that reprojection error and registration counts can hide "
+              "a wrong or incomplete reconstruction.")
 for ch in list(P_KEY._p):
     if ch.tag != qn("w:pPr"):
         P_KEY._p.remove(ch)
@@ -275,9 +276,12 @@ B("330 photographs (5616×3744, OPENCV model, k<sub>1</sub> = −0.109) of a wal
   "start (Fig. 1d–f). It contains heavy foliage, repetitive arched windows, sun flare, strong scale changes and 48 portrait "
   "photographs carrying an EXIF orientation tag (Section VI).")
 H2("Own photographs")
-B("<hl>[YOU] Describe your own captures here (required by the brief): camera/device, image resolution, number of images, "
-  "approximate camera movement, and whether the camera moved around the object or the object was rotated; add one representative "
-  "image. Then add the results in Section VI.</hl>")
+B("Five sets (330 photographs) were taken by hand with an iPhone 16 Pro Max main camera (24 mm-equivalent, f/1.78, 1/100 s, "
+  "ISO 80–125, JPEG, 5712×4284; 10 frames at 4032×3024 with the same field of view). The camera was walked once round "
+  "a stationary object standing on a pedestal in a textured office, at roughly constant distance, without turning the object: a "
+  "yellow warning sign at two heights (82 + 37 photos), a fire extinguisher (83), snacks (71) and a transparent bottle (57), the "
+  "last chosen on purpose as a negative case (Fig. 10–11, Section VI). <hl>[YOU] confirm: shooting distance, camera heights "
+  "and lighting.</hl>")
 H2("Ground truth and its limits")
 B("The COLMAP sparse models shipped with the datasets are used only for the camera intrinsics and for evaluation, never as input to "
   "our reconstruction. They are reconstructions themselves, so “error” below means disagreement with COLMAP, and our intrinsics "
@@ -360,6 +364,19 @@ B("DISK [10] detects keypoints with 128-D descriptors and LightGlue [11] matches
   "ratio-plus-mutual matcher to the GPU; it returns identical matches and is 10.9× faster per pair (0.029 s versus 0.319 s). "
   "Because learned matching gives true pairs thousands of inliers, we raise the pair-acceptance threshold from 25–40 to "
   "150 inliers when using it (Section V-G).")
+H2("Self-calibration of the phone camera (own captures)")
+B("The phone is uncalibrated. EXIF gives the 35 mm-equivalent focal length (24 mm), which converts to pixels through the image "
+  "diagonal, <i>f</i> = 24 · diag / 43.27 (the common long-side/36 mm shortcut is right only for 3:2 images and was 4% too "
+  "small here). We refine it by self-calibration from fundamental matrices: for the true <i>K</i>, <i>E</i> = <i>K</i><sup>T</sup> "
+  "<i>F K</i> has two equal singular values, so for a grid of <i>f</i> (square pixels, principal point at the image centre) we compute")
+EQ("<i>c</i>(<i>f</i>) = (<i>σ</i><sub>1</sub> − <i>σ</i><sub>2</sub>) / (<i>σ</i><sub>1</sub> + <i>σ</i><sub>2</sub>),     "
+   "<i>σ</i> = svd(<i>K</i>(<i>f</i>)<sup>T</sup> <i>F K</i>(<i>f</i>))", 4)
+B("over 40–60 RANSAC-verified pairs and take the <i>f</i> minimising the median of <i>c</i>. On south-building this recovers COLMAP’s "
+  "calibrated focal length to 0.5% (1326.5 against 1333.2 px from 38 pairs). On the four own sets it gives 1137–1159 px at "
+  "1600 px, 2.5–4.5% above the EXIF value and consistent across sets; all own reconstructions use a common factor of 1.04. "
+  "Two alternatives failed: choosing <i>f</i> by reprojection error was inconclusive (fewer images register at low <i>f</i>, which "
+  "lowers the error spuriously), and refining <i>f</i> inside bundle adjustment stayed at its wrong starting value (±12%) on "
+  "south-building, probably because focal length and depth are weakly separable for a near-planar scene.")
 
 # ======================================================================================== IV. EXPERIMENTAL DESIGN
 H1("Experimental Design")
@@ -377,7 +394,8 @@ BUL("<b>D – image quality</b> (blur σ = 1–8 px, noise σ = 10–50, resolut
     "×0.5–0.1, gamma 2.0–3.5). Hypothesis: blur and low resolution hurt most; contrast changes little because "
     "descriptors are gradient-normalised.")
 B("Challenging scenarios use 11 Person Hall cases with an outcome rule fixed in advance (success: at least 90% of images registered "
-  "and position error below 2%). The advanced work compares classical, GPU and learned matching and COLMAP.")
+  "and position error below 2%) and five own phone captures, one of them a deliberate negative case. The advanced work compares "
+  "classical, GPU and learned matching and COLMAP.")
 
 # ======================================================================================== V. RESULTS
 H1("Results")
@@ -498,8 +516,32 @@ B("<b>Whole loop.</b> With every sixth image (55) only 15 register: the pair gra
 FIG("fig8_failures.png", "Failure evidence. (a) Foliage pair: all 74 surviving matches are correct but too few. (b) Whole loop "
     "F: verified inliers per image pair (log scale) fall into disconnected clusters. (c) Learned loop F3: rotation error of each "
     "registered camera along the chain (green = correct, red = wrong).")
-B("<hl>[YOU] Own photographs: add the small-object and building results, the “tiny camera step” depth failure and any "
-  "failure you observed, with the same logging as above.</hl>")
+B("<b>Own captures.</b> All 330 photographs register (Table VII) and independent geometry checks agree: the camera centres of "
+  "each orbit form a near-circular path with 369–392° of angular coverage, 5–9% radius spread and 1–3% height "
+  "spread, and the two yellow-sign rings sit consistently in one model. All-pairs matching also links the start and end of each orbit, "
+  "which windowed matching would not. With no ground truth, quality is judged by reprojection error (0.38–0.59 px at 1600 px, "
+  "against 0.14 px on south-building with COLMAP’s calibration, i.e. the residual limits of an uncalibrated phone), track "
+  "statistics and inspection. The yellow sign, fire extinguisher and snacks are positive examples (Fig. 10): both faces of the sign "
+  "with legible text, the extinguisher’s label, valve and handle, and the wrinkled snack bag.")
+TABLE("Own captures (iPhone 16 Pro Max)", ["Set", "Imgs", "Reg.", "Points", "Track", "Reproj. px", "Dense pts"],
+      [["yellow sign", "119", "119", "28,131", "3.91", "0.59", "322,793"], ["fire extinguisher", "83", "83", "22,995", "4.63", "0.43", "576,819"],
+       ["snacks", "71", "71", "44,621", "4.18", "0.42", "1,033,713"], ["bottle, classical", "57", "57", "14,254", "3.38", "0.38", "35,330"],
+       ["bottle, DISK+LG", "57", "57", "67,129", "2.98", "0.57", "25,188"]], [2.0, 0.9, 0.8, 1.2, 1.0, 1.2, 1.4],
+      note="Dense points: inside a cylinder around the object.")
+FIG("fig10_own_positive.png", "Own captures, positive examples: input photo (left) and dense reconstruction seen from the same direction "
+    "(right) for (a) the yellow sign (both heights), (b) the fire extinguisher and (c) the snacks.")
+B("<b>Dense-stage lessons.</b> The first dense result was a diffuse blob. Two causes were found by looking at it: the fusion voxel was "
+  "sized from the whole office, far too coarse for a small object, and neighbouring frames are only about 5° apart on these orbits, "
+  "too small a stereo baseline. Fusing only a cylinder around the orbit axis with a voxel sized to it, and pairing frames two to three "
+  "apart (10–16°), fixed both. The glossy, uniformly red extinguisher also needed more permissive stereo settings "
+  "(13,700 to 576,819 points).")
+B("<b>Negative case: transparent bottle.</b> It registers 57/57 with both pipelines, yet geometry exists only where the object is "
+  "opaque: the red label and the black cap reconstruct densely, while the clear body is almost empty or noise (Fig. 11), because the "
+  "camera sees the background through it and matching assumes one appearance per surface. DISK + LightGlue gives the same result with "
+  "4.7× more sparse points but a higher reprojection error (0.57 against 0.38 px) and four times the run time: learned features "
+  "do not rescue transparency.")
+FIG("fig11_own_negative.png", "Negative case, transparent bottle: (a) input photo; dense reconstruction with (b) classical and "
+    "(c) DISK + LightGlue matching. Only the opaque label and cap are recovered.")
 
 # ======================================================================================== VII. DISCUSSION
 H1("Discussion")
@@ -514,6 +556,11 @@ B("<b>Missing regions and limitations.</b> Foliage, sky and glass produce no poi
   "covers ground and foliage that we miss. Limitations: one main sequence; RANSAC variation not averaged (re-runs reproduced "
   "identical numbers); COLMAP is a reference, not truth; intrinsics are not estimated; no loop closure, local bundle adjustment or "
   "sub-model merging; binary detectors untuned; mainly building-scale data.")
+B("<b>Own captures.</b> Careful capture mattered more than algorithm choice: one lens, constant distance and overlapping neighbours "
+  "(hundreds of verified matches) let all five sets reconstruct without per-set tuning, unlike the Person Hall loop. The limits were "
+  "physical: transparent and glossy surfaces break the assumptions of matching and stereo, and an uncalibrated phone caps accuracy. "
+  "Without ground truth we cannot state a metric accuracy for these sets; a chessboard calibration of the same lens and focus "
+  "distance would provide the missing reference.")
 B("<b>Improvements.</b> Loop-closure detection by image retrieval; local bundle adjustment and merging of sub-models; sub-pixel "
   "refinement of learned keypoints; vegetation masking; denser sampling; and GPU matching of all pairs (about 6.5 h on CPU for the full "
   "loop, an estimated 26 min at the measured GPU speed).")
@@ -525,7 +572,8 @@ B("An incremental SfM pipeline implemented from the geometry up reproduces COLMA
   "that RootSIFT is the best detector tested, that matching collapses near 35° of viewpoint change and that blur is the most "
   "damaging degradation. The most important lessons concern evaluation: reprojection error and registration counts can hide wrong "
   "reconstructions, as an orientation bug and learned-matching drift showed. Learned features are valuable on hard pairs but not a "
-  "free upgrade: they need stricter verification and gave noisier geometry.")
+  "free upgrade: they need stricter verification and gave noisier geometry. Our own phone captures reconstruct completely after "
+  "self-calibration, except that a transparent bottle yields only its opaque parts.")
 
 # ======================================================================================== AI DECLARATION + REFERENCES
 new_p("AI Usage Declaration", "Heading 5")

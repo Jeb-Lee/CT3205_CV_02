@@ -14,6 +14,7 @@ World frame = camera of the initial pair's first image (P1 = K[I|0]); scale = |b
 from __future__ import annotations
 
 import os
+import re
 import time
 from dataclasses import dataclass, asdict, field
 
@@ -46,6 +47,7 @@ class SfMConfig:
     pnp_thr: float = 3.0           # px, RANSAC threshold for PnP
     min_pnp: int = 20
     use_ba: bool = True
+    refine_focal: bool = False     # self-calibration: refine ONE shared focal length in bundle adjustment (needs >= 8 cameras)
     ba_every: int = 1              # run BA after every k-th registration
     seed: int = 0
 
@@ -82,7 +84,8 @@ class Reconstruction:
             cache = self._cache_path(name)
             if cache and os.path.isfile(cache):
                 z = np.load(cache, allow_pickle=True)
-                kp, desc, K = z["kp"], z["desc"], z["K"]
+                kp, desc = z["kp"], z["desc"]
+                K = self._K_from_size(name)       # NOT the cached K: it may belong to another focal length (focal sweep)
                 desc = None if desc.shape == () else desc
             else:
                 img, K = D.load_image(self.ds, name, self.cfg.max_dim, self.degrade, seed=i)
@@ -102,6 +105,16 @@ class Reconstruction:
         self.say(f"[features] {self.cfg.detector}: mean {np.mean(self.log['n_features']):.0f} kp/img "
                  f"({self.log['timing']['features']:.1f}s)")
 
+    def _K_from_size(self, name):
+        """Camera matrix for the resized image, from the stored size only (no pixel decoding)."""
+        from PIL import Image
+        w, h = Image.open(self.ds.path(name)).size
+        s = min(1.0, self.cfg.max_dim / max(h, w))
+        K = self.ds.K.copy()
+        K[:2] *= max(h, w) / max(self.ds.size)
+        K[:2] *= s
+        return K
+
     _LEARNED = None
 
     def _learned(self):
@@ -115,7 +128,7 @@ class Reconstruction:
             return None
         c = self.cfg
         key = f"v2io_{self.ds.name}_{name}_{c.max_dim}_{c.detector}_{c.nfeatures}_{self.degrade.key()}"
-        return os.path.join(self.cache_dir, key.replace(".", "p") + ".npz")
+        return os.path.join(self.cache_dir, re.sub(r"[^A-Za-z0-9_\-]", "_", key) + ".npz")
 
     # ------------------------------------------------------------------ matching
     def match_all(self):
@@ -299,7 +312,14 @@ class Reconstruction:
             return
         t0 = time.time()
         fixed = self.init_pair[0]
-        cams, pts, (r0, r1) = bundle_adjust(self.K, self.cams, self.points, self._observations(), fixed=fixed)
+        refine = self.cfg.refine_focal and len(self.cams) >= 8
+        res = bundle_adjust(self.K, self.cams, self.points, self._observations(), fixed=fixed, refine_f=refine)
+        if refine:
+            cams, pts, (r0, r1), fs = res
+            self.K = self.K.copy(); self.K[0, 0] *= fs; self.K[1, 1] *= fs
+            self.log.setdefault("focal_history", []).append(float(self.K[0, 0]))
+        else:
+            cams, pts, (r0, r1) = res
         self.cams, self.points = cams, pts
         self.log["events"].append(dict(type="ba", cams=len(cams), points=len(pts), rmse_before=r0, rmse_after=r1,
                                        seconds=time.time() - t0))

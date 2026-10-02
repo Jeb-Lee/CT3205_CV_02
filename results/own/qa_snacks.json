@@ -1,0 +1,73 @@
+{
+ "set": "snacks",
+ "folder": "C:\\Users\\jeble\\PycharmProjects\\CT3205_CV_02\\Datasets/Snacks",
+ "n_images": 71,
+ "camera": "Apple iPhone 16 Pro Max",
+ "stored_sizes": [
+  "(4032, 3024)",
+  "(5712, 4284)"
+ ],
+ "orientation_tags": [
+  "1"
+ ],
+ "focal_length_mm": [
+  "6.764999866370901"
+ ],
+ "focal_35mm": [
+  "24"
+ ],
+ "lens": [
+  "iPhone 16 Pro Max back triple camera 6.765mm f/1.78"
+ ],
+ "digital_zoom": [
+  "None"
+ ],
+ "exposure_mode": [
+  "0"
+ ],
+ "white_balance": [
+  "0"
+ ],
+ "exposure_time_s": {
+  "min": 0.01,
+  "median": 0.01,
+  "max": 0.01
+ },
+ "iso": {
+  "min": 125,
+  "median": 125,
+  "max": 125
+ },
+ "numbering_gaps": [],
+ "sharpness": {
+  "median_laplacian_var": 200.439307889776,
+  "min": 84.11096606241955,
+  "max": 365.10660682849954,
+  "soft_images_below_half_median": [
+   "IMG_8721.jpg",
+   "IMG_8728.jpg",
+   "IMG_8737.jpg"
+  ],
+  "n_soft": 3
+ },
+ "brightness": {
+  "mean": 136.7626806948357,
+  "min": 124.37409333333333,
+  "max": 149.89602933333333,
+  "max_clipped_highlights": 0.005005333333333333,
+  "max_crushed_shadows": 0.018293333333333335
+ },
+ "features_per_image": {
+  "median": 1196,
+  "min": 924
+ },
+ "overlap": {
+  "inliers_gap1_median": 530,
+  "inliers_gap1_min": 156,
+  "inliers_gap2_median": 366,
+  "inliers_gap2_min": 148,
+  "weak_neighbour_links_lt60": [],
+  "graph_components": 1,
+  "largest_component": 71
+ }
+}

@@ -1,0 +1,80 @@
+[
+ {
+  "start_factor": 0.88,
+  "refine": false,
+  "f_start": 1173.1866666666667,
+  "f_final": 1173.1866666666667,
+  "f_true": 1333.1666666666665,
+  "f_error_pct": -11.99999999999999,
+  "registered": 11,
+  "points": 9525,
+  "reproj": 0.3436776369686042,
+  "cam_pos_rel_pct": 1.8382654639596276,
+  "cam_rot_deg": 3.235966610622559
+ },
+ {
+  "start_factor": 0.88,
+  "refine": true,
+  "f_start": 1173.1866666666667,
+  "f_final": 1173.615698486445,
+  "f_true": 1333.1666666666665,
+  "f_error_pct": -11.967818590840473,
+  "registered": 11,
+  "points": 9520,
+  "reproj": 0.34139578867390524,
+  "cam_pos_rel_pct": 1.8968127726404085,
+  "cam_rot_deg": 3.326381089794583
+ },
+ {
+  "start_factor": 1.0,
+  "refine": false,
+  "f_start": 1333.1666666666665,
+  "f_final": 1333.1666666666667,
+  "f_true": 1333.1666666666665,
+  "f_error_pct": 2.220446049250313e-14,
+  "registered": 12,
+  "points": 10960,
+  "reproj": 0.13382367590909208,
+  "cam_pos_rel_pct": 0.24712587329144994,
+  "cam_rot_deg": 0.2992163156085201
+ },
+ {
+  "start_factor": 1.0,
+  "refine": true,
+  "f_start": 1333.1666666666665,
+  "f_final": 1333.1382559117026,
+  "f_true": 1333.1666666666665,
+  "f_error_pct": -0.002131073006417239,
+  "registered": 12,
+  "points": 10960,
+  "reproj": 0.13377339785999803,
+  "cam_pos_rel_pct": 0.24679410359275178,
+  "cam_rot_deg": 0.3003645905629085
+ },
+ {
+  "start_factor": 1.12,
+  "refine": false,
+  "f_start": 1493.1466666666668,
+  "f_final": 1493.146666666667,
+  "f_true": 1333.1666666666665,
+  "f_error_pct": 12.000000000000032,
+  "registered": 11,
+  "points": 9558,
+  "reproj": 0.32847913916472377,
+  "cam_pos_rel_pct": 1.4512472550166273,
+  "cam_rot_deg": 1.8144954873352739
+ },
+ {
+  "start_factor": 1.12,
+  "refine": true,
+  "f_start": 1493.1466666666668,
+  "f_final": 1492.232065089888,
+  "f_true": 1333.1666666666665,
+  "f_error_pct": 11.931396306279908,
+  "registered": 11,
+  "points": 9560,
+  "reproj": 0.32750851091305405,
+  "cam_pos_rel_pct": 1.4515978591532954,
+  "cam_rot_deg": 1.8128152924039307
+ }
+]

@@ -139,8 +139,13 @@ def fuse(clouds, voxel, min_support):
     return out_p[m] / cnt[m, None], np.clip(out_c[m] / cnt[m, None], 0, 255).astype(np.uint8), support[m]
 
 
-def dense_reconstruct(rec, cfg: DenseConfig | None = None, verbose=True):
-    """Run dense stereo over the registered cameras of `rec` (a finished Reconstruction)."""
+def dense_reconstruct(rec, cfg: DenseConfig | None = None, verbose=True, roi=None):
+    """Run dense stereo over the registered cameras of `rec` (a finished Reconstruction).
+
+    roi: optional callable(points (N,3)) -> bool mask. Points outside the region of interest are discarded BEFORE fusion and
+    the fusion voxel is sized from the ROI points, so a small object inside a large scene is not fused with a scene-sized
+    voxel (which blurs it into a blob).
+    """
     from .viz import clean_mask, robust_bounds
     cfg = cfg or DenseConfig()
     t0 = time.time()
@@ -171,11 +176,15 @@ def dense_reconstruct(rec, cfg: DenseConfig | None = None, verbose=True):
         for k in list(imgs):                      # keep memory bounded
             if k < i:
                 del imgs[k]
-    allp = np.vstack([c[0] for c in clouds])
-    m = clean_mask(allp, k=5.0)
-    clouds = [(c[0][clean_mask_like(c[0], allp, 5.0)], c[1][clean_mask_like(c[0], allp, 5.0)]) for c in clouds]
-    Cs = np.array([G.camera_center(*rec.cams[i]) for i in order])
-    c, r = robust_bounds(np.vstack([np.vstack([c[0] for c in clouds])[::50], Cs]), lo=1, hi=99)
+    if roi is not None:
+        clouds = [(c[0][roi(c[0])], c[1][roi(c[0])]) for c in clouds]
+        allp = np.vstack([c[0] for c in clouds])
+        c, r = robust_bounds(allp[::max(1, len(allp) // 200000)], lo=1, hi=99, pad=0.0)
+    else:
+        allp = np.vstack([c[0] for c in clouds])
+        clouds = [(c[0][clean_mask_like(c[0], allp, 5.0)], c[1][clean_mask_like(c[0], allp, 5.0)]) for c in clouds]
+        Cs = np.array([G.camera_center(*rec.cams[i]) for i in order])
+        c, r = robust_bounds(np.vstack([np.vstack([c[0] for c in clouds])[::50], Cs]), lo=1, hi=99)
     voxel = r * cfg.voxel_frac
     pts, cols, support = fuse(clouds, voxel, cfg.min_support)
     info = dict(n_pairs=len(clouds), raw_points=int(sum(len(c[0]) for c in clouds)), fused_points=int(len(pts)),

@@ -154,13 +154,32 @@ def main():
     ap.add_argument("--rec", default="results/cache/rec_south-building_40_16_1.pkl")
     ap.add_argument("--out", default="results/viewer/south_building.html")
     ap.add_argument("--max_dense", type=int, default=200000)
+    ap.add_argument("--dense_name", default="dense.ply")
+    ap.add_argument("--crop_orbit", type=float, default=None, help="keep only points within this fraction of the orbit radius of the orbit axis")
+    ap.add_argument("--axial", type=float, default=0.8, help="with --crop_orbit: half-height of the kept cylinder, as a fraction of the orbit radius")
     ap.add_argument("--title", default="South Building - multi-view 3D reconstruction")
     a = ap.parse_args()
 
-    dp, dc = read_ply(os.path.join(a.folder, "dense.ply"))
     sp, sc = read_ply(os.path.join(a.folder, "sparse.ply"))
+    dpath = os.path.join(a.folder, a.dense_name)
+    dp, dc = read_ply(dpath) if os.path.exists(dpath) else (sp, sc)     # sets without a dense stage show the sparse cloud
     rec = pickle.load(open(a.rec, "rb"))
 
+    if a.crop_orbit:      # object-centred crop: cylinder around the axis of the camera orbit (fit circle to the camera centres)
+        Cc = np.array([G.camera_center(*rec.cams[i]) for i in sorted(rec.cams)])
+        mu = Cc.mean(0)
+        _, _, Vt = np.linalg.svd(Cc - mu)
+        P2 = (Cc - mu) @ Vt[:2].T
+        A_ = np.c_[2 * P2, np.ones(len(P2))]
+        sol = np.linalg.lstsq(A_, (P2 ** 2).sum(1), rcond=None)[0]
+        c2, R_orb = sol[:2], float(np.sqrt(sol[2] + sol[:2] @ sol[:2]))
+
+        def _in_cyl(P):
+            Q = P - mu
+            return (np.linalg.norm(Q @ Vt[:2].T - c2, axis=1) < a.crop_orbit * R_orb) & (np.abs(Q @ Vt[2]) < a.axial * R_orb)
+        kd, ks = _in_cyl(dp), _in_cyl(sp)
+        dp, dc, sp, sc = dp[kd], dc[kd], sp[ks], sc[ks]
+        print(f"object crop: orbit radius {R_orb:.2f}; kept {int(kd.sum()):,} dense / {int(ks.sum()):,} sparse points")
     md, ms = viz.clean_mask(dp, 3.0), viz.clean_mask(sp, 3.0)
     dp, dc, sp, sc = dp[md], dc[md], sp[ms], sc[ms]
     if len(dp) > a.max_dense:

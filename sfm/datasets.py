@@ -9,6 +9,7 @@ Two kinds of dataset are supported:
 from __future__ import annotations
 
 import json
+import re
 import os
 from dataclasses import dataclass, field
 
@@ -40,10 +41,27 @@ class Dataset:
         return os.path.join(self.image_dir, name)
 
 
+def _list_images(folder):
+    """Relative posix paths of all images under `folder` (recursive), in capture order (numeric part of the file name)."""
+    out = []
+    for dp, _, fs in os.walk(folder):
+        for f in fs:
+            if f.lower().endswith((".jpg", ".jpeg", ".png")):
+                out.append(os.path.relpath(os.path.join(dp, f), folder).replace(os.sep, "/"))
+    def key(rel):
+        m = re.search(r"(\d+)", os.path.splitext(os.path.basename(rel))[0])
+        return (int(m.group(1)) if m else 0, rel)
+    return sorted(out, key=key)
+
+
 def load_dataset(name: str) -> Dataset:
+    """Datasets/<name>/images/*.jpg (COLMAP layout) or, for own captures, any folder with images directly inside it or
+    in sub-folders (e.g. Datasets/yellow_sign holds two sub-folders that are reconstructed together)."""
     root = os.path.join(DATA_DIR, name)
     image_dir = os.path.join(root, "images")
-    names = sorted(f for f in os.listdir(image_dir) if f.lower().endswith((".jpg", ".jpeg", ".png")))
+    if not os.path.isdir(image_dir):
+        image_dir = root
+    names = _list_images(image_dir)
     sparse = os.path.join(root, "sparse")
     if os.path.isfile(os.path.join(sparse, "cameras.txt")):
         cams = ioc.read_cameras(os.path.join(sparse, "cameras.txt"))
@@ -81,7 +99,10 @@ def _exif_focal_px(path, w, h):
         ex = Image.open(path).getexif().get_ifd(0x8769)
         f35 = ex.get(0xA405)  # FocalLengthIn35mmFilm
         if f35:
-            return float(f35) / 36.0 * max(w, h)
+            # FocalLengthIn35mmFilm is defined by the DIAGONAL field of view (35 mm film diagonal = 43.27 mm), so the
+            # focal length in pixels is f35 * image_diagonal / 43.27 (an earlier version used the long side / 36 mm,
+            # which is right only for 3:2 images and about 4 % too small for 4:3 phone photos).
+            return float(f35) * float(np.hypot(w, h)) / 43.267
     except Exception:
         pass
     return None
@@ -118,6 +139,7 @@ def load_image(ds: Dataset, name: str, max_dim: int, degrade: Degrade | None = N
     h, w = img.shape[:2]
     s = min(1.0, max_dim / max(h, w))
     K = ds.K.copy()
+    K[:2] *= max(h, w) / max(ds.size)      # per-image: sets with mixed resolutions (same field of view) share one K after resizing
     if s < 1.0:
         img = cv2.resize(img, (int(round(w * s)), int(round(h * s))), interpolation=cv2.INTER_AREA)
         K[:2] *= s

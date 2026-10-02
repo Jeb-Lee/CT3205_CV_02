@@ -20,3 +20,12 @@ results/colmap_compare_log.txt
 results/demo/*.mp4
 results/demo/log.txt
 results/demo/contact*.jpg
+results/own/*/rec.pkl
+results/own/*/dense.ply
+results/own/*.log
+results/own/_smoke*/
+results/own/_smoke*
+results/own/chain*.flag
+results/own/chain.log
+results/own/*/turntable.mp4
+results/own/*/dense_object.json

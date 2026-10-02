@@ -1,0 +1,15 @@
+{
+ "tag": "bottle_classic",
+ "f_before": 1153.7661497214965,
+ "f_after": 1154.078952781559,
+ "f_change_pct": 0.027111478364849617,
+ "rmse_before": 0.5001408123656006,
+ "rmse_after": 0.492044558484242,
+ "mean_reproj_before": 0.379853295582735,
+ "mean_reproj_after": 0.3734429142559151,
+ "median_before": 0.2829705806331785,
+ "median_after": 0.27813556033452835,
+ "n_cams": 57,
+ "n_points": 14254,
+ "seconds": 22.68818426132202
+}

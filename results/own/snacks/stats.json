@@ -1,0 +1,741 @@
+{
+ "n_images": 71,
+ "n_registered": 71,
+ "n_points": 44621,
+ "mean_track_len": 4.180497971806997,
+ "n_observations": 186538,
+ "reproj_mean": 0.42380134682136855,
+ "reproj_median": 0.33772837052460297,
+ "reproj_rms": 0.5362209820687542,
+ "n_points_track3": 26401,
+ "reproj_mean_track3": 0.4582445870433174,
+ "reproj_median_track3": 0.3735358304378227,
+ "mean_features": 3976.0704225352115,
+ "n_pairs": 2485,
+ "n_pairs_verified": 1000,
+ "mean_inliers_per_pair": 178.96418511066398,
+ "mean_inlier_ratio": 0.6654818014961836,
+ "seconds": 545.5632293224335,
+ "init_pair": [
+  "IMG_8716.jpg",
+  "IMG_8717.jpg"
+ ],
+ "parallax_median_deg": 44.214108447782365,
+ "set": "Snacks",
+ "tag": "snacks",
+ "focal_factor": 1.04,
+ "f_px_original": 4118.945154505743,
+ "f_exif_px": 3960.524187024753,
+ "ba_every": 6,
+ "detector": "rootsift",
+ "matcher": "gpu",
+ "seconds_total": 545.5633442401886,
+ "unregistered_images": [],
+ "per_size": [
+  {
+   "stored_size": "4032x3024",
+   "images": 5,
+   "mean_reproj": 0.4616,
+   "mean_obs": 2660.8
+  },
+  {
+   "stored_size": "5712x4284",
+   "images": 66,
+   "mean_reproj": 0.4244,
+   "mean_obs": 2624.7576
+  }
+ ],
+ "dense_points": 1543384,
+ "dense_seconds": 170.3949694633484,
+ "dense_info": {
+  "n_pairs": 68,
+  "raw_points": 9979997,
+  "fused_points": 1543384,
+  "voxel": 0.020944431093345067,
+  "min_support": 2,
+  "seconds": 170.3053319454193,
+  "per_pair": [
+   {
+    "pair": [
+     "IMG_8669.jpg",
+     "IMG_8670.jpg"
+    ],
+    "points": 316192,
+    "valid_frac": 0.16487447916666667,
+    "num_disp": 144,
+    "seconds": 0.5114645957946777
+   },
+   {
+    "pair": [
+     "IMG_8670.jpg",
+     "IMG_8671.jpg"
+    ],
+    "points": 269742,
+    "valid_frac": 0.140490625,
+    "num_disp": 224,
+    "seconds": 0.5044097900390625
+   },
+   {
+    "pair": [
+     "IMG_8671.jpg",
+     "IMG_8672.jpg"
+    ],
+    "points": 273854,
+    "valid_frac": 0.14268229166666666,
+    "num_disp": 256,
+    "seconds": 0.5291793346405029
+   },
+   {
+    "pair": [
+     "IMG_8672.jpg",
+     "IMG_8673.jpg"
+    ],
+    "points": 316152,
+    "valid_frac": 0.1648796875,
+    "num_disp": 128,
+    "seconds": 0.4101090431213379
+   },
+   {
+    "pair": [
+     "IMG_8673.jpg",
+     "IMG_8674.jpg"
+    ],
+    "points": 233461,
+    "valid_frac": 0.12159427083333334,
+    "num_disp": 320,
+    "seconds": 0.5923001766204834
+   },
+   {
+    "pair": [
+     "IMG_8674.jpg",
+     "IMG_8675.jpg"
+    ],
+    "points": 276791,
+    "valid_frac": 0.1446375,
+    "num_disp": 144,
+    "seconds": 0.4454922676086426
+   },
+   {
+    "pair": [
+     "IMG_8675.jpg",
+     "IMG_8676.jpg"
+    ],
+    "points": 192257,
+    "valid_frac": 0.10013385416666666,
+    "num_disp": 320,
+    "seconds": 0.5628042221069336
+   },
+   {
+    "pair": [
+     "IMG_8676.jpg",
+     "IMG_8677.jpg"
+    ],
+    "points": 228207,
+    "valid_frac": 0.1188578125,
+    "num_disp": 320,
+    "seconds": 0.5731990337371826
+   },
+   {
+    "pair": [
+     "IMG_8677.jpg",
+     "IMG_8678.jpg"
+    ],
+    "points": 289902,
+    "valid_frac": 0.1512703125,
+    "num_disp": 240,
+    "seconds": 0.5368163585662842
+   },
+   {
+    "pair": [
+     "IMG_8678.jpg",
+     "IMG_8679.jpg"
+    ],
+    "points": 320440,
+    "valid_frac": 0.16693177083333333,
+    "num_disp": 208,
+    "seconds": 0.5124716758728027
+   },
+   {
+    "pair": [
+     "IMG_8679.jpg",
+     "IMG_8680.jpg"
+    ],
+    "points": 336062,
+    "valid_frac": 0.17514114583333334,
+    "num_disp": 208,
+    "seconds": 0.4948554039001465
+   },
+   {
+    "pair": [
+     "IMG_8680.jpg",
+     "IMG_8681.jpg"
+    ],
+    "points": 328791,
+    "valid_frac": 0.1712453125,
+    "num_disp": 144,
+    "seconds": 0.41991400718688965
+   },
+   {
+    "pair": [
+     "IMG_8681.jpg",
+     "IMG_8682.jpg"
+    ],
+    "points": 285032,
+    "valid_frac": 0.14845416666666666,
+    "num_disp": 320,
+    "seconds": 0.5338153839111328
+   },
+   {
+    "pair": [
+     "IMG_8682.jpg",
+     "IMG_8683.jpg"
+    ],
+    "points": 298881,
+    "valid_frac": 0.1558984375,
+    "num_disp": 160,
+    "seconds": 0.41646766662597656
+   },
+   {
+    "pair": [
+     "IMG_8683.jpg",
+     "IMG_8684.jpg"
+    ],
+    "points": 28590,
+    "valid_frac": 0.014890625,
+    "num_disp": 320,
+    "seconds": 0.5589442253112793
+   },
+   {
+    "pair": [
+     "IMG_8684.jpg",
+     "IMG_8685.jpg"
+    ],
+    "points": 148234,
+    "valid_frac": 0.07720520833333333,
+    "num_disp": 320,
+    "seconds": 0.565222978591919
+   },
+   {
+    "pair": [
+     "IMG_8685.jpg",
+     "IMG_8686.jpg"
+    ],
+    "points": 326124,
+    "valid_frac": 0.16995833333333332,
+    "num_disp": 192,
+    "seconds": 0.46536684036254883
+   },
+   {
+    "pair": [
+     "IMG_8686.jpg",
+     "IMG_8687.jpg"
+    ],
+    "points": 244283,
+    "valid_frac": 0.12723072916666667,
+    "num_disp": 320,
+    "seconds": 0.5920572280883789
+   },
+   {
+    "pair": [
+     "IMG_8687.jpg",
+     "IMG_8688.jpg"
+    ],
+    "points": 330030,
+    "valid_frac": 0.17215208333333334,
+    "num_disp": 192,
+    "seconds": 0.46491336822509766
+   },
+   {
+    "pair": [
+     "IMG_8688.jpg",
+     "IMG_8689.jpg"
+    ],
+    "points": 348192,
+    "valid_frac": 0.18169635416666666,
+    "num_disp": 128,
+    "seconds": 0.430614709854126
+   },
+   {
+    "pair": [
+     "IMG_8689.jpg",
+     "IMG_8690.jpg"
+    ],
+    "points": 295142,
+    "valid_frac": 0.15393020833333335,
+    "num_disp": 256,
+    "seconds": 0.5286076068878174
+   },
+   {
+    "pair": [
+     "IMG_8690.jpg",
+     "IMG_8691.jpg"
+    ],
+    "points": 288257,
+    "valid_frac": 0.15020416666666667,
+    "num_disp": 272,
+    "seconds": 0.5979804992675781
+   },
+   {
+    "pair": [
+     "IMG_8691.jpg",
+     "IMG_8692.jpg"
+    ],
+    "points": 309056,
+    "valid_frac": 0.16139322916666668,
+    "num_disp": 208,
+    "seconds": 0.4884822368621826
+   },
+   {
+    "pair": [
+     "IMG_8692.jpg",
+     "IMG_8693.jpg"
+    ],
+    "points": 307245,
+    "valid_frac": 0.1604625,
+    "num_disp": 224,
+    "seconds": 0.5026421546936035
+   },
+   {
+    "pair": [
+     "IMG_8693.jpg",
+     "IMG_8694.jpg"
+    ],
+    "points": 307568,
+    "valid_frac": 0.16076770833333334,
+    "num_disp": 208,
+    "seconds": 0.4777545928955078
+   },
+   {
+    "pair": [
+     "IMG_8694.jpg",
+     "IMG_8695.jpg"
+    ],
+    "points": 72006,
+    "valid_frac": 0.03790104166666667,
+    "num_disp": 320,
+    "seconds": 0.5030105113983154
+   },
+   {
+    "pair": [
+     "IMG_8695.jpg",
+     "IMG_8696.jpg"
+    ],
+    "points": 74712,
+    "valid_frac": 0.0389125,
+    "num_disp": 320,
+    "seconds": 0.4628794193267822
+   },
+   {
+    "pair": [
+     "IMG_8696.jpg",
+     "IMG_8697.jpg"
+    ],
+    "points": 356040,
+    "valid_frac": 0.1854375,
+    "num_disp": 160,
+    "seconds": 0.4801638126373291
+   },
+   {
+    "pair": [
+     "IMG_8697.jpg",
+     "IMG_8698.jpg"
+    ],
+    "points": 338359,
+    "valid_frac": 0.17622864583333334,
+    "num_disp": 192,
+    "seconds": 0.4418928623199463
+   },
+   {
+    "pair": [
+     "IMG_8698.jpg",
+     "IMG_8699.jpg"
+    ],
+    "points": 315865,
+    "valid_frac": 0.16454791666666665,
+    "num_disp": 224,
+    "seconds": 0.47607874870300293
+   },
+   {
+    "pair": [
+     "IMG_8699.jpg",
+     "IMG_8700.jpg"
+    ],
+    "points": 374676,
+    "valid_frac": 0.19514375,
+    "num_disp": 128,
+    "seconds": 0.40456390380859375
+   },
+   {
+    "pair": [
+     "IMG_8700.jpg",
+     "IMG_8701.jpg"
+    ],
+    "points": 111008,
+    "valid_frac": 0.0578171875,
+    "num_disp": 320,
+    "seconds": 0.5381410121917725
+   },
+   {
+    "pair": [
+     "IMG_8701.jpg",
+     "IMG_8702.jpg"
+    ],
+    "points": 256395,
+    "valid_frac": 0.1335390625,
+    "num_disp": 320,
+    "seconds": 0.6331527233123779
+   },
+   {
+    "pair": [
+     "IMG_8702.jpg",
+     "IMG_8703.jpg"
+    ],
+    "points": 319863,
+    "valid_frac": 0.1675546875,
+    "num_disp": 208,
+    "seconds": 0.4885880947113037
+   },
+   {
+    "pair": [
+     "IMG_8703.jpg",
+     "IMG_8704.jpg"
+    ],
+    "points": 252037,
+    "valid_frac": 0.13126927083333334,
+    "num_disp": 320,
+    "seconds": 0.6165802478790283
+   },
+   {
+    "pair": [
+     "IMG_8704.jpg",
+     "IMG_8705.jpg"
+    ],
+    "points": 221803,
+    "valid_frac": 0.1156625,
+    "num_disp": 320,
+    "seconds": 0.6071653366088867
+   },
+   {
+    "pair": [
+     "IMG_8705.jpg",
+     "IMG_8706.jpg"
+    ],
+    "points": 266847,
+    "valid_frac": 0.13907083333333334,
+    "num_disp": 208,
+    "seconds": 0.46923208236694336
+   },
+   {
+    "pair": [
+     "IMG_8706.jpg",
+     "IMG_8707.jpg"
+    ],
+    "points": 233630,
+    "valid_frac": 0.121896875,
+    "num_disp": 304,
+    "seconds": 0.6133718490600586
+   },
+   {
+    "pair": [
+     "IMG_8708.jpg",
+     "IMG_8709.jpg"
+    ],
+    "points": 193410,
+    "valid_frac": 0.10389739583333334,
+    "num_disp": 208,
+    "seconds": 0.39543795585632324
+   },
+   {
+    "pair": [
+     "IMG_8709.jpg",
+     "IMG_8710.jpg"
+    ],
+    "points": 227079,
+    "valid_frac": 0.119628125,
+    "num_disp": 176,
+    "seconds": 0.44539785385131836
+   },
+   {
+    "pair": [
+     "IMG_8710.jpg",
+     "IMG_8711.jpg"
+    ],
+    "points": 45927,
+    "valid_frac": 0.027190625,
+    "num_disp": 304,
+    "seconds": 0.5037682056427002
+   },
+   {
+    "pair": [
+     "IMG_8711.jpg",
+     "IMG_8712.jpg"
+    ],
+    "points": 36416,
+    "valid_frac": 0.019107291666666668,
+    "num_disp": 320,
+    "seconds": 0.3595759868621826
+   },
+   {
+    "pair": [
+     "IMG_8712.jpg",
+     "IMG_8713.jpg"
+    ],
+    "points": 171301,
+    "valid_frac": 0.08921927083333334,
+    "num_disp": 320,
+    "seconds": 0.48363542556762695
+   },
+   {
+    "pair": [
+     "IMG_8713.jpg",
+     "IMG_8714.jpg"
+    ],
+    "points": 228533,
+    "valid_frac": 0.12024114583333333,
+    "num_disp": 176,
+    "seconds": 0.4207620620727539
+   },
+   {
+    "pair": [
+     "IMG_8714.jpg",
+     "IMG_8715.jpg"
+    ],
+    "points": 206123,
+    "valid_frac": 0.10926458333333333,
+    "num_disp": 160,
+    "seconds": 0.40094804763793945
+   },
+   {
+    "pair": [
+     "IMG_8715.jpg",
+     "IMG_8716.jpg"
+    ],
+    "points": 224562,
+    "valid_frac": 0.11854583333333334,
+    "num_disp": 160,
+    "seconds": 0.39759373664855957
+   },
+   {
+    "pair": [
+     "IMG_8716.jpg",
+     "IMG_8717.jpg"
+    ],
+    "points": 246621,
+    "valid_frac": 0.13041354166666666,
+    "num_disp": 112,
+    "seconds": 0.35402965545654297
+   },
+   {
+    "pair": [
+     "IMG_8717.jpg",
+     "IMG_8718.jpg"
+    ],
+    "points": 167007,
+    "valid_frac": 0.09108958333333333,
+    "num_disp": 208,
+    "seconds": 0.44652271270751953
+   },
+   {
+    "pair": [
+     "IMG_8718.jpg",
+     "IMG_8719.jpg"
+    ],
+    "points": 250514,
+    "valid_frac": 0.1318015625,
+    "num_disp": 320,
+    "seconds": 0.5679574012756348
+   },
+   {
+    "pair": [
+     "IMG_8719.jpg",
+     "IMG_8720.jpg"
+    ],
+    "points": 25753,
+    "valid_frac": 0.013413020833333334,
+    "num_disp": 320,
+    "seconds": 0.46044015884399414
+   },
+   {
+    "pair": [
+     "IMG_8720.jpg",
+     "IMG_8721.jpg"
+    ],
+    "points": 212943,
+    "valid_frac": 0.1111828125,
+    "num_disp": 304,
+    "seconds": 0.6215274333953857
+   },
+   {
+    "pair": [
+     "IMG_8721.jpg",
+     "IMG_8722.jpg"
+    ],
+    "points": 200610,
+    "valid_frac": 0.104484375,
+    "num_disp": 320,
+    "seconds": 0.5804030895233154
+   },
+   {
+    "pair": [
+     "IMG_8722.jpg",
+     "IMG_8723.jpg"
+    ],
+    "points": 37819,
+    "valid_frac": 0.019831770833333335,
+    "num_disp": 320,
+    "seconds": 0.4241812229156494
+   },
+   {
+    "pair": [
+     "IMG_8723.jpg",
+     "IMG_8724.jpg"
+    ],
+    "points": 205031,
+    "valid_frac": 0.11531927083333333,
+    "num_disp": 48,
+    "seconds": 0.34368181228637695
+   },
+   {
+    "pair": [
+     "IMG_8724.jpg",
+     "IMG_8725.jpg"
+    ],
+    "points": 96300,
+    "valid_frac": 0.050252604166666666,
+    "num_disp": 320,
+    "seconds": 0.444535493850708
+   },
+   {
+    "pair": [
+     "IMG_8726.jpg",
+     "IMG_8727.jpg"
+    ],
+    "points": 31895,
+    "valid_frac": 0.016611979166666666,
+    "num_disp": 320,
+    "seconds": 0.4208259582519531
+   },
+   {
+    "pair": [
+     "IMG_8727.jpg",
+     "IMG_8728.jpg"
+    ],
+    "points": 69866,
+    "valid_frac": 0.0364796875,
+    "num_disp": 320,
+    "seconds": 0.5339915752410889
+   },
+   {
+    "pair": [
+     "IMG_8728.jpg",
+     "IMG_8729.jpg"
+    ],
+    "points": 129886,
+    "valid_frac": 0.067853125,
+    "num_disp": 320,
+    "seconds": 0.5868542194366455
+   },
+   {
+    "pair": [
+     "IMG_8729.jpg",
+     "IMG_8730.jpg"
+    ],
+    "points": 56644,
+    "valid_frac": 0.029502083333333335,
+    "num_disp": 320,
+    "seconds": 0.42685818672180176
+   },
+   {
+    "pair": [
+     "IMG_8730.jpg",
+     "IMG_8731.jpg"
+    ],
+    "points": 334763,
+    "valid_frac": 0.1794953125,
+    "num_disp": 80,
+    "seconds": 0.3650999069213867
+   },
+   {
+    "pair": [
+     "IMG_8731.jpg",
+     "IMG_8732.jpg"
+    ],
+    "points": 125035,
+    "valid_frac": 0.0654875,
+    "num_disp": 320,
+    "seconds": 0.5259175300598145
+   },
+   {
+    "pair": [
+     "IMG_8732.jpg",
+     "IMG_8733.jpg"
+    ],
+    "points": 191239,
+    "valid_frac": 0.10004635416666667,
+    "num_disp": 320,
+    "seconds": 0.5640630722045898
+   },
+   {
+    "pair": [
+     "IMG_8733.jpg",
+     "IMG_8734.jpg"
+    ],
+    "points": 175853,
+    "valid_frac": 0.09159010416666667,
+    "num_disp": 320,
+    "seconds": 0.5367062091827393
+   },
+   {
+    "pair": [
+     "IMG_8734.jpg",
+     "IMG_8735.jpg"
+    ],
+    "points": 227777,
+    "valid_frac": 0.11912395833333334,
+    "num_disp": 272,
+    "seconds": 0.5727090835571289
+   },
+   {
+    "pair": [
+     "IMG_8735.jpg",
+     "IMG_8736.jpg"
+    ],
+    "points": 316679,
+    "valid_frac": 0.164971875,
+    "num_disp": 192,
+    "seconds": 0.47492218017578125
+   },
+   {
+    "pair": [
+     "IMG_8736.jpg",
+     "IMG_8737.jpg"
+    ],
+    "points": 257558,
+    "valid_frac": 0.13432291666666665,
+    "num_disp": 240,
+    "seconds": 0.4915316104888916
+   },
+   {
+    "pair": [
+     "IMG_8737.jpg",
+     "IMG_8738.jpg"
+    ],
+    "points": 251890,
+    "valid_frac": 0.131996875,
+    "num_disp": 272,
+    "seconds": 0.48255372047424316
+   },
+   {
+    "pair": [
+     "IMG_8738.jpg",
+     "IMG_8739.jpg"
+    ],
+    "points": 39568,
+    "valid_frac": 0.020627604166666667,
+    "num_disp": 320,
+    "seconds": 0.5293774604797363
+   }
+  ],
+  "mean_support": 3.2595608092347725
+ }
+}

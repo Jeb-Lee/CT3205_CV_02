@@ -1,0 +1,1227 @@
+{
+ "n_images": 119,
+ "n_registered": 119,
+ "n_points": 28131,
+ "mean_track_len": 3.9112011659734813,
+ "n_observations": 110026,
+ "reproj_mean": 0.5905033264325463,
+ "reproj_median": 0.506226161770162,
+ "reproj_rms": 0.71436983446743,
+ "n_points_track3": 15362,
+ "reproj_mean_track3": 0.6354546926967714,
+ "reproj_median_track3": 0.5559845978559675,
+ "mean_features": 1866.6806722689075,
+ "n_pairs": 7021,
+ "n_pairs_verified": 2260,
+ "mean_inliers_per_pair": 60.973365617433416,
+ "mean_inlier_ratio": 0.563544223626168,
+ "seconds": 2067.7104959487915,
+ "init_pair": [
+  "Yellow_Hori/IMG_8587.jpg",
+  "Yellow_Hori/IMG_8588.jpg"
+ ],
+ "parallax_median_deg": 7.441593922819642,
+ "set": "yellow_sign",
+ "tag": "yellow_all",
+ "focal_factor": 1.04,
+ "f_px_original": 4118.945154505743,
+ "f_exif_px": 3960.524187024753,
+ "ba_every": 6,
+ "detector": "rootsift",
+ "matcher": "gpu",
+ "seconds_total": 2067.7106177806854,
+ "unregistered_images": [],
+ "dense_points": 1218232,
+ "dense_seconds": 470.80322098731995,
+ "dense_info": {
+  "n_pairs": 118,
+  "raw_points": 30607954,
+  "fused_points": 1218232,
+  "voxel": 0.07366951774095769,
+  "min_support": 2,
+  "seconds": 470.70863604545593,
+  "per_pair": [
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8549.jpg",
+     "Yellow_Hori/IMG_8550.jpg"
+    ],
+    "points": 414740,
+    "valid_frac": 0.21608020833333333,
+    "num_disp": 80,
+    "seconds": 0.4613974094390869
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8550.jpg",
+     "Yellow_Hori/IMG_8551.jpg"
+    ],
+    "points": 432279,
+    "valid_frac": 0.2253546875,
+    "num_disp": 64,
+    "seconds": 0.28928279876708984
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8551.jpg",
+     "Yellow_Hori/IMG_8552.jpg"
+    ],
+    "points": 423252,
+    "valid_frac": 0.22044375,
+    "num_disp": 80,
+    "seconds": 0.31960296630859375
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8552.jpg",
+     "Yellow_Hori/IMG_8553.jpg"
+    ],
+    "points": 379374,
+    "valid_frac": 0.197590625,
+    "num_disp": 144,
+    "seconds": 0.3592965602874756
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8553.jpg",
+     "Yellow_Hori/IMG_8554.jpg"
+    ],
+    "points": 203098,
+    "valid_frac": 0.10578020833333333,
+    "num_disp": 320,
+    "seconds": 0.4725310802459717
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8554.jpg",
+     "Yellow_Hori/IMG_8555.jpg"
+    ],
+    "points": 398277,
+    "valid_frac": 0.20761927083333334,
+    "num_disp": 112,
+    "seconds": 0.31491971015930176
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8555.jpg",
+     "Yellow_Hori/IMG_8556.jpg"
+    ],
+    "points": 393763,
+    "valid_frac": 0.20510625,
+    "num_disp": 128,
+    "seconds": 0.34047389030456543
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8556.jpg",
+     "Yellow_Hori/IMG_8557.jpg"
+    ],
+    "points": 45474,
+    "valid_frac": 0.023715625,
+    "num_disp": 320,
+    "seconds": 0.48198461532592773
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8557.jpg",
+     "Yellow_Hori/IMG_8558.jpg"
+    ],
+    "points": 136822,
+    "valid_frac": 0.07126145833333333,
+    "num_disp": 320,
+    "seconds": 0.3790764808654785
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8558.jpg",
+     "Yellow_Hori/IMG_8559.jpg"
+    ],
+    "points": 362039,
+    "valid_frac": 0.18883541666666667,
+    "num_disp": 176,
+    "seconds": 0.44425249099731445
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8559.jpg",
+     "Yellow_Hori/IMG_8560.jpg"
+    ],
+    "points": 380779,
+    "valid_frac": 0.19853177083333334,
+    "num_disp": 128,
+    "seconds": 0.4933662414550781
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8560.jpg",
+     "Yellow_Hori/IMG_8561.jpg"
+    ],
+    "points": 364767,
+    "valid_frac": 0.19006614583333334,
+    "num_disp": 160,
+    "seconds": 0.44022059440612793
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8561.jpg",
+     "Yellow_Hori/IMG_8562.jpg"
+    ],
+    "points": 136300,
+    "valid_frac": 0.07104635416666667,
+    "num_disp": 320,
+    "seconds": 0.48433661460876465
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8562.jpg",
+     "Yellow_Hori/IMG_8563.jpg"
+    ],
+    "points": 387015,
+    "valid_frac": 0.20161614583333334,
+    "num_disp": 112,
+    "seconds": 0.33567261695861816
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8563.jpg",
+     "Yellow_Hori/IMG_8564.jpg"
+    ],
+    "points": 360239,
+    "valid_frac": 0.1876921875,
+    "num_disp": 176,
+    "seconds": 0.36777496337890625
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8564.jpg",
+     "Yellow_Hori/IMG_8565.jpg"
+    ],
+    "points": 375304,
+    "valid_frac": 0.19656927083333334,
+    "num_disp": 112,
+    "seconds": 0.34989285469055176
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8565.jpg",
+     "Yellow_Hori/IMG_8566.jpg"
+    ],
+    "points": 285845,
+    "valid_frac": 0.14887760416666668,
+    "num_disp": 272,
+    "seconds": 0.4661271572113037
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8566.jpg",
+     "Yellow_Hori/IMG_8567.jpg"
+    ],
+    "points": 366052,
+    "valid_frac": 0.19068125,
+    "num_disp": 144,
+    "seconds": 0.38323473930358887
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8567.jpg",
+     "Yellow_Hori/IMG_8568.jpg"
+    ],
+    "points": 324761,
+    "valid_frac": 0.1707046875,
+    "num_disp": 160,
+    "seconds": 0.3992602825164795
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8568.jpg",
+     "Yellow_Hori/IMG_8569.jpg"
+    ],
+    "points": 342307,
+    "valid_frac": 0.1783328125,
+    "num_disp": 208,
+    "seconds": 0.4460625648498535
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8569.jpg",
+     "Yellow_Hori/IMG_8570.jpg"
+    ],
+    "points": 378642,
+    "valid_frac": 0.19769375,
+    "num_disp": 112,
+    "seconds": 0.34087133407592773
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8570.jpg",
+     "Yellow_Hori/IMG_8571.jpg"
+    ],
+    "points": 183846,
+    "valid_frac": 0.095753125,
+    "num_disp": 320,
+    "seconds": 0.47869062423706055
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8571.jpg",
+     "Yellow_Hori/IMG_8572.jpg"
+    ],
+    "points": 304161,
+    "valid_frac": 0.1584171875,
+    "num_disp": 192,
+    "seconds": 0.4104282855987549
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8572.jpg",
+     "Yellow_Hori/IMG_8573.jpg"
+    ],
+    "points": 326618,
+    "valid_frac": 0.17024270833333333,
+    "num_disp": 160,
+    "seconds": 0.38797736167907715
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8573.jpg",
+     "Yellow_Hori/IMG_8574.jpg"
+    ],
+    "points": 287773,
+    "valid_frac": 0.15561770833333333,
+    "num_disp": 160,
+    "seconds": 0.36258888244628906
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8574.jpg",
+     "Yellow_Hori/IMG_8575.jpg"
+    ],
+    "points": 364323,
+    "valid_frac": 0.1905375,
+    "num_disp": 96,
+    "seconds": 0.3585355281829834
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8575.jpg",
+     "Yellow_Hori/IMG_8576.jpg"
+    ],
+    "points": 214136,
+    "valid_frac": 0.11172083333333334,
+    "num_disp": 272,
+    "seconds": 0.5178582668304443
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8576.jpg",
+     "Yellow_Hori/IMG_8577.jpg"
+    ],
+    "points": 350206,
+    "valid_frac": 0.183190625,
+    "num_disp": 112,
+    "seconds": 0.3410310745239258
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8577.jpg",
+     "Yellow_Hori/IMG_8578.jpg"
+    ],
+    "points": 349960,
+    "valid_frac": 0.18519010416666667,
+    "num_disp": 96,
+    "seconds": 0.3234541416168213
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8578.jpg",
+     "Yellow_Hori/IMG_8579.jpg"
+    ],
+    "points": 344053,
+    "valid_frac": 0.18309270833333333,
+    "num_disp": 112,
+    "seconds": 0.3454403877258301
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8579.jpg",
+     "Yellow_Hori/IMG_8580.jpg"
+    ],
+    "points": 401975,
+    "valid_frac": 0.21505208333333334,
+    "num_disp": 48,
+    "seconds": 0.30823636054992676
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8580.jpg",
+     "Yellow_Hori/IMG_8581.jpg"
+    ],
+    "points": 108800,
+    "valid_frac": 0.056796875,
+    "num_disp": 320,
+    "seconds": 0.5284931659698486
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8581.jpg",
+     "Yellow_Hori/IMG_8582.jpg"
+    ],
+    "points": 276332,
+    "valid_frac": 0.14425520833333333,
+    "num_disp": 224,
+    "seconds": 0.4977858066558838
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8582.jpg",
+     "Yellow_Hori/IMG_8583.jpg"
+    ],
+    "points": 316605,
+    "valid_frac": 0.16495416666666668,
+    "num_disp": 208,
+    "seconds": 0.42520618438720703
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8583.jpg",
+     "Yellow_Hori/IMG_8584.jpg"
+    ],
+    "points": 358948,
+    "valid_frac": 0.18829427083333333,
+    "num_disp": 128,
+    "seconds": 0.33689236640930176
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8584.jpg",
+     "Yellow_Hori/IMG_8585.jpg"
+    ],
+    "points": 303035,
+    "valid_frac": 0.157853125,
+    "num_disp": 240,
+    "seconds": 0.4439554214477539
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8585.jpg",
+     "Yellow_Hori/IMG_8586.jpg"
+    ],
+    "points": 326874,
+    "valid_frac": 0.17029479166666667,
+    "num_disp": 224,
+    "seconds": 0.4930419921875
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8586.jpg",
+     "Yellow_Hori/IMG_8587.jpg"
+    ],
+    "points": 348908,
+    "valid_frac": 0.18178854166666666,
+    "num_disp": 160,
+    "seconds": 0.4342987537384033
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8587.jpg",
+     "Yellow_Hori/IMG_8588.jpg"
+    ],
+    "points": 224708,
+    "valid_frac": 0.117046875,
+    "num_disp": 320,
+    "seconds": 0.537255048751831
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8588.jpg",
+     "Yellow_Hori/IMG_8589.jpg"
+    ],
+    "points": 254784,
+    "valid_frac": 0.1328609375,
+    "num_disp": 320,
+    "seconds": 0.5186350345611572
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8589.jpg",
+     "Yellow_Hori/IMG_8590.jpg"
+    ],
+    "points": 351294,
+    "valid_frac": 0.18296614583333334,
+    "num_disp": 160,
+    "seconds": 0.4041879177093506
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8590.jpg",
+     "Yellow_Hori/IMG_8591.jpg"
+    ],
+    "points": 370305,
+    "valid_frac": 0.19296666666666668,
+    "num_disp": 160,
+    "seconds": 0.3799436092376709
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8591.jpg",
+     "Yellow_Hori/IMG_8592.jpg"
+    ],
+    "points": 279314,
+    "valid_frac": 0.14570677083333333,
+    "num_disp": 272,
+    "seconds": 0.4457862377166748
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8592.jpg",
+     "Yellow_Hori/IMG_8593.jpg"
+    ],
+    "points": 335277,
+    "valid_frac": 0.1746234375,
+    "num_disp": 240,
+    "seconds": 0.4358501434326172
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8593.jpg",
+     "Yellow_Hori/IMG_8594.jpg"
+    ],
+    "points": 384289,
+    "valid_frac": 0.20016979166666668,
+    "num_disp": 144,
+    "seconds": 0.3470175266265869
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8594.jpg",
+     "Yellow_Hori/IMG_8595.jpg"
+    ],
+    "points": 219829,
+    "valid_frac": 0.11449427083333333,
+    "num_disp": 320,
+    "seconds": 0.5162429809570312
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8595.jpg",
+     "Yellow_Hori/IMG_8596.jpg"
+    ],
+    "points": 374607,
+    "valid_frac": 0.1951078125,
+    "num_disp": 128,
+    "seconds": 0.38208556175231934
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8596.jpg",
+     "Yellow_Hori/IMG_8597.jpg"
+    ],
+    "points": 359274,
+    "valid_frac": 0.18726979166666666,
+    "num_disp": 144,
+    "seconds": 0.3714723587036133
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8597.jpg",
+     "Yellow_Hori/IMG_8598.jpg"
+    ],
+    "points": 171580,
+    "valid_frac": 0.08936458333333333,
+    "num_disp": 320,
+    "seconds": 0.4956338405609131
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8598.jpg",
+     "Yellow_Hori/IMG_8599.jpg"
+    ],
+    "points": 374761,
+    "valid_frac": 0.19664375,
+    "num_disp": 48,
+    "seconds": 0.30367016792297363
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8599.jpg",
+     "Yellow_Hori/IMG_8600.jpg"
+    ],
+    "points": 348018,
+    "valid_frac": 0.18148125,
+    "num_disp": 144,
+    "seconds": 0.3536529541015625
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8600.jpg",
+     "Yellow_Hori/IMG_8601.jpg"
+    ],
+    "points": 285734,
+    "valid_frac": 0.14881979166666667,
+    "num_disp": 224,
+    "seconds": 0.4694535732269287
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8601.jpg",
+     "Yellow_Hori/IMG_8602.jpg"
+    ],
+    "points": 399181,
+    "valid_frac": 0.20790677083333334,
+    "num_disp": 96,
+    "seconds": 0.3317272663116455
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8602.jpg",
+     "Yellow_Hori/IMG_8603.jpg"
+    ],
+    "points": 85509,
+    "valid_frac": 0.0445359375,
+    "num_disp": 320,
+    "seconds": 0.4830143451690674
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8603.jpg",
+     "Yellow_Hori/IMG_8604.jpg"
+    ],
+    "points": 366650,
+    "valid_frac": 0.19096354166666665,
+    "num_disp": 160,
+    "seconds": 0.3969399929046631
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8604.jpg",
+     "Yellow_Hori/IMG_8605.jpg"
+    ],
+    "points": 158207,
+    "valid_frac": 0.08239947916666666,
+    "num_disp": 320,
+    "seconds": 0.49753546714782715
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8605.jpg",
+     "Yellow_Hori/IMG_8606.jpg"
+    ],
+    "points": 414492,
+    "valid_frac": 0.21588125,
+    "num_disp": 96,
+    "seconds": 0.34149909019470215
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8606.jpg",
+     "Yellow_Hori/IMG_8607.jpg"
+    ],
+    "points": 323875,
+    "valid_frac": 0.16868489583333332,
+    "num_disp": 320,
+    "seconds": 0.5601234436035156
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8607.jpg",
+     "Yellow_Hori/IMG_8608.jpg"
+    ],
+    "points": 346268,
+    "valid_frac": 0.18061614583333332,
+    "num_disp": 160,
+    "seconds": 0.38909196853637695
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8608.jpg",
+     "Yellow_Hori/IMG_8609.jpg"
+    ],
+    "points": 286079,
+    "valid_frac": 0.1490875,
+    "num_disp": 224,
+    "seconds": 0.4481194019317627
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8609.jpg",
+     "Yellow_Hori/IMG_8610.jpg"
+    ],
+    "points": 272136,
+    "valid_frac": 0.1419265625,
+    "num_disp": 208,
+    "seconds": 0.3885786533355713
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8610.jpg",
+     "Yellow_Hori/IMG_8611.jpg"
+    ],
+    "points": 242984,
+    "valid_frac": 0.12662395833333334,
+    "num_disp": 272,
+    "seconds": 0.5123112201690674
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8611.jpg",
+     "Yellow_Hori/IMG_8612.jpg"
+    ],
+    "points": 270530,
+    "valid_frac": 0.14163125,
+    "num_disp": 224,
+    "seconds": 0.4496192932128906
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8612.jpg",
+     "Yellow_Hori/IMG_8613.jpg"
+    ],
+    "points": 342716,
+    "valid_frac": 0.1786078125,
+    "num_disp": 128,
+    "seconds": 0.37931108474731445
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8613.jpg",
+     "Yellow_Hori/IMG_8614.jpg"
+    ],
+    "points": 348381,
+    "valid_frac": 0.18259583333333335,
+    "num_disp": 96,
+    "seconds": 0.3460500240325928
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8614.jpg",
+     "Yellow_Hori/IMG_8615.jpg"
+    ],
+    "points": 171461,
+    "valid_frac": 0.0893046875,
+    "num_disp": 320,
+    "seconds": 0.5525920391082764
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8615.jpg",
+     "Yellow_Hori/IMG_8616.jpg"
+    ],
+    "points": 302153,
+    "valid_frac": 0.15861302083333334,
+    "num_disp": 160,
+    "seconds": 0.4324309825897217
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8616.jpg",
+     "Yellow_Hori/IMG_8617.jpg"
+    ],
+    "points": 291203,
+    "valid_frac": 0.15625833333333333,
+    "num_disp": 144,
+    "seconds": 0.3890340328216553
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8617.jpg",
+     "Yellow_Hori/IMG_8618.jpg"
+    ],
+    "points": 59171,
+    "valid_frac": 0.030818229166666666,
+    "num_disp": 320,
+    "seconds": 0.4670124053955078
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8618.jpg",
+     "Yellow_Hori/IMG_8619.jpg"
+    ],
+    "points": 280588,
+    "valid_frac": 0.14994739583333333,
+    "num_disp": 144,
+    "seconds": 0.35210704803466797
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8619.jpg",
+     "Yellow_Hori/IMG_8620.jpg"
+    ],
+    "points": 326034,
+    "valid_frac": 0.16990885416666668,
+    "num_disp": 144,
+    "seconds": 0.36862969398498535
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8620.jpg",
+     "Yellow_Hori/IMG_8621.jpg"
+    ],
+    "points": 155141,
+    "valid_frac": 0.08080260416666667,
+    "num_disp": 320,
+    "seconds": 0.5665388107299805
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8621.jpg",
+     "Yellow_Hori/IMG_8622.jpg"
+    ],
+    "points": 256060,
+    "valid_frac": 0.1333890625,
+    "num_disp": 256,
+    "seconds": 0.5526049137115479
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8622.jpg",
+     "Yellow_Hori/IMG_8623.jpg"
+    ],
+    "points": 164015,
+    "valid_frac": 0.08542447916666666,
+    "num_disp": 320,
+    "seconds": 0.6036794185638428
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8623.jpg",
+     "Yellow_Hori/IMG_8624.jpg"
+    ],
+    "points": 258999,
+    "valid_frac": 0.1348953125,
+    "num_disp": 240,
+    "seconds": 0.48265838623046875
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8624.jpg",
+     "Yellow_Hori/IMG_8625.jpg"
+    ],
+    "points": 214129,
+    "valid_frac": 0.11164375,
+    "num_disp": 320,
+    "seconds": 0.5714786052703857
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8625.jpg",
+     "Yellow_Hori/IMG_8626.jpg"
+    ],
+    "points": 294847,
+    "valid_frac": 0.15356614583333333,
+    "num_disp": 224,
+    "seconds": 0.513390302658081
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8626.jpg",
+     "Yellow_Hori/IMG_8627.jpg"
+    ],
+    "points": 96635,
+    "valid_frac": 0.050330729166666664,
+    "num_disp": 320,
+    "seconds": 0.5440118312835693
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8627.jpg",
+     "Yellow_Hori/IMG_8628.jpg"
+    ],
+    "points": 43326,
+    "valid_frac": 0.022565625,
+    "num_disp": 320,
+    "seconds": 0.37218618392944336
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8628.jpg",
+     "Yellow_Hori/IMG_8629.jpg"
+    ],
+    "points": 199534,
+    "valid_frac": 0.10392604166666666,
+    "num_disp": 320,
+    "seconds": 0.58439040184021
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8629.jpg",
+     "Yellow_Hori/IMG_8630.jpg"
+    ],
+    "points": 305112,
+    "valid_frac": 0.15918802083333333,
+    "num_disp": 224,
+    "seconds": 0.5266344547271729
+   },
+   {
+    "pair": [
+     "Yellow_Hori/IMG_8630.jpg",
+     "Yellow High/IMG_8631.jpg"
+    ],
+    "points": 5651,
+    "valid_frac": 0.0029536458333333333,
+    "num_disp": 320,
+    "seconds": 0.339599609375
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8631.jpg",
+     "Yellow High/IMG_8632.jpg"
+    ],
+    "points": 342852,
+    "valid_frac": 0.17856875,
+    "num_disp": 208,
+    "seconds": 0.5172274112701416
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8632.jpg",
+     "Yellow High/IMG_8633.jpg"
+    ],
+    "points": 373668,
+    "valid_frac": 0.19521822916666667,
+    "num_disp": 144,
+    "seconds": 0.3961515426635742
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8633.jpg",
+     "Yellow High/IMG_8634.jpg"
+    ],
+    "points": 355138,
+    "valid_frac": 0.18496770833333334,
+    "num_disp": 192,
+    "seconds": 0.46346521377563477
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8634.jpg",
+     "Yellow High/IMG_8635.jpg"
+    ],
+    "points": 251304,
+    "valid_frac": 0.13092239583333334,
+    "num_disp": 304,
+    "seconds": 0.5717365741729736
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8635.jpg",
+     "Yellow High/IMG_8636.jpg"
+    ],
+    "points": 203110,
+    "valid_frac": 0.10578645833333333,
+    "num_disp": 320,
+    "seconds": 0.5601873397827148
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8636.jpg",
+     "Yellow High/IMG_8637.jpg"
+    ],
+    "points": 303231,
+    "valid_frac": 0.1579359375,
+    "num_disp": 288,
+    "seconds": 0.5131356716156006
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8637.jpg",
+     "Yellow High/IMG_8638.jpg"
+    ],
+    "points": 303048,
+    "valid_frac": 0.15831666666666666,
+    "num_disp": 288,
+    "seconds": 0.5553507804870605
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8638.jpg",
+     "Yellow High/IMG_8639.jpg"
+    ],
+    "points": 334631,
+    "valid_frac": 0.174409375,
+    "num_disp": 240,
+    "seconds": 0.4564392566680908
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8639.jpg",
+     "Yellow High/IMG_8640.jpg"
+    ],
+    "points": 254721,
+    "valid_frac": 0.1335390625,
+    "num_disp": 192,
+    "seconds": 0.46590757369995117
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8640.jpg",
+     "Yellow High/IMG_8641.jpg"
+    ],
+    "points": 74048,
+    "valid_frac": 0.03865,
+    "num_disp": 320,
+    "seconds": 0.530961275100708
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8641.jpg",
+     "Yellow High/IMG_8642.jpg"
+    ],
+    "points": 202688,
+    "valid_frac": 0.10556666666666667,
+    "num_disp": 320,
+    "seconds": 0.5963592529296875
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8642.jpg",
+     "Yellow High/IMG_8643.jpg"
+    ],
+    "points": 279538,
+    "valid_frac": 0.1457328125,
+    "num_disp": 320,
+    "seconds": 0.5515792369842529
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8643.jpg",
+     "Yellow High/IMG_8644.jpg"
+    ],
+    "points": 296938,
+    "valid_frac": 0.15465520833333332,
+    "num_disp": 256,
+    "seconds": 0.49372410774230957
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8644.jpg",
+     "Yellow High/IMG_8645.jpg"
+    ],
+    "points": 99670,
+    "valid_frac": 0.0522953125,
+    "num_disp": 320,
+    "seconds": 0.5674026012420654
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8645.jpg",
+     "Yellow High/IMG_8646.jpg"
+    ],
+    "points": 29738,
+    "valid_frac": 0.015741145833333334,
+    "num_disp": 320,
+    "seconds": 0.4442265033721924
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8646.jpg",
+     "Yellow High/IMG_8647.jpg"
+    ],
+    "points": 248886,
+    "valid_frac": 0.13717239583333332,
+    "num_disp": 128,
+    "seconds": 0.3435039520263672
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8647.jpg",
+     "Yellow High/IMG_8648.jpg"
+    ],
+    "points": 223757,
+    "valid_frac": 0.11654010416666667,
+    "num_disp": 320,
+    "seconds": 0.4925687313079834
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8648.jpg",
+     "Yellow High/IMG_8649.jpg"
+    ],
+    "points": 149483,
+    "valid_frac": 0.07785572916666667,
+    "num_disp": 320,
+    "seconds": 0.5336363315582275
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8649.jpg",
+     "Yellow High/IMG_8650.jpg"
+    ],
+    "points": 172310,
+    "valid_frac": 0.0897875,
+    "num_disp": 320,
+    "seconds": 0.5377635955810547
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8650.jpg",
+     "Yellow High/IMG_8651.jpg"
+    ],
+    "points": 214563,
+    "valid_frac": 0.1117515625,
+    "num_disp": 320,
+    "seconds": 0.5685255527496338
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8651.jpg",
+     "Yellow High/IMG_8652.jpg"
+    ],
+    "points": 46959,
+    "valid_frac": 0.02455,
+    "num_disp": 320,
+    "seconds": 0.5049571990966797
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8652.jpg",
+     "Yellow High/IMG_8653.jpg"
+    ],
+    "points": 241756,
+    "valid_frac": 0.12591458333333333,
+    "num_disp": 320,
+    "seconds": 0.531865119934082
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8653.jpg",
+     "Yellow High/IMG_8654.jpg"
+    ],
+    "points": 115430,
+    "valid_frac": 0.060119791666666665,
+    "num_disp": 320,
+    "seconds": 0.5167901515960693
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8654.jpg",
+     "Yellow High/IMG_8655.jpg"
+    ],
+    "points": 289992,
+    "valid_frac": 0.15103958333333334,
+    "num_disp": 288,
+    "seconds": 0.5974159240722656
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8655.jpg",
+     "Yellow High/IMG_8656.jpg"
+    ],
+    "points": 71512,
+    "valid_frac": 0.03731458333333333,
+    "num_disp": 320,
+    "seconds": 0.5533525943756104
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8656.jpg",
+     "Yellow High/IMG_8657.jpg"
+    ],
+    "points": 126004,
+    "valid_frac": 0.06562708333333334,
+    "num_disp": 320,
+    "seconds": 0.5158190727233887
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8657.jpg",
+     "Yellow High/IMG_8658.jpg"
+    ],
+    "points": 56338,
+    "valid_frac": 0.029371875,
+    "num_disp": 320,
+    "seconds": 0.47640538215637207
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8658.jpg",
+     "Yellow High/IMG_8659.jpg"
+    ],
+    "points": 184836,
+    "valid_frac": 0.09626875,
+    "num_disp": 320,
+    "seconds": 0.5916664600372314
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8659.jpg",
+     "Yellow High/IMG_8660.jpg"
+    ],
+    "points": 110287,
+    "valid_frac": 0.05744114583333333,
+    "num_disp": 320,
+    "seconds": 0.5822818279266357
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8660.jpg",
+     "Yellow High/IMG_8661.jpg"
+    ],
+    "points": 242122,
+    "valid_frac": 0.12629427083333333,
+    "num_disp": 304,
+    "seconds": 0.6034996509552002
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8661.jpg",
+     "Yellow High/IMG_8662.jpg"
+    ],
+    "points": 288792,
+    "valid_frac": 0.1504140625,
+    "num_disp": 240,
+    "seconds": 0.5206103324890137
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8662.jpg",
+     "Yellow High/IMG_8663.jpg"
+    ],
+    "points": 73027,
+    "valid_frac": 0.048159895833333334,
+    "num_disp": 240,
+    "seconds": 0.44825005531311035
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8663.jpg",
+     "Yellow High/IMG_8664.jpg"
+    ],
+    "points": 42376,
+    "valid_frac": 0.0220953125,
+    "num_disp": 320,
+    "seconds": 0.43981170654296875
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8664.jpg",
+     "Yellow High/IMG_8665.jpg"
+    ],
+    "points": 147236,
+    "valid_frac": 0.07677135416666667,
+    "num_disp": 320,
+    "seconds": 0.5383374691009521
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8665.jpg",
+     "Yellow High/IMG_8666.jpg"
+    ],
+    "points": 258944,
+    "valid_frac": 0.13490416666666666,
+    "num_disp": 320,
+    "seconds": 0.6406769752502441
+   },
+   {
+    "pair": [
+     "Yellow High/IMG_8666.jpg",
+     "Yellow High/IMG_8667.jpg"
+    ],
+    "points": 197910,
+    "valid_frac": 0.10309114583333333,
+    "num_disp": 320,
+    "seconds": 0.5890138149261475
+   }
+  ],
+  "mean_support": 2.6818340020620046
+ }
+}

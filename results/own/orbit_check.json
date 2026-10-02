@@ -1,0 +1,69 @@
+[
+ {
+  "label": "yellow level ring",
+  "n": 82,
+  "radius": 7.160054158960395,
+  "radius_rel_std": 0.056979668013238144,
+  "plane_offset_rel_std": 0.018690151294517825,
+  "angular_coverage_deg": 389.5675093134649,
+  "median_step": 0.5698265974035418,
+  "closure_ratio": 6.594384947996724,
+  "max_step_over_median": 3.684848744455653,
+  "radius_ratio_high_over_level": 0.6224491664691146
+ },
+ {
+  "label": "yellow high ring",
+  "n": 37,
+  "radius": 4.456769743118615,
+  "radius_rel_std": 0.09143287119852458,
+  "plane_offset_rel_std": 0.012877528997360334,
+  "angular_coverage_deg": 368.7667268831675,
+  "median_step": 0.7690065086674039,
+  "closure_ratio": 1.224661401953349,
+  "max_step_over_median": 2.9002270084116093
+ },
+ {
+  "label": "fire",
+  "n": 83,
+  "radius": 12.258218320727785,
+  "radius_rel_std": 0.05770190372509373,
+  "plane_offset_rel_std": 0.020518850072184916,
+  "angular_coverage_deg": 383.4823581906053,
+  "median_step": 1.1750434765140931,
+  "closure_ratio": 4.159740063722192,
+  "max_step_over_median": 2.900914401556114
+ },
+ {
+  "label": "snacks",
+  "n": 71,
+  "radius": 13.696059882322219,
+  "radius_rel_std": 0.047693940231717455,
+  "plane_offset_rel_std": 0.021678613420582395,
+  "angular_coverage_deg": 391.97126677237463,
+  "median_step": 1.4011548928916557,
+  "closure_ratio": 5.073277837394761,
+  "max_step_over_median": 3.1033416237578146
+ },
+ {
+  "label": "bottle_classic",
+  "n": 57,
+  "radius": 13.369008841499603,
+  "radius_rel_std": 0.06514596598155933,
+  "plane_offset_rel_std": 0.02734022589606458,
+  "angular_coverage_deg": 371.6748086459514,
+  "median_step": 1.536185430516554,
+  "closure_ratio": 2.444432294405604,
+  "max_step_over_median": 2.5067069001204993
+ },
+ {
+  "label": "bottle_learned",
+  "n": 57,
+  "radius": 12.549380030673852,
+  "radius_rel_std": 0.06409840074004794,
+  "plane_offset_rel_std": 0.027732950660527673,
+  "angular_coverage_deg": 371.1521634280458,
+  "median_step": 1.3905824344887003,
+  "closure_ratio": 2.46046379927735,
+  "max_step_over_median": 3.352909599385694
+ }
+]

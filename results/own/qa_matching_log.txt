@@ -1,0 +1,50 @@
+
+=== bottle: 57 images in C:\Users\jeble\PycharmProjects\CT3205_CV_02\Datasets/Bottle
+  camera: Apple iPhone 16 Pro Max | sizes ['(5712, 4284)'] | orientation tags ['1']
+  focal ['6.764999866370901'] mm (35mm-eq ['24']) | zoom ['None'] | lens ['iPhone 16 Pro Max back triple camera 6.765mm f/1.78']
+  exposure time {'min': 0.01, 'median': 0.01, 'max': 0.01} | ISO {'min': 125, 'median': 125, 'max': 125}
+  numbering gaps (missing shots): []
+  sharpness: median 138, min 52; soft (<0.5x median): 3 ['IMG_8850.jpg', 'IMG_8851.jpg', 'IMG_8852.jpg']
+  brightness mean 130 (range 116-145); worst clipped highlights 0.0%
+  neighbour inliers: gap1 median 244 (min 51), gap2 median 125 (min 33)
+  pair graph: 1 component(s), largest 57/57; weak neighbour links (<60 inliers): 1 [(45, '8870', 51)]
+
+=== fire_ext: 83 images in C:\Users\jeble\PycharmProjects\CT3205_CV_02\Datasets/Fire est
+  camera: Apple iPhone 16 Pro Max | sizes ['(4032, 3024)', '(5712, 4284)'] | orientation tags ['1']
+  focal ['6.764999866370901'] mm (35mm-eq ['24']) | zoom ['None'] | lens ['iPhone 16 Pro Max back triple camera 6.765mm f/1.78']
+  exposure time {'min': 0.01, 'median': 0.01, 'max': 0.01} | ISO {'min': 100, 'median': 125, 'max': 125}
+  numbering gaps (missing shots): [(8780, 8782), (8808, 8810)]
+  sharpness: median 278, min 139; soft (<0.5x median): 1 ['IMG_8776.jpg']
+  brightness mean 140 (range 126-153); worst clipped highlights 0.1%
+  neighbour inliers: gap1 median 364 (min 140), gap2 median 276 (min 69)
+  pair graph: 1 component(s), largest 83/83; weak neighbour links (<60 inliers): 0 []
+
+=== snacks: 71 images in C:\Users\jeble\PycharmProjects\CT3205_CV_02\Datasets/Snacks
+  camera: Apple iPhone 16 Pro Max | sizes ['(4032, 3024)', '(5712, 4284)'] | orientation tags ['1']
+  focal ['6.764999866370901'] mm (35mm-eq ['24']) | zoom ['None'] | lens ['iPhone 16 Pro Max back triple camera 6.765mm f/1.78']
+  exposure time {'min': 0.01, 'median': 0.01, 'max': 0.01} | ISO {'min': 125, 'median': 125, 'max': 125}
+  numbering gaps (missing shots): []
+  sharpness: median 200, min 84; soft (<0.5x median): 3 ['IMG_8721.jpg', 'IMG_8728.jpg', 'IMG_8737.jpg']
+  brightness mean 137 (range 124-150); worst clipped highlights 0.5%
+  neighbour inliers: gap1 median 530 (min 156), gap2 median 366 (min 148)
+  pair graph: 1 component(s), largest 71/71; weak neighbour links (<60 inliers): 0 []
+
+=== yellow_high: 37 images in C:\Users\jeble\PycharmProjects\CT3205_CV_02\Datasets/yellow_sign/Yellow High
+  camera: Apple iPhone 16 Pro Max | sizes ['(5712, 4284)'] | orientation tags ['1']
+  focal ['6.764999866370901'] mm (35mm-eq ['24']) | zoom ['None'] | lens ['iPhone 16 Pro Max back triple camera 6.765mm f/1.78']
+  exposure time {'min': 0.01, 'median': 0.01, 'max': 0.01} | ISO {'min': 80, 'median': 80, 'max': 80}
+  numbering gaps (missing shots): []
+  sharpness: median 122, min 79; soft (<0.5x median): 0 []
+  brightness mean 148 (range 137-159); worst clipped highlights 0.0%
+  neighbour inliers: gap1 median 276 (min 79), gap2 median 155 (min 25)
+  pair graph: 1 component(s), largest 37/37; weak neighbour links (<60 inliers): 0 []
+
+=== yellow_level: 82 images in C:\Users\jeble\PycharmProjects\CT3205_CV_02\Datasets/yellow_sign/Yellow_Hori
+  camera: Apple iPhone 16 Pro Max | sizes ['(5712, 4284)'] | orientation tags ['1']
+  focal ['6.764999866370901'] mm (35mm-eq ['24']) | zoom ['None'] | lens ['iPhone 16 Pro Max back triple camera 6.765mm f/1.78']
+  exposure time {'min': 0.01, 'median': 0.01, 'max': 0.01} | ISO {'min': 80, 'median': 80, 'max': 80}
+  numbering gaps (missing shots): []
+  sharpness: median 156, min 85; soft (<0.5x median): 0 []
+  brightness mean 144 (range 129-158); worst clipped highlights 0.2%
+  neighbour inliers: gap1 median 371 (min 114), gap2 median 252 (min 72)
+  pair graph: 1 component(s), largest 82/82; weak neighbour links (<60 inliers): 0 []
