@@ -374,6 +374,9 @@ EQ("<i>c</i>(<i>f</i>) = (<i>σ</i><sub>1</sub> − <i>σ</i><sub>2</sub>) / (<i
 B("over 40–60 RANSAC-verified pairs and take the <i>f</i> minimising the median of <i>c</i>. On south-building this recovers COLMAP’s "
   "calibrated focal length to 0.5% (1326.5 against 1333.2 px from 38 pairs). On the four own sets it gives 1137–1159 px at "
   "1600 px, 2.5–4.5% above the EXIF value and consistent across sets; all own reconstructions use a common factor of 1.04. "
+  "An independent chessboard calibration of the same phone (40 photos, 25 mm squares) gives 1156 px, within 0.2% of this value "
+  "(1153–1163 px across distortion models and photo subsets); its fit error is high (RMS 6 px) because the oblique views were "
+  "defocused and the paper was not perfectly flat, so we quote the agreement as about ±1%. "
   "Two alternatives failed: choosing <i>f</i> by reprojection error was inconclusive (fewer images register at low <i>f</i>, which "
   "lowers the error spuriously), and refining <i>f</i> inside bundle adjustment stayed at its wrong starting value (±12%) on "
   "south-building, probably because focal length and depth are weakly separable for a near-planar scene.")

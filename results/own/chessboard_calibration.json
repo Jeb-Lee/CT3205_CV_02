@@ -1,0 +1,125 @@
+{
+ "n_candidate": 47,
+ "n_detected": 40,
+ "n_used": 40,
+ "image_size": [
+  5712,
+  4284
+ ],
+ "rms_reprojection_px": 6.201978899365183,
+ "fx": 4130.756880838396,
+ "fy": 4122.869619567765,
+ "cx": 2889.513259064247,
+ "cy": 2167.019846604662,
+ "dist_k1k2p1p2k3": [
+  0.1912386365781979,
+  -0.5518669537479893,
+  0.0005747425295777245,
+  0.004433786066008873,
+  0.0
+ ],
+ "f_at_working_res": 1155.9700980961009,
+ "aspect_fx_over_fy": 1.0019130513449168,
+ "principal_point_offset_px": [
+  33.513259064246995,
+  25.01984660466178
+ ],
+ "models": {
+  "k1": {
+   "rms": 6.832192040615434,
+   "f_working": 1161.1050175579987,
+   "fx": 4150.394680712924,
+   "fy": 4139.895144651186,
+   "cx": 2851.7258399730017,
+   "cy": 2163.5475803497025,
+   "dist": [
+    0.04269867805468175,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "k1k2": {
+   "rms": 6.233808069227562,
+   "f_working": 1156.020476067703,
+   "fx": 4131.07312503023,
+   "fy": 4122.91307409317,
+   "cx": 2853.174199052288,
+   "cy": 2162.118658987298,
+   "dist": [
+    0.18470515841520738,
+    -0.5105373289692957,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "k1k2tang": {
+   "rms": 6.201978899365183,
+   "f_working": 1155.9700981102642,
+   "fx": 4130.756880903898,
+   "fy": 4122.869619603388,
+   "cx": 2889.5132581992666,
+   "cy": 2167.019845812604,
+   "dist": [
+    0.19123863619095982,
+    -0.5518669522035582,
+    0.0005747424274069509,
+    0.0044337859765368574,
+    0.0
+   ]
+  }
+ },
+ "half_split_f_median": 1155.8332127942754,
+ "half_split_f_std": 1.4403566866485211,
+ "half_split_f_range": [
+  1152.425947087489,
+  1157.9752967027262
+ ],
+ "self_calibrated_f_at_working_res": 1154.0,
+ "per_image_rms": {
+  "far/IMG_8945.HEIC": 0.668,
+  "far/IMG_8946.HEIC": 0.536,
+  "off_angle/IMG_8939.HEIC": 4.622,
+  "off_angle/IMG_8940.HEIC": 4.941,
+  "off_angle/IMG_8941.HEIC": 6.134,
+  "off_angle/IMG_8942.HEIC": 5.648,
+  "off_angle/IMG_8943.HEIC": 4.695,
+  "straight/IMG_8900.HEIC": 3.532,
+  "straight/IMG_8901.HEIC": 5.039,
+  "straight/IMG_8902.HEIC": 3.684,
+  "straight/IMG_8903.HEIC": 4.451,
+  "straight/IMG_8904.HEIC": 4.947,
+  "straight/IMG_8905.HEIC": 5.44,
+  "straight/IMG_8906.HEIC": 6.764,
+  "straight/IMG_8907.HEIC": 7.507,
+  "straight/IMG_8908.HEIC": 7.389,
+  "straight/IMG_8909.HEIC": 8.087,
+  "straight/IMG_8910.HEIC": 8.749,
+  "straight/IMG_8911.HEIC": 8.897,
+  "straight/IMG_8912.HEIC": 9.66,
+  "straight/IMG_8916.HEIC": 2.248,
+  "straight/IMG_8917.HEIC": 2.195,
+  "straight/IMG_8918.HEIC": 2.922,
+  "straight/IMG_8919.HEIC": 3.233,
+  "straight/IMG_8920.HEIC": 3.591,
+  "straight/IMG_8921.HEIC": 4.931,
+  "straight/IMG_8922.HEIC": 6.216,
+  "straight/IMG_8923.HEIC": 7.263,
+  "straight/IMG_8924.HEIC": 6.293,
+  "straight/IMG_8925.HEIC": 7.088,
+  "straight/IMG_8926.HEIC": 7.345,
+  "straight/IMG_8927.HEIC": 7.329,
+  "straight/IMG_8928.HEIC": 8.026,
+  "straight/IMG_8929.HEIC": 8.537,
+  "straight/IMG_8933.HEIC": 6.535,
+  "straight/IMG_8934.HEIC": 6.817,
+  "straight/IMG_8935.HEIC": 7.039,
+  "straight/IMG_8936.HEIC": 7.547,
+  "straight/IMG_8937.HEIC": 7.644,
+  "straight/IMG_8938.HEIC": 7.596
+ },
+ "dropped_size": [],
+ "self_calibration_error_pct": -0.17042811914820266
+}

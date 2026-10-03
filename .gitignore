@@ -29,3 +29,4 @@ results/own/chain*.flag
 results/own/chain.log
 results/own/*/turntable.mp4
 results/own/*/dense_object.json
+results/own/_calib_corners.pkl
