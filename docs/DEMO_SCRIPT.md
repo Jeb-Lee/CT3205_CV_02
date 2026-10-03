@@ -46,9 +46,11 @@ Section 6 adds that you are graded on **understanding** (pose estimation, triang
 **Key words to get right:** cheirality, PnP + RANSAC, one common frame and scale, bundle adjustment (the brief says this is the most important part of the report).
 
 ## Block 4 - Live 3D inspection (1:45-2:20)  **do this one live**
-**On screen (screen-record):** open `results/viewer/south_building.html` in a browser, or run `python scripts/view_open3d.py results/baseline --gt`. Rotate to: front, top-down (the L-shaped footprint with the camera arc around it), close-up of the facade; toggle the camera frusta and the sparse / dense layers.
+**On screen (screen-record):** open `results/viewer/south_building.html` in a browser. Rotate to: front, top-down (the building's corner with the camera arc in front of it), close-up of the facade; switch dense → sparse and toggle the camera frusta.
+**What the page shows:** the 16-image dense run (200,000 of the 428,018 dense points, sparse cloud, 16 cameras), **not** the 12-image baseline, and **no COLMAP overlay**. The grey at the top of the building is the slate roof.
 **Say:**
-"Here is the result: 10,934 points coloured from the photos, and the twelve camera positions and viewing directions. I can rotate and zoom. From above you see the building's L-shaped footprint and the cameras on an arc around it. The grey overlay is COLMAP's reconstruction of the same area."
+"Here is the reconstruction in an interactive viewer: sixteen consecutive images, each camera's position and viewing direction, and the dense point cloud coloured from the photos. I can rotate and zoom. From above you see two walls meeting at the building's corner, and the cameras on an arc in front of them. Switching to the sparse layer shows the 18 thousand structure-from-motion points the dense stage was built on."
+**Alternative:** `python scripts/view_open3d.py results/baseline --gt` shows the 12-image baseline (10,934 points, 12 cameras) with COLMAP's points in grey after Sim(3) alignment. If you record that instead, say "10,934 points and twelve cameras" and "the grey points are COLMAP's reconstruction, aligned to mine".
 **Tip:** move the mouse slowly; stop for 2 seconds on each view.
 
 ## Block 5 - Reprojection and accuracy (2:20-2:45)

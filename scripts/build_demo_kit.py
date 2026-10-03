@@ -271,9 +271,10 @@ plan[3].append((card(3, "03d_key_concepts.png", "How all cameras end up in one c
 # ================================================================================================ 4 live
 plan[4].append((card(4, "04a_live_recording_placeholder.png", "LIVE: replace with your screen recording", [
     "Open 04_live_3d/south_building.html in the browser (zoom 125 %)",
-    "Front view  →  top-down (L-shaped footprint, camera arc)  →  facade close-up",
-    "Toggle camera frusta and the COLMAP overlay; pause 2 s on each view",
-    "  Fallback if live fails: the turntable and stills that follow",
+    "Front view  →  top-down (corner of the building, camera arc)  →  facade close-up",
+    "Switch dense → sparse layer, toggle the camera frusta; pause 2 s on each view",
+    "  The page shows the 16-image run: 200 k of the 428 k dense points, 16 cameras",
+    "  Fallback if live fails: the 12-image baseline turntable and stills that follow",
 ]), 5))
 shutil.copy2("results/viewer/south_building.html", os.path.join(bdir(4), "south_building.html"))
 plan[4].append((video(4, "results/baseline/turntable.mp4", "04b_turntable_fallback.mp4"), None))
