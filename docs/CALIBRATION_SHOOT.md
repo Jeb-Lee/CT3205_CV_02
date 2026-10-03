@@ -23,6 +23,7 @@ Avoid: all-frontal shots, board edges cut off, blur, glare, a bent board, switch
 
 ## 4. Hand them over
 - Copy the photos **unedited** (no crop, no rotate, no filter) into `Datasets/Calibration/`.
+- **HEIC is fine:** `scripts/calibrate_chessboard.py` reads .HEIC directly (tested). If you prefer JPEG, either set Settings > Camera > Formats > *Most Compatible* before shooting, or run `python scripts/convert_heic.py Datasets/Calibration` (same pixels, quality 95, EXIF kept). What matters is that all calibration photos have the **same resolution** (check the file properties: our object photos are 5712 x 4284).
 - Tell me: (a) the measured square size in mm, (b) the approximate distance from the phone to the board, (c) if you used a monitor instead of paper.
 - Optional (10 more photos): repeat at a clearly different distance, to show how much the focal length changes with focus.
 

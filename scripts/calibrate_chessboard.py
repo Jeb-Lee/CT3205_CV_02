@@ -26,10 +26,22 @@ a = ap.parse_args()
 pattern = (a.cols, a.rows)
 objp = np.zeros((a.cols * a.rows, 3), np.float32)
 objp[:, :2] = np.mgrid[0:a.cols, 0:a.rows].T.reshape(-1, 2) * a.square_mm
-files = sorted(f for f in os.listdir(a.folder) if f.lower().endswith((".jpg", ".jpeg", ".png")))
+files = sorted(f for f in os.listdir(a.folder) if f.lower().endswith((".jpg", ".jpeg", ".png", ".heic", ".heif")))
 obj_pts, img_pts, used, sizes = [], [], [], set()
+
+
+def load_gray(path):
+    """JPEG/PNG through OpenCV (stored pixels, orientation tag ignored, like our pipeline); iPhone HEIC/HEIF through pillow-heif."""
+    if path.lower().endswith((".heic", ".heif")):
+        import pillow_heif
+        from PIL import Image
+        pillow_heif.register_heif_opener()
+        return np.array(Image.open(path).convert("L"))          # libheif applies the stored rotation: landscape shots stay landscape
+    return cv2.imread(path, cv2.IMREAD_GRAYSCALE | cv2.IMREAD_IGNORE_ORIENTATION)
+
+
 for f in files:
-    img = cv2.imread(os.path.join(a.folder, f), cv2.IMREAD_GRAYSCALE | cv2.IMREAD_IGNORE_ORIENTATION)   # stored pixels, like our pipeline
+    img = load_gray(os.path.join(a.folder, f))
     if img is None:
         continue
     h, w = img.shape

@@ -8,6 +8,7 @@ open3d==0.20.0                    # interactive 3D viewer (optional; PLY export 
 pandas==3.0.2                     # experiment result tables
 tqdm==4.70.1
 pillow==12.2.0                    # EXIF focal length for your own photos
+pillow-heif                       # read iPhone HEIC photos (chessboard calibration, converter)
 tabulate                          # pandas .to_markdown() for result tables (optional)
 
 # --- GPU learned features (DISK + LightGlue). Used: torch 2.11.0+cu128 (RTX 3050, driver CUDA 13.0), kornia 0.8.3 ---
