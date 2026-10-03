@@ -20,6 +20,8 @@ from PIL import Image, ImageDraw, ImageFont
 ap = argparse.ArgumentParser()
 ap.add_argument("--out", required=True)
 ap.add_argument("--no_video", action="store_true", help="skip clips and the rough cut")
+ap.add_argument("--name", default="Lee Tze Hian")
+ap.add_argument("--matric", default="U2423241F")
 a = ap.parse_args()
 OUT = a.out
 W, H, FPS = 1920, 1080, 30
@@ -179,7 +181,7 @@ fig, save = fig_slide(1, "01a_title.png", "")
 fig.text(0.5, 0.60, "Multi-View 3D Reconstruction\nand Point Cloud Generation", color=FG, fontsize=60, weight="bold", ha="center", va="center", linespacing=1.3)
 fig.text(0.5, 0.40, "Incremental Structure-from-Motion, failure analysis and learned features", color=ACCENT, fontsize=28, ha="center")
 fig.text(0.5, 0.30, "CT3205 Computer Vision for AI  ·  Assignment 2", color=MUTED, fontsize=24, ha="center")
-fig.text(0.5, 0.24, "[Your Name]  ·  [matric. no.]", color=MUTED, fontsize=24, ha="center")
+fig.text(0.5, 0.24, f"{a.name}  ·  {a.matric}", color=MUTED, fontsize=24, ha="center")
 plan[1].append((save(), 5))
 plan[1].append((cut(1, "01b_input_images_clip.mp4", 3, 10), None))
 names = [f"P1180{n}.JPG" for n in range(181, 204, 2)]
