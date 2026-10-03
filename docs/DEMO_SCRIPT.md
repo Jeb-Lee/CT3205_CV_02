@@ -5,6 +5,8 @@
 1. input images, 2. feature matches, 3. estimated camera positions, 4. the reconstructed 3D point cloud, 5. the ability to rotate / inspect the 3D reconstruction.
 Section 6 adds that you are graded on **understanding** (pose estimation, triangulation, how poses are combined, how the cloud is built, how to read the evaluation, why you made your experimental decisions). So the narration must *explain*, not just describe. Every block below lists what is on screen, what to say, and where the material lives.
 
+**Ready-made kit:** `python scripts/build_demo_kit.py --out "C:/Users/jeble/Claude/CT3205_CV_Assignment_2"` builds 1920×1080 slides and clips for every block, plus a silent 5:45 rough cut. The copy of this script in that folder (`DEMO_SCRIPT.md`) points to the kit's files shot by shot. The kit is kept outside the repository because it is about 280 MB; the narration there is the same as here.
+
 **Consistency rule:** every number spoken below is taken from the report (`docs/Report_CT3205_A2_DRAFT.pdf`); the report section is given per block. If you change a number in the report, change it here too. COLMAP is called a *reference*, not ground truth, as in the report.
 
 | # | Time | Block | Brief requirement it covers | Report | Must / optional |
