@@ -227,8 +227,9 @@ P_ABS.add_run("—We implement an incremental multi-view 3D reconstruction pipel
               "degradation. We log every success and failure, including a reconstruction that registered all images with low "
               "reprojection error yet was 51% wrong because of an EXIF-orientation bug, and a building loop that fragments into "
               "disconnected image clusters. Advanced work adds a rectified-SGBM dense stage (23× more points), GPU learned matching "
-              "with DISK and LightGlue, and a comparison with COLMAP. Five own iPhone captures (330 photos), self-calibrated from "
-              "fundamental matrices (validated to 0.5%), reconstruct completely; a transparent bottle, chosen as a negative case, "
+              "with DISK and LightGlue, and a comparison with COLMAP. Own iPhone captures of four objects (330 photos), "
+              "self-calibrated from fundamental matrices (validated to 0.5% on south-building and to about 1% by a chessboard), "
+              "reconstruct completely; a transparent bottle, chosen as a negative case, "
               "yields geometry only where it is opaque. The main lesson is that reprojection error and registration counts can hide "
               "a wrong or incomplete reconstruction.")
 for ch in list(P_KEY._p):
@@ -266,17 +267,17 @@ B("Main findings: the pipeline agrees with COLMAP to about 0.1% in camera positi
 # ======================================================================================== II. DATASETS
 H1("Datasets")
 H2("South-building (main dataset)")
-B("From the COLMAP dataset collection [15]: 128 photographs (3072×2304) of a brick building taken from the ground, with a "
+B("The south-building set of the COLMAP dataset collection [15] has 128 photographs (3072×2304) of a brick building taken from the ground, with a "
   "SIMPLE_RADIAL camera (f = 2559.7 px, k<sub>1</sub> = −0.0205). The baseline and control sequence uses 12 images "
   "(P1180181–P1180203, every second frame); the dense reconstruction uses 16 consecutive images. Images are scaled to 1600 px on "
   "the long side and undistorted, and the camera matrix is scaled accordingly. Consecutive frames have about 12° of parallax and "
   "matching survives up to about 35° (Section V-D).")
-H2("Person-hall (challenging dataset)")
+H2("Person Hall (challenging dataset)")
 B("330 photographs (5616×3744, OPENCV model, k<sub>1</sub> = −0.109) of a walk around a brick building that returns to its "
   "start (Fig. 1d–f). It contains heavy foliage, repetitive arched windows, sun flare, strong scale changes and 48 portrait "
   "photographs carrying an EXIF orientation tag (Section VI).")
 H2("Own photographs")
-B("Five sets (330 photographs) were taken by hand with an iPhone 16 Pro Max main camera (24 mm-equivalent, f/1.78, 1/100 s, "
+B("Five capture sets of four objects (330 photographs) were taken by hand with an iPhone 16 Pro Max main camera (24 mm-equivalent, f/1.78, 1/100 s, "
   "ISO 80–125, JPEG, 5712×4284; 10 frames at 4032×3024 with the same field of view). The camera was walked once round "
   "a stationary object standing on a pedestal in a textured office, at roughly constant distance, without turning the object: a "
   "yellow warning sign at two heights (82 + 37 photos), a fire extinguisher (83), snacks (71) and a transparent bottle (57), the "
@@ -297,7 +298,7 @@ B("We use RootSIFT [2], [3] (SIFT with L<sub>1</sub>-normalised, square-rooted d
   "Section III-J.")
 H2("Matching and filtering")
 B("Matches pass a cascade (Fig. 2): raw nearest-neighbour matching; Lowe’s ratio test (0.8); a mutual (cross-check) test; and "
-  "geometric verification by RANSAC on the essential matrix [5] with a 1 px threshold. We judge correctness against the COLMAP "
+  "geometric verification by RANSAC [5] on the essential matrix (five-point solver [4]) with a 1 px threshold. We judge correctness against the COLMAP "
   "epipolar geometry (Sampson distance < 1.5 px): green lines are correct, red are wrong. For the initial pair, 8000 raw matches "
   "(4,467 wrong) reduce to 3164 after the ratio and mutual tests (81 wrong) and 3077 after RANSAC (none wrong).")
 FIG("fig2_matching.png", "Match filtering for the initial pair (P1180189, P1180191): (a) raw nearest neighbour, (b) ratio test and "
@@ -353,7 +354,8 @@ FIG("fig4_reprojection.png", "Reprojection check. (a) Detected features (green c
 H2("Evaluation protocol")
 B("We align our model to COLMAP by a Sim(3) transform (Umeyama [12], inside RANSAC, with an optical-axis term when camera centres are "
   "nearly collinear) and report the camera position error relative to the trajectory extent, the rotation error, the fraction of our "
-  "points within 2% of that extent from a COLMAP point, and completeness. Runtimes are for a laptop with an RTX 3050 6 GB GPU.")
+  "points within 2% of that extent from a COLMAP point, and completeness. Runtimes are wall-clock times on a laptop, on the CPU "
+  "unless the GPU (RTX 3050, 6 GB) is stated.")
 H2("Dense stereo reconstruction (advanced)")
 B("Given the poses, neighbouring registered cameras are rectified so epipolar lines become image rows, matched by semi-global "
   "matching [9] (block 5) within a disparity range derived from the sparse depths, and back-projected. Depth maps are fused by "
@@ -441,8 +443,8 @@ B("All eight images register at strides 1–2, six at stride 3 and only 2–3 at
 FIG("fig5_expA_expC.png", "(a) Experiment A: 3D points (blue) and camera position error (red) against the number of images. "
     "(b) Experiment C: images registered (bars, of 8) and verified inliers per pair (line) against frame stride.")
 H2("Experiment D: image quality")
-B("Degradation appears as lost points and images rather than pose drift: for runs that still register, camera error stays at "
-  "0.1–0.4% (Fig. 6). Blur is the most destructive: σ = 2 halves the points, σ = 4 leaves 7% and 8/12 images. Noise "
+B("Degradation appears mostly as lost points and images rather than pose drift: for runs that still register, camera error "
+  "stays at 0.1–0.4%, except at 400 and 200 px resolution (0.6% and 1.5%) (Fig. 6). Blur is the most destructive: σ = 2 halves the points, σ = 4 leaves 7% and 8/12 images. Noise "
   "σ = 25 leaves 14% (8/12) and σ = 50 fails. Down to 800 px keeps 47% of the points; 400 px keeps 8%. Contrast ×0.25 "
   "still registers 11/12 but ×0.1 cannot initialise; darkening by gamma does not hurt. The hypothesis holds.")
 FIG("fig6_expD.png", "Experiment D: 3D points kept (% of the undegraded baseline) for each degradation; numbers show images "
@@ -466,7 +468,7 @@ B("<b>A second silent failure.</b> At strides 4–6 learned matching registered 
   "(59–85% camera error). In the stride-6 case 8 of 19 verified pairs were false, with a median of only 68 inliers against 2,357 for correct pairs. "
   "Our SIFT-era thresholds could not separate them; raising the pair threshold to 150 inliers removed them (3–4 images "
   "registered, nearly all correct).")
-B("Compared with COLMAP on identical images (Table V; its model restricted to points seen by our images), poses agree to 0.03–0.11%. "
+B("Compared with COLMAP on identical images (Table V; its model restricted to points seen by our images), poses agree to 0.03–0.11% (0.20% with learned matching). "
   "Our point counts are 0.6–2.3× COLMAP’s with similar track lengths. Our lower reprojection error is <i>not</i> evidence of "
   "superiority: our intrinsics are COLMAP’s refined calibration, its error is averaged over a model constrained by all 128 images, "
   "and our acceptance thresholds differ. COLMAP additionally uses retrieval-based matching, two-view geometry classification, "
@@ -488,13 +490,14 @@ FIG("fig9_learned_colmap.png", "(a) Median correct RANSAC inliers per pair for t
 
 # ======================================================================================== VI. CHALLENGING SCENARIOS
 H1("Challenging Scenarios and Failure Analysis")
-B("Person Hall provides foliage, repetition, sun flare and a closed loop. We ran the unchanged default pipeline on 11 cases "
-  "(Table VI) and logged every outcome.")
+B("Person Hall provides foliage, repetition, sun flare and a closed loop. We ran the unchanged default pipeline on 11 cases, "
+  "plus one loop run with relaxed thresholds (Table VI), and logged every outcome.")
 TABLE("Person Hall cases", ["Case", "Tests", "Reg.", "Cam. err", "Outcome"],
       [["A facade", "reference", "12/12", "0.03%", "success"], ["B foliage", "occlusion", "2/12", "n/a", "<b>failure</b>"],
        ["C arches+flare", "repetition", "12/12", "0.11%", "success†"], ["D corner turn", "scale change", "11/12", "0.07%", "success"],
        ["Stride 2–8", "viewpoint", "8/8 (×4)", "≤ 0.75%", "success"], ["F loop, 55", "whole loop", "15/55", "0.66%", "<b>failure</b>"],
        ["F3 loop, 110", "whole loop", "44/110", "0.16%", "<b>failure</b> (partial)"],
+       ["F3, relaxed", "thresholds", "45/110", "0.19%", "<b>failure</b> (partial)"],
        ["F3, learned", "whole loop", "59/110", "53%", "<b>failure</b> (drift)"]],
       [1.8, 1.4, 1.3, 1.1, 2.1], note="†After fixing the EXIF bug; the first run of C was 12/12 registered but 51% wrong.", left_cols=(0, 1))
 B("<b>Foliage (case B).</b> Only 2 of 12 images register (63 points). Fig. 9a: a tree hides the wall; the 74 surviving matches are "
@@ -537,7 +540,7 @@ B("<b>Dense-stage lessons.</b> The first dense result was a diffuse blob. Two ca
   "sized from the whole office, far too coarse for a small object, and neighbouring frames are only about 5° apart on these orbits, "
   "too small a stereo baseline. Fusing only a cylinder around the orbit axis with a voxel sized to it, and pairing frames two to three "
   "apart (10–16°), fixed both. The glossy, uniformly red extinguisher also needed more permissive stereo settings "
-  "(13,700 to 576,819 points).")
+  "(13,700 to 76,622 points in the same region; Table VII uses a taller region).")
 B("<b>Negative case: transparent bottle.</b> It registers 57/57 with both pipelines, yet geometry exists only where the object is "
   "opaque: the red label and the black cap reconstruct densely, while the clear body is almost empty or noise (Fig. 11), because the "
   "camera sees the background through it and matching assumes one appearance per surface. DISK + LightGlue gives the same result with "
@@ -557,13 +560,14 @@ B("<b>Reconstruction errors.</b> Reprojection error is necessary but not suffici
   "loop: 59 cameras, 49 wrong). Independent validation found both the EXIF bug and the wrong learned models.")
 B("<b>Missing regions and limitations.</b> Foliage, sky and glass produce no points; dense stereo is unreliable on thin structures; COLMAP "
   "covers ground and foliage that we miss. Limitations: one main sequence; RANSAC variation not averaged (re-runs reproduced "
-  "identical numbers); COLMAP is a reference, not truth; intrinsics are not estimated; no loop closure, local bundle adjustment or "
+  "identical numbers); COLMAP is a reference, not truth; for the COLMAP datasets the intrinsics are COLMAP's, not estimated; "
+  "no loop closure, local bundle adjustment or "
   "sub-model merging; binary detectors untuned; mainly building-scale data.")
 B("<b>Own captures.</b> Careful capture mattered more than algorithm choice: one lens, constant distance and overlapping neighbours "
-  "(hundreds of verified matches) let all five sets reconstruct without per-set tuning, unlike the Person Hall loop. The limits were "
-  "physical: transparent and glossy surfaces break the assumptions of matching and stereo, and an uncalibrated phone caps accuracy. "
-  "Without ground truth we cannot state a metric accuracy for these sets; a chessboard calibration of the same lens and focus "
-  "distance would provide the missing reference.")
+  "(hundreds of verified matches) let all four objects reconstruct without per-set tuning, unlike the Person Hall loop. The limits "
+  "were physical: transparent and glossy surfaces break the assumptions of matching and stereo, and an uncalibrated phone caps "
+  "accuracy. The chessboard confirmed the self-calibrated focal length to about 1%, but there is no ground truth for the "
+  "reconstructions themselves, so their metric accuracy cannot be stated.")
 B("<b>Improvements.</b> Loop-closure detection by image retrieval; local bundle adjustment and merging of sub-models; sub-pixel "
   "refinement of learned keypoints; vegetation masking; denser sampling; and GPU matching of all pairs (about 6.5 h on CPU for the full "
   "loop, an estimated 26 min at the measured GPU speed).")
@@ -580,8 +584,8 @@ B("An incremental SfM pipeline implemented from the geometry up reproduces COLMA
 
 # ======================================================================================== AI DECLARATION + REFERENCES
 new_p("AI Usage Declaration", "Heading 5")
-B("<hl>[YOU: review every statement and edit it so it is true for you.]</hl> <b>Tools:</b> Claude (Claude Code, model Claude Sonnet 5.5, "
-  "Anthropic). <b>Used for:</b> writing and debugging the pipeline, experiment and analysis scripts; producing figures, videos and the "
+B("<hl>[YOU: review every statement and edit it so it is true for you.]</hl> <b>Tools:</b> Claude (Claude Code, models Claude Sonnet 5.5 and "
+  "Claude Opus 5.5, Anthropic). <b>Used for:</b> writing and debugging the pipeline, experiment and analysis scripts; producing figures, videos and the "
   "interactive viewer; diagnosing failures (for example the EXIF bug); and drafting the progress log, the demo script and this report. "
   "<b>AI-assisted parts:</b> most code in the repository folders sfm/, scripts/ and experiments/, and first drafts of the text. "
   "<b>Verification and modification:</b> all numbers were produced by running the code; reconstructions were checked against the "
